@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Reservation:
+  = @agenda_reserv_msg.reservation_id
+%p
+  %b Message:
+  = @agenda_reserv_msg.message
+
+= link_to 'Edit', edit_agenda_reserv_msg_path(@agenda_reserv_msg)
+\|
+= link_to 'Back', agenda_reserv_msgs_path

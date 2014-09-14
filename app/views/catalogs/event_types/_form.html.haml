@@ -1,0 +1,13 @@
+= form_for @catalogs_event_type do |f|
+  - if @catalogs_event_type.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@catalogs_event_type.errors.count, "error")} prohibited this catalogs_event_type from being saved:"
+      %ul
+        - @catalogs_event_type.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'

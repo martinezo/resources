@@ -1,0 +1,21 @@
+%h1 Listing agenda_reserv_resources
+
+%table
+  %tr
+    %th Reservation
+    %th Resource
+    %th
+    %th
+    %th
+
+  - @agenda_reserv_resources.each do |agenda_reserv_resource|
+    %tr
+      %td= agenda_reserv_resource.reservation_id
+      %td= agenda_reserv_resource.resource_id
+      %td= link_to 'Show', agenda_reserv_resource
+      %td= link_to 'Edit', edit_agenda_reserv_resource_path(agenda_reserv_resource)
+      %td= link_to 'Destroy', agenda_reserv_resource, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reserv resource', new_agenda_reserv_resource_path

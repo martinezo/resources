@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Reservation:
+  = @agenda_reserv_date.reservation_id
+%p
+  %b Start date hour:
+  = @agenda_reserv_date.start_date_hour
+%p
+  %b End date hour:
+  = @agenda_reserv_date.end_date_hour
+
+= link_to 'Edit', edit_agenda_reserv_date_path(@agenda_reserv_date)
+\|
+= link_to 'Back', agenda_reserv_dates_path

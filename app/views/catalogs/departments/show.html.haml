@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Abbr:
+  = @catalogs_department.abbr
+%p
+  %b Name:
+  = @catalogs_department.name
+%p
+  %b Img header:
+  = @catalogs_department.img_header
+%p
+  %b Institution:
+  = @catalogs_department.institution_id
+
+= link_to 'Edit', edit_catalogs_department_path(@catalogs_department)
+\|
+= link_to 'Back', catalogs_departments_path

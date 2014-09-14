@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Abbr:
+  = @catalogs_institution.abbr
+%p
+  %b Name:
+  = @catalogs_institution.name
+
+= link_to 'Edit', edit_catalogs_institution_path(@catalogs_institution)
+\|
+= link_to 'Back', catalogs_institutions_path

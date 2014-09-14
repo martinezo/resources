@@ -1,0 +1,25 @@
+%h1 Listing catalogs_departments
+
+%table
+  %tr
+    %th Abbr
+    %th Name
+    %th Img header
+    %th Institution
+    %th
+    %th
+    %th
+
+  - @catalogs_departments.each do |catalogs_department|
+    %tr
+      %td= catalogs_department.abbr
+      %td= catalogs_department.name
+      %td= catalogs_department.img_header
+      %td= catalogs_department.institution_id
+      %td= link_to 'Show', catalogs_department
+      %td= link_to 'Edit', edit_catalogs_department_path(catalogs_department)
+      %td= link_to 'Destroy', catalogs_department, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Department', new_catalogs_department_path

@@ -1,0 +1,21 @@
+%h1 Listing catalogs_institutions
+
+%table
+  %tr
+    %th Abbr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @catalogs_institutions.each do |catalogs_institution|
+    %tr
+      %td= catalogs_institution.abbr
+      %td= catalogs_institution.name
+      %td= link_to 'Show', catalogs_institution
+      %td= link_to 'Edit', edit_catalogs_institution_path(catalogs_institution)
+      %td= link_to 'Destroy', catalogs_institution, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Institution', new_catalogs_institution_path

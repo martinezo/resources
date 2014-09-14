@@ -1,0 +1,33 @@
+%h1 Listing catalogs_resources
+
+%table
+  %tr
+    %th Abbr
+    %th Name
+    %th Resource type
+    %th Description
+    %th Ubication
+    %th Active
+    %th Admin user
+    %th Unique
+    %th
+    %th
+    %th
+
+  - @catalogs_resources.each do |catalogs_resource|
+    %tr
+      %td= catalogs_resource.abbr
+      %td= catalogs_resource.name
+      %td= catalogs_resource.resource_type_id
+      %td= catalogs_resource.description
+      %td= catalogs_resource.ubication
+      %td= catalogs_resource.active
+      %td= catalogs_resource.admin_user_id
+      %td= catalogs_resource.unique
+      %td= link_to 'Show', catalogs_resource
+      %td= link_to 'Edit', edit_catalogs_resource_path(catalogs_resource)
+      %td= link_to 'Destroy', catalogs_resource, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Resource', new_catalogs_resource_path

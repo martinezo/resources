@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @catalogs_event_type.name
+
+= link_to 'Edit', edit_catalogs_event_type_path(@catalogs_event_type)
+\|
+= link_to 'Back', catalogs_event_types_path

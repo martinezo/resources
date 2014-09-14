@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  folio: 1
+  requester: MyString
+  email: MyString
+  phone: MyString
+  foreing_headquarter_id: 1
+  event_type_id: 1
+  status_id: 1
+  comments: MyString
+  modified_by: 1
+
+two:
+  folio: 1
+  requester: MyString
+  email: MyString
+  phone: MyString
+  foreing_headquarter_id: 1
+  event_type_id: 1
+  status_id: 1
+  comments: MyString
+  modified_by: 1

@@ -1,0 +1,21 @@
+%h1 Listing agenda_reserv_msgs
+
+%table
+  %tr
+    %th Reservation
+    %th Message
+    %th
+    %th
+    %th
+
+  - @agenda_reserv_msgs.each do |agenda_reserv_msg|
+    %tr
+      %td= agenda_reserv_msg.reservation_id
+      %td= agenda_reserv_msg.message
+      %td= link_to 'Show', agenda_reserv_msg
+      %td= link_to 'Edit', edit_agenda_reserv_msg_path(agenda_reserv_msg)
+      %td= link_to 'Destroy', agenda_reserv_msg, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reserv msg', new_agenda_reserv_msg_path

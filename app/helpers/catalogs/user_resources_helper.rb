@@ -1,0 +1,2 @@
+module Catalogs::UserResourcesHelper
+end

@@ -1,4 +1,56 @@
 Rails.application.routes.draw do
+  namespace :agenda do
+    resources :reserv_msgs
+  end
+
+  namespace :agenda do
+    resources :reserv_dates
+  end
+
+  namespace :catalogs do
+    resources :statuses
+  end
+
+  namespace :agenda do
+    resources :reservations
+  end
+
+  namespace :agenda do
+    resources :reserv_resources
+  end
+
+  namespace :catalogs do
+    resources :event_types
+  end
+
+  namespace :catalogs do
+    resources :headquarters
+  end
+
+  namespace :catalogs do
+    resources :resources
+  end
+
+  namespace :catalogs do
+    resources :resource_types
+  end
+
+  namespace :catalogs do
+    resources :user_resources
+  end
+
+  namespace :admin do
+    resources :users
+  end
+
+  namespace :catalogs do
+    resources :departments
+  end
+
+  namespace :catalogs do
+    resources :institutions
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

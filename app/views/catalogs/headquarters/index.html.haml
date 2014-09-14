@@ -1,0 +1,29 @@
+%h1 Listing catalogs_headquarters
+
+%table
+  %tr
+    %th Name
+    %th Intitution
+    %th Responsible
+    %th Email
+    %th Phone
+    %th Comments
+    %th
+    %th
+    %th
+
+  - @catalogs_headquarters.each do |catalogs_headquarter|
+    %tr
+      %td= catalogs_headquarter.name
+      %td= catalogs_headquarter.intitution_id
+      %td= catalogs_headquarter.responsible
+      %td= catalogs_headquarter.email
+      %td= catalogs_headquarter.phone
+      %td= catalogs_headquarter.comments
+      %td= link_to 'Show', catalogs_headquarter
+      %td= link_to 'Edit', edit_catalogs_headquarter_path(catalogs_headquarter)
+      %td= link_to 'Destroy', catalogs_headquarter, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Headquarter', new_catalogs_headquarter_path

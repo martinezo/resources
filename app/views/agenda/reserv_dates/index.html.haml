@@ -1,0 +1,23 @@
+%h1 Listing agenda_reserv_dates
+
+%table
+  %tr
+    %th Reservation
+    %th Start date hour
+    %th End date hour
+    %th
+    %th
+    %th
+
+  - @agenda_reserv_dates.each do |agenda_reserv_date|
+    %tr
+      %td= agenda_reserv_date.reservation_id
+      %td= agenda_reserv_date.start_date_hour
+      %td= agenda_reserv_date.end_date_hour
+      %td= link_to 'Show', agenda_reserv_date
+      %td= link_to 'Edit', edit_agenda_reserv_date_path(agenda_reserv_date)
+      %td= link_to 'Destroy', agenda_reserv_date, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reserv date', new_agenda_reserv_date_path

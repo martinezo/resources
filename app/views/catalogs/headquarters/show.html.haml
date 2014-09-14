@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @catalogs_headquarter.name
+%p
+  %b Intitution:
+  = @catalogs_headquarter.intitution_id
+%p
+  %b Responsible:
+  = @catalogs_headquarter.responsible
+%p
+  %b Email:
+  = @catalogs_headquarter.email
+%p
+  %b Phone:
+  = @catalogs_headquarter.phone
+%p
+  %b Comments:
+  = @catalogs_headquarter.comments
+
+= link_to 'Edit', edit_catalogs_headquarter_path(@catalogs_headquarter)
+\|
+= link_to 'Back', catalogs_headquarters_path
