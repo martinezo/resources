@@ -17,6 +17,7 @@
 
 # RubyMine
 /.idea
+**/.DS*
 
 # Ignore Gem and db config
 Gemfile.lock

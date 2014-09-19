@@ -1,0 +1,17 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2= sortable 'login', t('activerecord.attributes.admin/user.login'), admin_users_path
+      %th.col-sm-5= sortable 'name', t('activerecord.attributes.admin/user.name'), admin_users_path
+      %th.col-sm-3= sortable 'mail', t('activerecord.attributes.admin/user.mail'), admin_users_path
+      %th.col-sm-2
+  %tbody
+    - @admin_users.each do |admin_user|
+      %tr
+        %td= admin_user.login
+        %td= admin_user.name
+        %td= admin_user.mail
+        %td.text-center
+          = link_to_fa_button({url: admin_user, icon: 'fa-eye', title: t('commands.show')})
+          = link_to_fa_button({url: edit_admin_user_path(admin_user), icon: 'fa-pencil', title: t('commands.edit')})
+          = link_to_fa_button({url: admin_delete_user_path(admin_user), icon: 'fa-trash-o', title: t('commands.delete')})

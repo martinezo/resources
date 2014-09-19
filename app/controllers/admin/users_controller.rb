@@ -1,10 +1,11 @@
 class Admin::UsersController < ApplicationController
   before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = Admin::User.all
+    @admin_users = Admin::User.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /admin/users/1
@@ -69,6 +70,14 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.require(:admin_user).permit(:login, :name, :mail, :department_id, :type)
+      params.require(:admin_user).permit(:login, :name, :mail, :department_id, :user_type)
+    end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end

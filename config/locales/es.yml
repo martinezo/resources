@@ -1,0 +1,36 @@
+es:
+  titles:
+    menu: Menu
+    users: Usuarios
+    user: Usuario
+
+  commands:
+    submit: Enviar
+    search: Buscar
+    logout: Cerrar Sesión
+    show: Ver datalles
+    new: Agregar
+    edit: Modificar
+    delete: Eliminar
+    save: Guardar
+    show_all: Mostrar todos
+    close: Cerrar
+
+
+  notices:
+    saved_successfully: Registro guardado correctamente.
+    updated_successfully: Registro actualizado correctamente.
+    request_successfully_sent: Solicitud enviada
+
+  will_paginate:
+    previous_label: Anterior
+    next_label: Siguiente
+
+  activerecord:
+    attributes:
+      admin/user:
+        login: Usuario
+        name: Nombre
+        mail: Correo
+        departament_id: Departamento
+        user_type: Tipo de Usuario

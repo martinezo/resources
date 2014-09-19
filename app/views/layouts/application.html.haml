@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Agenda de Recursos INB
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    %body
+      .container
+        .row
+          #r-header
+        .row
+          #r-content
+            = yield
+      #r-footer
+        .container
+          %p.text-muted.text-center
+            Instituto de Neurobiología de la UNAM

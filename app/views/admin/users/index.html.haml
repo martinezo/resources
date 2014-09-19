@@ -1,27 +1,9 @@
-%h1 Listing admin_users
-
-%table
-  %tr
-    %th Login
-    %th Name
-    %th Mail
-    %th Department
-    %th Type
-    %th
-    %th
-    %th
-
-  - @admin_users.each do |admin_user|
-    %tr
-      %td= admin_user.login
-      %td= admin_user.name
-      %td= admin_user.mail
-      %td= admin_user.department_id
-      %td= admin_user.type
-      %td= link_to 'Show', admin_user
-      %td= link_to 'Edit', edit_admin_user_path(admin_user)
-      %td= link_to 'Destroy', admin_user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.users'), url: admin_users_path}
+#records
+  = render partial: 'records'
+#show-dialog
+#new-update-dialog.modal.fade
 
 %br
 
-= link_to 'New User', new_admin_user_path
+= link_to_fa_button ({url: new_admin_user_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})

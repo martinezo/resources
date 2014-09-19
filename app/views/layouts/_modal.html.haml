@@ -1,0 +1,9 @@
+.modal-dialog.modal-lg
+  .modal-content
+    .modal-header
+      = button_tag '', data: { dismiss: 'modal'}, class: 'close fa fa-close'
+      %h4.modal-title= title
+    .modal-body
+      = yield
+    .modal-footer
+      = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

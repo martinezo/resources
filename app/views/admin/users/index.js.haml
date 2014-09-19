@@ -1,0 +1,10 @@
+:plain
+  if(!$("#show-dialog").is(":empty")){
+    $("#show-dialog").dialog("close");
+  } 
+  if(!$("#new-update-dialog").is(":empty")){
+    $("#new-update-dialog").dialog("close");
+  }
+  $('#records').empty();
+  $('#records').html("#{escape_javascript(render 'records')}");
+
