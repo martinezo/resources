@@ -1,10 +1,11 @@
 class Catalogs::InstitutionsController < ApplicationController
   before_action :set_catalogs_institution, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/institutions
   # GET /catalogs/institutions.json
   def index
-    @catalogs_institutions = Catalogs::Institution.all
+    @catalogs_institutions = Catalogs::Institution.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/institutions/1
@@ -71,4 +72,13 @@ class Catalogs::InstitutionsController < ApplicationController
     def catalogs_institution_params
       params.require(:catalogs_institution).permit(:abbr, :name)
     end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
+    end
+
 end

@@ -1,10 +1,12 @@
 class Catalogs::ResourceTypesController < ApplicationController
   before_action :set_catalogs_resource_type, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/resource_types
   # GET /catalogs/resource_types.json
   def index
-    @catalogs_resource_types = Catalogs::ResourceType.all
+    #@catalogs_resource_types = Catalogs::ResourceType.all
+    @catalogs_resource_types = Catalogs::ResourceType.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/resource_types/1
@@ -70,5 +72,13 @@ class Catalogs::ResourceTypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_resource_type_params
       params.require(:catalogs_resource_type).permit(:name, :description)
+    end
+
+    def sort_column
+     params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end

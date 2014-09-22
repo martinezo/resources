@@ -1,0 +1,17 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2= sortable 'name', t('activerecord.attributes.catalogs/headquarters.name'), catalogs_headquarters_path
+      %th.col-sm-5= sortable 'responsible', t('activerecord.attributes.catalogs/headquarters.responsible'), catalogs_headquarters_path
+      %th.col-sm-3= sortable 'mail', t('activerecord.attributes.catalogs/headquarters.mail'), catalogs_headquarters_path
+      %th.col-sm-2
+  %tbody
+    - @catalogs_headquarters.each do |catalogs_headquarter|
+      %tr
+        %td= catalogs_headquarter.name
+        %td= catalogs_headquarter.responsible
+        %td= catalogs_headquarter.mail
+        %td.text-center
+          = link_to_fa_button({url: catalogs_headquarter, icon: 'fa-eye', title: t('commands.show')})
+          = link_to_fa_button({url: edit_catalogs_headquarter_path(catalogs_headquarter), icon: 'fa-pencil', title: t('commands.edit')})
+          = link_to_fa_button({url: catalogs_delete_headquarter_path(catalogs_headquarter), icon: 'fa-trash-o', title: t('commands.delete')})

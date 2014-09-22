@@ -1,0 +1,15 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/institution.abbr'), catalogs_institutions_path
+      %th.col-sm-5= sortable 'name', t('activerecord.attributes.catalogs/institution.name'), catalogs_institutions_path
+      %th.col-sm-2
+  %tbody
+    - @catalogs_institutions.each do |catalogs_institution|
+      %tr
+        %td= catalogs_institution.abbr
+        %td= catalogs_institution.name
+        %td.text-center
+          = link_to_fa_button({url: catalogs_institution, icon: 'fa-eye', title: t('commands.show')})
+          = link_to_fa_button({url: edit_catalogs_institution_path(catalogs_institution), icon: 'fa-pencil', title: t('commands.edit')})
+          = link_to_fa_button({url: catalogs_delete_institution_path(catalogs_institution), icon: 'fa-trash-o', title: t('commands.delete')})

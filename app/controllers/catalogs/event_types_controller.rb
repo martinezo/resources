@@ -1,10 +1,12 @@
 class Catalogs::EventTypesController < ApplicationController
   before_action :set_catalogs_event_type, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/event_types
   # GET /catalogs/event_types.json
   def index
-    @catalogs_event_types = Catalogs::EventType.all
+    #@catalogs_event_types = Catalogs::EventType.all
+    @catalogs_event_types = Catalogs::EventType.search(params[:search]).order("#{sort_column}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/event_types/1
@@ -70,5 +72,13 @@ class Catalogs::EventTypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_event_type_params
       params.require(:catalogs_event_type).permit(:name)
+    end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end

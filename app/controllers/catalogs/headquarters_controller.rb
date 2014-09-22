@@ -1,10 +1,12 @@
 class Catalogs::HeadquartersController < ApplicationController
   before_action :set_catalogs_headquarter, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/headquarters
   # GET /catalogs/headquarters.json
   def index
-    @catalogs_headquarters = Catalogs::Headquarter.all
+    #@catalogs_headquarters = Catalogs::Headquarter.all
+    @catalogs_headquarters = Catalogs::Headquarter.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/headquarters/1
@@ -70,5 +72,13 @@ class Catalogs::HeadquartersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_headquarter_params
       params.require(:catalogs_headquarter).permit(:name, :intitution_id, :responsible, :email, :phone, :comments)
+    end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end

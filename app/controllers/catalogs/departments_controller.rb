@@ -1,10 +1,11 @@
 class Catalogs::DepartmentsController < ApplicationController
   before_action :set_catalogs_department, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/departments
   # GET /catalogs/departments.json
   def index
-    @catalogs_departments = Catalogs::Department.all
+    @catalogs_departments = Catalogs::Department.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/departments/1
@@ -71,4 +72,12 @@ class Catalogs::DepartmentsController < ApplicationController
     def catalogs_department_params
       params.require(:catalogs_department).permit(:abbr, :name, :img_header, :institution_id)
     end
+
+  def sort_column
+    params[:sort] || 'name'
+  end
+
+  def sort_direction
+    params[:direction] || 'asc'
+  end
 end
