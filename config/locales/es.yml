@@ -15,6 +15,8 @@ es:
     resource_type: Tipo Recurso
     resources: Recursos
     resource: Recurso
+    reservations: Reservaciones
+    reservation: Reservación
 
   commands:
     submit: Enviar
@@ -75,5 +77,15 @@ es:
         active: Activo
         admin_user_id: Administrador
         unique: Unico
+      agenda/reservation:
+        folio: Folio
+        requester: Solicitante
+        email: Correo
+        phone: Teléfono
+        foreign_headquarter_id: Sede
+        event_type_id: Tipo Evento
+        status_id: Estado
+        comments: Comentarios
+
 
 

@@ -1,35 +1,12 @@
-%h1 Listing agenda_reservations
-
-%table
-  %tr
-    %th Folio
-    %th Requester
-    %th Email
-    %th Phone
-    %th Foreing headquarter
-    %th Event type
-    %th Status
-    %th Comments
-    %th Modified by
-    %th
-    %th
-    %th
-
-  - @agenda_reservations.each do |agenda_reservation|
-    %tr
-      %td= agenda_reservation.folio
-      %td= agenda_reservation.requester
-      %td= agenda_reservation.email
-      %td= agenda_reservation.phone
-      %td= agenda_reservation.foreing_headquarter_id
-      %td= agenda_reservation.event_type_id
-      %td= agenda_reservation.status_id
-      %td= agenda_reservation.comments
-      %td= agenda_reservation.modified_by
-      %td= link_to 'Show', agenda_reservation
-      %td= link_to 'Edit', edit_agenda_reservation_path(agenda_reservation)
-      %td= link_to 'Destroy', agenda_reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.reservations'), url: agenda_reservations_path}
+#records
+  = render partial: 'records'
+#show-dialog
+#new-update-dialog.modal.fade
 
 %br
 
-= link_to 'New Reservation', new_agenda_reservation_path
+-#= link_to_fa_button ({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= link_to_fa_button({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus',remote: false})
+
+

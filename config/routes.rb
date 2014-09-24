@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :agenda do
     resources :reservations
+    get 'reservations/delete/:id' => 'reservations#delete', as: 'delete_reservation'
   end
 
   namespace :agenda do

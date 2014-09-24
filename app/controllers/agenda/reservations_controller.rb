@@ -1,10 +1,13 @@
 class Agenda::ReservationsController < ApplicationController
   before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
+
+
 
   # GET /agenda/reservations
   # GET /agenda/reservations.json
   def index
-    @agenda_reservations = Agenda::Reservation.all
+    @agenda_reservations = Agenda::Reservation.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /agenda/reservations/1
@@ -71,4 +74,13 @@ class Agenda::ReservationsController < ApplicationController
     def agenda_reservation_params
       params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :foreing_headquarter_id, :event_type_id, :status_id, :comments, :modified_by)
     end
+
+    def sort_column
+      params[:sort] || 'folio'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
+    end
+
 end
