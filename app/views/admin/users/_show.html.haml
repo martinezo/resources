@@ -1,0 +1,28 @@
+- es = 'activerecord.attributes.admin/user.'
+%table.table
+  %tbody
+    %tr
+      %td.rh
+        = t("#{es}.login")
+      %td.rc
+        = @admin_user.login
+
+-#= show_for @admin_user, separator: '&nbsp' do |r|
+  -#.row
+  -#  .col-md-2
+  -#    =r.label :login
+  -#  .col-md-10
+  -#    =r.value :login
+  -#.row
+  -#  .col-md-2
+  -#    =r.label :name
+  -#  .col-md-10
+
+
+  -#= r.attribute :login, wraper: false
+  -#= r.attribute :name
+  -#= r.attribute :mail
+  -#= r.attribute :department_id
+  -#= r.attribute :user_type
+
+-#  TODO change column name user_type to user_type_id
