@@ -1,11 +1,11 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_user, only: [:show, :edit, :update, :delete, :destroy]
   helper_method :sort_column, :sort_direction
 
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = Admin::User.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    @admin_users = Admin::User.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 8, page:  params[:page])
   end
 
   # GET /admin/users/1
@@ -27,39 +27,30 @@ class Admin::UsersController < ApplicationController
   def create
     @admin_user = Admin::User.new(admin_user_params)
 
-    respond_to do |format|
-      if @admin_user.save
-        format.html { redirect_to @admin_user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_user }
-      else
-        format.html { render :new }
-        format.json { render json: @admin_user.errors, status: :unprocessable_entity }
-      end
+    if @admin_user.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
-    respond_to do |format|
-      if @admin_user.update(admin_user_params)
-        format.html { redirect_to @admin_user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_user }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin_user.errors, status: :unprocessable_entity }
-      end
+    if @admin_user.update(admin_user_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
+  end
+
+  def delete
+
   end
 
   # DELETE /admin/users/1
   # DELETE /admin/users/1.json
   def destroy
     @admin_user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private

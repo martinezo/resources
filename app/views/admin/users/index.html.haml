@@ -1,9 +1,11 @@
-= render partial: 'layouts/admin_menu', locals: {title: t('titles.users'), url: admin_users_path}
+- new_link = link_to_fa_button({url: new_admin_user_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.users'), url: admin_users_path, new_link: new_link}
+
 #records
   = render partial: 'records'
-#show-dialog
+#show-dialog.modal.fade
 #new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
-%br
-
-= link_to_fa_button ({url: new_admin_user_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+.text-center
+  = will_paginate @admin_users, renderer: BootstrapPagination::Rails

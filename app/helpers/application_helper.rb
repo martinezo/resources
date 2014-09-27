@@ -14,8 +14,34 @@ module ApplicationHelper
     data = options[:data] || nil
     icon = options[:icon] || nil
     id = options[:id] || nil
-    html_class = "btn btn-default btn-sm" << (options[:htm_class] ? ",#{html_class}" : '')
+    html_class = "btn btn-default btn-md" << (options[:html_class] ? " #{options[:html_class]}" : '')
     target = options[:target] || nil
-    link_to "<span class='fa #{icon}'></span> #{text}".html_safe, url, title: title, remote: remote, data: data, id: id, class: html_class, target: target
+    method = options[:method] ||nil
+    link_to "<span class='fa #{icon}'></span> #{text}".html_safe, url, title: title, remote: remote, data: data, id: id, class: html_class, target: target, method: method
   end
+
+  def flash_messages(flash)
+    success, error, warning, info, f_messages = '','','','',''
+    flash.each do |name, msg|
+      case name
+        when 'success'
+          success << msg
+        when 'error'
+          error << msg
+        when 'warning'
+          warning << msg
+        else
+          info << msg
+      end
+
+    end
+
+    f_messages << "<div class='alert alert-success' role='alert'><span class='fa fa-lg fa-check-circle'></span> #{success}</div>" if success.size > 0
+    f_messages << "<div class='alert alert-danger' role='alert'><span class='fa fa-lg fa-exclamation-triangle'></span> #{error}</div>" if error.size > 0
+    f_messages << "<div class='alert alert-warning' role='alert'><span class='fa fa-lg fa-exclamation-triangle'></span> #{warning}</div>" if warning.size > 0
+    f_messages << "<div class='alert alert-info' role='alert'><span class='fa fa-lg fa-info-circle'></span> #{info}</div>" if info.size > 0
+
+    f_messages.size > 0 ? f_messages.html_safe : nil
+  end
+
 end

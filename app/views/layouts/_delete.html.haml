@@ -4,6 +4,9 @@
       = button_tag '', data: { dismiss: 'modal'}, class: 'close fa fa-close'
       %h4.modal-title= title
     .modal-body
-      = yield
+      .alert.alert-danger
+        = t('notices.delete_this_record?')
+        .text-right
+          = link_to_fa_button ({url: record, method: :delete, icon: 'fa-warning', text: t('commands.delete'), html_class: 'btn-danger'})
     -#.modal-footer
       = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

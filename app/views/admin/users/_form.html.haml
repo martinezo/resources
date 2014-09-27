@@ -1,25 +1,13 @@
-= form_for @admin_user do |f|
-  - if @admin_user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@admin_user.errors.count, "error")} prohibited this admin_user from being saved:"
-      %ul
-        - @admin_user.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @admin_user, remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
-  .field
-    = f.label :login
-    = f.text_field :login
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :mail
-    = f.text_field :mail
-  .field
-    = f.label :department_id
-    = f.number_field :department_id
-  .field
-    = f.label :user_type
-    = f.number_field :user_type
-  .actions
-    = f.submit 'Save'
+  = f.error_notification
+
+  = f.input :login
+  = f.input :name
+  = f.input :mail
+  = f.input :department_id
+  = f.input :user_type
+  %hr
+  .text-right
+    = f.button :submit, t('commands.save')
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

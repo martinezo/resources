@@ -2,12 +2,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-
 $subordinate-color: #F2F2F2;
 $dominant-color: #A9BF5A;
 $accent-color: #2C4001;
-
-
 
 //BOOTSTRAP
 .navbar-default{
@@ -24,23 +21,30 @@ $accent-color: #2C4001;
   background: lighten($dominant-color,30%);
 }
 
+.modal-header{
+  background: lighten($dominant-color,30%);
+}
+
+.pagination > .active > span{
+  background-color: $dominant-color;
+  border-color: $dominant-color;
+}
+
+.pagination > li > a, .pagination > li > span{
+  color: $accent-color;
+}
+
+.pagination > .active > span:hover{
+  background-color: $accent-color;
+  border-color: $accent-color;
+}
+
 //END BOOTSTRAP
 
 #r-header{
-//  background: asset-url("http://dummyimage.com/970x200/000/bbb", image) no-repeat white;
-  background-image: url('http://dummyimage.com/970x100/A9BF5A/2C4001&text=Agenda');
+//  background-image: url('http://dummyimage.com/970x100/A9BF5A/2C4001&text=Agenda');
   height: 100px;
   border: 1 solid red;
-}
-
-#r-footer {
-  background-color: $subordinate-color;
-  bottom: 0;
-  height: 40px;
-  padding-top: 12px;
-  position: absolute;
-  width: 100%;
-  font-size: 0.75em;
 }
 
 #r-header{
@@ -61,4 +65,26 @@ thead{
    text-decoration: none;
     color: $subordinate-color;
   }
+}
+
+.show{
+  .tr{width: 100%}
+  .rh{
+    text-align: right;
+    font-weight: bold;
+  }
+  .rc{
+    text-align: left;
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  /* Set the fixed height of the footer here */
+  height: 3em;
+  background-color: $subordinate-color;
+  padding-top: 1em;
+  font-size: 0.85em;
+  width: 100%;
 }
