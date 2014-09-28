@@ -67,14 +67,19 @@ thead{
   }
 }
 
-.show{
-  .tr{width: 100%}
-  .rh{
+.table{
+  .th{
+    width: 30%;
     text-align: right;
     font-weight: bold;
+    border-top: none;
+    border-bottom: 1px solid $subordinate-color;
   }
-  .rc{
+  .tc{
+    width: 70%;
     text-align: left;
+    border-top: none;
+    border-bottom: 1px solid $subordinate-color;
   }
 }
 

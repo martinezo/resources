@@ -2,27 +2,27 @@
 %table.table
   %tbody
     %tr
-      %td.rh
+      %td.th
+        = t("#{es}.name")
+      %td.tc
+        = @admin_user.name
+    %tr
+      %td.th
         = t("#{es}.login")
-      %td.rc
+      %td.tc
         = @admin_user.login
+    %tr
+      %td.th
+        = t("#{es}.department_id")
+      %td.tc
+        = @admin_user.department_id
+    %tr
+      %td.th
+        = t("#{es}.user_type_id")
+      %td.tc
+        = @admin_user.user_type_id
 
--#= show_for @admin_user, separator: '&nbsp' do |r|
-  -#.row
-  -#  .col-md-2
-  -#    =r.label :login
-  -#  .col-md-10
-  -#    =r.value :login
-  -#.row
-  -#  .col-md-2
-  -#    =r.label :name
-  -#  .col-md-10
+.text-right
+  = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
 
-
-  -#= r.attribute :login, wraper: false
-  -#= r.attribute :name
-  -#= r.attribute :mail
-  -#= r.attribute :department_id
-  -#= r.attribute :user_type
-
--#  TODO change column name user_type to user_type_id
+-#  TODO change column name user_type_id to user_type_id

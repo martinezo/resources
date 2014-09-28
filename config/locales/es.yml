@@ -35,7 +35,7 @@ es:
         name: Nombre
         mail: Correo
         department_id: Departamento
-        user_type: Tipo de Usuario
+        user_type_id: Tipo de Usuario
 
     errors:
       models:

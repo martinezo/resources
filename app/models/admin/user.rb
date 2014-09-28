@@ -1,6 +1,6 @@
 class Admin::User < ActiveRecord::Base
 
-  validates :name, :login, :mail, :department_id, :user_type, presence: true
+  validates :name, :login, :mail, :department_id, :user_type_id, presence: true
 
   def self.search(search)
     if search
