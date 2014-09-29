@@ -1,0 +1,17 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resources.abbr'), catalogs_resources_path
+      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resources.name'), catalogs_resources_path
+      %th.col-sm-3= sortable 'description', t('activerecord.attributes.catalogs/resources.description'), catalogs_resources_path
+      %th.col-sm-2
+  %tbody
+    - @catalogs_resources.each do |catalogs_resource|
+      %tr
+        %td= catalogs_resource.abbr
+        %td= catalogs_resource.name
+        %td= catalogs_resource.description
+        %td.text-center
+          = link_to_fa_button({url: catalogs_resource, icon: 'fa-eye', title: t('commands.show')})
+          = link_to_fa_button({url: edit_catalogs_resource_path(catalogs_resource), icon: 'fa-pencil', title: t('commands.edit')})
+          = link_to_fa_button({url: catalogs_delete_resource_path(catalogs_resource), icon: 'fa-trash-o', title: t('commands.delete')})

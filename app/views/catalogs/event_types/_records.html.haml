@@ -1,0 +1,14 @@
+= flash_messages(flash)
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2= sortable 'name', t('activerecord.attributes.catalogs/event_types.name'), catalogs_event_types_path
+      %th.col-sm-2
+  %tbody
+    - @catalogs_event_types.each do |catalogs_event_type|
+      %tr
+        %td= catalogs_event_type.name
+        %td.text-center
+          = link_to_fa_button({url: catalogs_event_type, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+          = link_to_fa_button({url: edit_catalogs_event_type_path(catalogs_event_type), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
+          = link_to_fa_button({url: catalogs_delete_event_type_path(catalogs_event_type), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

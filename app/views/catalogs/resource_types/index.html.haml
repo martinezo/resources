@@ -1,21 +1,9 @@
-%h1 Listing catalogs_resource_types
-
-%table
-  %tr
-    %th Name
-    %th Description
-    %th
-    %th
-    %th
-
-  - @catalogs_resource_types.each do |catalogs_resource_type|
-    %tr
-      %td= catalogs_resource_type.name
-      %td= catalogs_resource_type.description
-      %td= link_to 'Show', catalogs_resource_type
-      %td= link_to 'Edit', edit_catalogs_resource_type_path(catalogs_resource_type)
-      %td= link_to 'Destroy', catalogs_resource_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resource_types'), url: catalogs_headquarters_path}
+#records
+  = render partial: 'records'
+#show-dialog
+#new-update-dialog.modal.fade
 
 %br
 
-= link_to 'New Resource type', new_catalogs_resource_type_path
+= link_to_fa_button ({url: new_catalogs_resource_type_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})

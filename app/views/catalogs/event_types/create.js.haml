@@ -1,0 +1,7 @@
+- if @catalogs_event_type.errors.count > 0
+  $('#new-update-dialog').empty();
+  $('#new-update-dialog').html("#{escape_javascript(render(partial: 'form', layout: 'layouts/modal', locals: {title: t('titles.event_type')} ))}");
+- else
+  $('#records').empty();
+  $('#records').html("#{escape_javascript(render 'records')}");
+  $('#new-update-dialog').modal('toggle');

@@ -1,10 +1,12 @@
 class Catalogs::EventTypesController < ApplicationController
-  before_action :set_catalogs_event_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_event_type, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/event_types
   # GET /catalogs/event_types.json
   def index
-    @catalogs_event_types = Catalogs::EventType.all
+    #@catalogs_event_types = Catalogs::EventType.all
+    @catalogs_event_types = Catalogs::EventType.search(params[:search]).order("#{sort_column}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/event_types/1
@@ -26,28 +28,19 @@ class Catalogs::EventTypesController < ApplicationController
   def create
     @catalogs_event_type = Catalogs::EventType.new(catalogs_event_type_params)
 
-    respond_to do |format|
-      if @catalogs_event_type.save
-        format.html { redirect_to @catalogs_event_type, notice: 'Event type was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_event_type }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_event_type.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_event_type.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
+
   end
 
   # PATCH/PUT /catalogs/event_types/1
   # PATCH/PUT /catalogs/event_types/1.json
   def update
-    respond_to do |format|
-      if @catalogs_event_type.update(catalogs_event_type_params)
-        format.html { redirect_to @catalogs_event_type, notice: 'Event type was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_event_type }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_event_type.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_event_type.update(catalogs_event_type_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -55,10 +48,7 @@ class Catalogs::EventTypesController < ApplicationController
   # DELETE /catalogs/event_types/1.json
   def destroy
     @catalogs_event_type.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_event_types_url, notice: 'Event type was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
@@ -70,5 +60,13 @@ class Catalogs::EventTypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_event_type_params
       params.require(:catalogs_event_type).permit(:name)
+    end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end

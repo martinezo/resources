@@ -1,10 +1,12 @@
 class Catalogs::ResourcesController < ApplicationController
   before_action :set_catalogs_resource, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/resources
   # GET /catalogs/resources.json
   def index
-    @catalogs_resources = Catalogs::Resource.all
+    #@catalogs_resources = Catalogs::Resource.all
+    @catalogs_resources = Catalogs::Resource.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/resources/1
@@ -71,4 +73,13 @@ class Catalogs::ResourcesController < ApplicationController
     def catalogs_resource_params
       params.require(:catalogs_resource).permit(:abbr, :name, :resource_type_id, :description, :ubication, :active, :admin_user_id, :unique)
     end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
+    end
+
 end

@@ -1,5 +1,6 @@
 class Agenda::ReservDatesController < ApplicationController
   before_action :set_agenda_reserv_date, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /agenda/reserv_dates
   # GET /agenda/reserv_dates.json
@@ -71,4 +72,13 @@ class Agenda::ReservDatesController < ApplicationController
     def agenda_reserv_date_params
       params.require(:agenda_reserv_date).permit(:reservation_id, :start_date_hour, :end_date_hour)
     end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
+    end
+
 end
