@@ -17,6 +17,8 @@ es:
     resource: Recurso
     reservations: Reservaciones
     reservation: Reservación
+    statuses: Estados
+    status: Estado
 
   commands:
     submit: Enviar
@@ -75,10 +77,12 @@ es:
         name: Nombre
         resource_type_id: Tipo Recurso
         description: Descripción
-        location: Ubication
+        location: Ubicación
         active: Activo
         admin_user_id: Administrador
         unique: Unico
+      catalogs/statuses:
+        name: Nombre
       agenda/reservation:
         folio: Folio
         requester: Solicitante

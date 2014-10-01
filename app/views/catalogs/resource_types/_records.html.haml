@@ -1,3 +1,4 @@
+= flash_messages(flash)
 %table.table.table-striped.table-hover
   %thead
     %tr
@@ -10,6 +11,6 @@
         %td= catalogs_resource_type.name
         %td= catalogs_resource_type.description
         %td.text-center
-          = link_to_fa_button({url: catalogs_resource_type, icon: 'fa-eye', title: t('commands.show')})
-          = link_to_fa_button({url: edit_catalogs_resource_type_path(catalogs_resource_type), icon: 'fa-pencil', title: t('commands.edit')})
-          = link_to_fa_button({url: catalogs_delete_resource_type_path(catalogs_resource_type), icon: 'fa-trash-o', title: t('commands.delete')})
+          = link_to_fa_button({url: catalogs_resource_type, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+          = link_to_fa_button({url: edit_catalogs_resource_type_path(catalogs_resource_type), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
+          = link_to_fa_button({url: catalogs_delete_resource_type_path(catalogs_resource_type), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

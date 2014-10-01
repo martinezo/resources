@@ -1,5 +1,5 @@
 class Catalogs::ResourceTypesController < ApplicationController
-  before_action :set_catalogs_resource_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_resource_type, only: [:show, :edit, :update, :destroy, :delete]
   helper_method :sort_column, :sort_direction
 
   # GET /catalogs/resource_types
@@ -27,29 +27,18 @@ class Catalogs::ResourceTypesController < ApplicationController
   # POST /catalogs/resource_types.json
   def create
     @catalogs_resource_type = Catalogs::ResourceType.new(catalogs_resource_type_params)
-
-    respond_to do |format|
-      if @catalogs_resource_type.save
-        format.html { redirect_to @catalogs_resource_type, notice: 'Resource type was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_resource_type }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_resource_type.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_resource_type.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /catalogs/resource_types/1
   # PATCH/PUT /catalogs/resource_types/1.json
   def update
-    respond_to do |format|
-      if @catalogs_resource_type.update(catalogs_resource_type_params)
-        format.html { redirect_to @catalogs_resource_type, notice: 'Resource type was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_resource_type }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_resource_type.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_resource_type.update(catalogs_resource_type_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -57,10 +46,7 @@ class Catalogs::ResourceTypesController < ApplicationController
   # DELETE /catalogs/resource_types/1.json
   def destroy
     @catalogs_resource_type.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_resource_types_url, notice: 'Resource type was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private

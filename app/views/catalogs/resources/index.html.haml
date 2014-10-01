@@ -1,10 +1,13 @@
-= render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_resources_path}
+- new_link = link_to_fa_button({url: new_catalogs_resource_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_resources_path, new_link: new_link}
 #records
   = render partial: 'records'
-#show-dialog
+#show-dialog.modal.fade
 #new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
+.text-center
+  = will_paginate @catalogs_resources, renderer: BootstrapPagination::Rails
 %br
 
-= link_to_fa_button ({url: new_catalogs_resource_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
 

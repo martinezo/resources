@@ -1,5 +1,5 @@
 class Catalogs::ResourcesController < ApplicationController
-  before_action :set_catalogs_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_resource, only: [:show, :edit, :update, :destroy, :delete]
   helper_method :sort_column, :sort_direction
 
   # GET /catalogs/resources
@@ -27,29 +27,18 @@ class Catalogs::ResourcesController < ApplicationController
   # POST /catalogs/resources.json
   def create
     @catalogs_resource = Catalogs::Resource.new(catalogs_resource_params)
-
-    respond_to do |format|
-      if @catalogs_resource.save
-        format.html { redirect_to @catalogs_resource, notice: 'Resource was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_resource }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_resource.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_resource.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /catalogs/resources/1
   # PATCH/PUT /catalogs/resources/1.json
   def update
-    respond_to do |format|
-      if @catalogs_resource.update(catalogs_resource_params)
-        format.html { redirect_to @catalogs_resource, notice: 'Resource was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_resource }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_resource.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_resource.update(catalogs_resource_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -57,10 +46,7 @@ class Catalogs::ResourcesController < ApplicationController
   # DELETE /catalogs/resources/1.json
   def destroy
     @catalogs_resource.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_resources_url, notice: 'Resource was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
