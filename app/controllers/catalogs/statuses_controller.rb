@@ -5,7 +5,7 @@ class Catalogs::StatusesController < ApplicationController
   # GET /catalogs/statuses
   # GET /catalogs/statuses.json
   def index
-    @catalogs_statuses = Catalogs::Status.all
+    @catalogs_statuses = Catalogs::Status.search(params[:search]).order("#{sort_column}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/statuses/1

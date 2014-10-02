@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :catalogs do
     resources :statuses
+    get 'statuses/delete/:id' => 'statuses#delete', as: 'delete_status'
   end
 
   namespace :agenda do
