@@ -19,6 +19,8 @@ es:
     reservation: Reservación
     statuses: Estados
     status: Estado
+    user_resources: Usuarios Recursos
+    user_resource: Usuarios Recurso
 
   commands:
     submit: Enviar
@@ -83,6 +85,10 @@ es:
         unique: Unico
       catalogs/statuses:
         name: Nombre
+      catalogs/user_resources:
+        admin_user_id: Usuario Admin.
+        resource_id: Recurso
+        administrator: Administrador
       agenda/reservation:
         folio: Folio
         requester: Solicitante

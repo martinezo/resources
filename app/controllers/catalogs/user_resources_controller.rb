@@ -1,10 +1,11 @@
 class Catalogs::UserResourcesController < ApplicationController
-  before_action :set_catalogs_user_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_user_resource, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/user_resources
   # GET /catalogs/user_resources.json
   def index
-    @catalogs_user_resources = Catalogs::UserResource.all
+    @catalogs_user_resources = Catalogs::UserResource.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/user_resources/1
@@ -24,30 +25,20 @@ class Catalogs::UserResourcesController < ApplicationController
   # POST /catalogs/user_resources
   # POST /catalogs/user_resources.json
   def create
-    @catalogs_user_resource = Catalogs::UserResource.new(catalogs_user_resource_params)
 
-    respond_to do |format|
-      if @catalogs_user_resource.save
-        format.html { redirect_to @catalogs_user_resource, notice: 'User resource was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_user_resource }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_user_resource.errors, status: :unprocessable_entity }
-      end
+    @catalogs_user_resource = Catalogs::UserResource.new(catalogs_user_resource_params)
+    if @catalogs_user_resource.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /catalogs/user_resources/1
   # PATCH/PUT /catalogs/user_resources/1.json
   def update
-    respond_to do |format|
-      if @catalogs_user_resource.update(catalogs_user_resource_params)
-        format.html { redirect_to @catalogs_user_resource, notice: 'User resource was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_user_resource }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_user_resource.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_user_resource.update(catalogs_user_resource_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -55,10 +46,7 @@ class Catalogs::UserResourcesController < ApplicationController
   # DELETE /catalogs/user_resources/1.json
   def destroy
     @catalogs_user_resource.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_user_resources_url, notice: 'User resource was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
@@ -70,5 +58,13 @@ class Catalogs::UserResourcesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_user_resource_params
       params.require(:catalogs_user_resource).permit(:admin_user_id, :resource_id, :administrator)
+    end
+
+    def sort_column
+      params[:sort] || 'administrator'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end
