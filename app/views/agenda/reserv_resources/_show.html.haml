@@ -1,22 +1,16 @@
-- es = 'activerecord.attributes.catalogs/user_resources.'
+- es = 'activerecord.attributes.agenda/reserv_resources.'
 %table.table
   %tbody
     %tr
       %td.th
-        = t("#{es}.admin_user_id")
+        = t("#{es}.reservation_id")
       %td.tc
-        = @catalogs_user_resource.admin_user.name
+        = @agenda_reserv_resource.reservation_id
     %tr
       %td.th
         = t("#{es}.resource_id")
       %td.tc
-        = @catalogs_user_resource.catalogs_resource.name
-    %tr
-      %td.th
-        = t("#{es}.administrator")
-      %td.tc
-        = @catalogs_user_resource.administrator
-
+        = @agenda_reserv_resource.resource_id
 
 .text-right
   = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

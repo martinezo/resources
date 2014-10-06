@@ -15,7 +15,7 @@
       %td.th
         = t("#{es}.institution_id")
       %td.tc
-        = @catalogs_department.institution_id
+        = @catalogs_department.catalogs_institution.name
 
 .text-right
   = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

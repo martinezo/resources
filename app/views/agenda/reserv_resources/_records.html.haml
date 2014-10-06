@@ -1,0 +1,16 @@
+= flash_messages(flash)
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-5= sortable 'reservation_id', t('activerecord.attributes.catalogs/agenda_reserv_resources.reservation_id'), agenda_reserv_resource_path
+      %th.col-sm-5= sortable 'resource_id', t('activerecord.attributes.catalogs/agenda_reserv_resources.resource_id'), agenda_reserv_resource_path
+      %th.col-sm-2
+  %tbody
+    -  @agenda_reserv_resources.each do |agenda_reserv_resource|
+      %tr
+        %td= catalogs_resource_type.reservation_id
+        %td= catalogs_resource_type.resource_id
+        %td.text-center
+          = link_to_fa_button({url: agenda_reserv_resource, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+          = link_to_fa_button({url: edit_agenda_reserv_resource_path(agenda_reserv_resource), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
+          = link_to_fa_button({url: agenda_delete_reserv_resource_path(agenda_reserv_resource), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

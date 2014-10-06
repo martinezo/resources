@@ -21,6 +21,8 @@ es:
     status: Estado
     user_resources: Usuarios Recursos
     user_resource: Usuarios Recurso
+    reserv_resources: Reservación de Recursos
+    reserv_resource: Reservación de Recurso
 
   commands:
     submit: Enviar
@@ -89,6 +91,9 @@ es:
         admin_user_id: Usuario Admin.
         resource_id: Recurso
         administrator: Administrador
+      agenda/reserv_resources:
+        reservation_id: Reservación
+        resource_id: Recurso
       agenda/reservation:
         folio: Folio
         requester: Solicitante

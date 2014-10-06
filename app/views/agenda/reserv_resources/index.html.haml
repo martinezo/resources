@@ -1,3 +1,18 @@
+- new_link = link_to_fa_button({url: new_catalogs_resource_type_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resource_types'), url: agenda_reserv_resource_path, new_link: new_link}
+#records
+  = render partial: 'records'
+#show-dialog.modal.fade
+#new-update-dialog.modal.fade
+#delete-dialog.modal.fade
+
+.text-center
+  = will_paginate @agenda_reserv_resources, renderer: BootstrapPagination::Rails
+%br
+
+
+
+
 %h1 Listing agenda_reserv_resources
 
 %table

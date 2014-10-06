@@ -9,8 +9,8 @@
   %tbody
     - @catalogs_user_resources.each do |catalogs_user_resource|
       %tr
-        %td= catalogs_user_resource.admin_user_id
-        %td= catalogs_user_resource.resource_id
+        %td= catalogs_user_resource.admin_user.name
+        %td= catalogs_user_resource.catalogs_resource.name
         %td= catalogs_user_resource.administrator
         %td.text-center
           = link_to_fa_button({url: catalogs_user_resource, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})

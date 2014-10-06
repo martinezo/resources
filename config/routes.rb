@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   namespace :agenda do
     resources :reserv_resources
+    get 'reserv_resources/delete/:id' => 'reserv_resources#delete', as: 'delete_reserv_resource'
   end
 
   namespace :catalogs do
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
 
   namespace :catalogs do
     resources :user_resources
+    get 'user_resources/delete/:id' => 'user_resources#delete', as: 'delete_user_resource'
   end
 
   namespace :admin do

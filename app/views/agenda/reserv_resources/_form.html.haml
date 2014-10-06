@@ -1,16 +1,5 @@
-= form_for @agenda_reserv_resource do |f|
-  - if @agenda_reserv_resource.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@agenda_reserv_resource.errors.count, "error")} prohibited this agenda_reserv_resource from being saved:"
-      %ul
-        - @agenda_reserv_resource.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @agenda_reserv_resources, remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
-  .field
-    = f.label :reservation_id
-    = f.number_field :reservation_id
-  .field
-    = f.label :resource_id
-    = f.number_field :resource_id
-  .actions
-    = f.submit 'Save'
+  = f.error_notification
+  = f.input :reservation_id
+  = f.input :resource_id

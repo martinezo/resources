@@ -20,7 +20,7 @@
       %td.th
         = t("#{es}.resource_type_id")
       %td.tc
-        = @catalogs_resource.resource_type_id
+        = @catalogs_resource.catalogs_resource_type.name
     %tr
       %td.th
         = t("#{es}.location")
@@ -35,7 +35,7 @@
       %td.th
         = t("#{es}.admin_user_id")
       %td.tc
-        = @catalogs_resource.admin_user_id
+        = @catalogs_resource.admin_user.name
     %tr
       %td.th
         = t("#{es}.unique")
