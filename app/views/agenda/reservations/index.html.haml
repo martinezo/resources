@@ -1,12 +1,15 @@
-= render partial: 'layouts/admin_menu', locals: {title: t('titles.reservations'), url: agenda_reservations_path}
+- new_link = link_to_fa_button({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.reservation'), url: agenda_reservations_path, new_link: new_link}
 #records
   = render partial: 'records'
-#show-dialog
+#show-dialog.modal.fade
 #new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
+.text-center
+  = will_paginate @agenda_reservations, renderer: BootstrapPagination::Rails
 %br
 
--#= link_to_fa_button ({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
-= link_to_fa_button({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus',remote: false})
+
 
 

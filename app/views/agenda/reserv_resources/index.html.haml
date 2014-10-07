@@ -1,5 +1,5 @@
-- new_link = link_to_fa_button({url: new_catalogs_resource_type_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
-= render partial: 'layouts/admin_menu', locals: {title: t('titles.resource_types'), url: agenda_reserv_resource_path, new_link: new_link}
+- new_link = link_to_fa_button({url: new_agenda_reserv_resource_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.reserv_resource'), url: agenda_reserv_resources_path, new_link: new_link}
 #records
   = render partial: 'records'
 #show-dialog.modal.fade
@@ -10,27 +10,3 @@
   = will_paginate @agenda_reserv_resources, renderer: BootstrapPagination::Rails
 %br
 
-
-
-
-%h1 Listing agenda_reserv_resources
-
-%table
-  %tr
-    %th Reservation
-    %th Resource
-    %th
-    %th
-    %th
-
-  - @agenda_reserv_resources.each do |agenda_reserv_resource|
-    %tr
-      %td= agenda_reserv_resource.reservation_id
-      %td= agenda_reserv_resource.resource_id
-      %td= link_to 'Show', agenda_reserv_resource
-      %td= link_to 'Edit', edit_agenda_reserv_resource_path(agenda_reserv_resource)
-      %td= link_to 'Destroy', agenda_reserv_resource, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Reserv resource', new_agenda_reserv_resource_path

@@ -1,8 +1,8 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-2= sortable 'folio', t('activerecord.attributes.agenda/reservation.folio'), agenda_reservations_path
-      %th.col-sm-3= sortable 'requester', t('activerecord.attributes.agenda/reservation.requester'), agenda_reservations_path
+      %th.col-sm-1= sortable 'folio', t('activerecord.attributes.agenda/reservation.folio'), agenda_reservations_path
+      %th.col-sm-2= sortable 'requester', t('activerecord.attributes.agenda/reservation.requester'), agenda_reservations_path
       %th.col-sm-2= sortable 'email', t('activerecord.attributes.agenda/reservation.email'), agenda_reservations_path
       %th.col-sm-1= sortable 'event_type_id', t('activerecord.attributes.agenda/reservation.event_type_id'), agenda_reservations_path
       %th.col-sm-1= sortable 'status_id', t('activerecord.attributes.agenda/reservation.status_id'), agenda_reservations_path
@@ -13,8 +13,8 @@
         %td= agenda_reservation.folio
         %td= agenda_reservation.requester
         %td= agenda_reservation.email
-        %td= agenda_reservation.event_type_id
-        %td= agenda_reservation.status_id
+        %td= agenda_reservation.catalogs_event_type.name
+        %td= agenda_reservation.catalogs_status.name
         %td.text-center
           = link_to_fa_button({url: agenda_reservation, icon: 'fa-eye', title: t('commands.show')})
           = link_to_fa_button({url: edit_agenda_reservation_path(agenda_reservation), icon: 'fa-pencil', title: t('commands.edit')})

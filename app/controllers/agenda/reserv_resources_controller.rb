@@ -1,5 +1,6 @@
 class Agenda::ReservResourcesController < ApplicationController
   before_action :set_agenda_reserv_resource, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /agenda/reserv_resources
   # GET /agenda/reserv_resources.json
@@ -61,7 +62,7 @@ class Agenda::ReservResourcesController < ApplicationController
     end
 
     def sort_column
-      params[:sort] || 'name'
+      params[:sort] || 'reservation_id'
     end
 
     def sort_direction
