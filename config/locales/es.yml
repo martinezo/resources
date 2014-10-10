@@ -23,6 +23,8 @@ es:
     user_resource: Usuarios Recurso
     reserv_resources: Reservación de Recursos
     reserv_resource: Reservación de Recurso
+    reservations: Reservaciones
+    reservation: Reservación
 
   commands:
     submit: Enviar

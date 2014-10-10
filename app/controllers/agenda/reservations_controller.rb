@@ -1,5 +1,5 @@
 class Agenda::ReservationsController < ApplicationController
-  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete]
   helper_method :sort_column, :sort_direction
 
 
@@ -28,29 +28,18 @@ class Agenda::ReservationsController < ApplicationController
   # POST /agenda/reservations.json
   def create
     @agenda_reservation = Agenda::Reservation.new(agenda_reservation_params)
-
-    respond_to do |format|
-      if @agenda_reservation.save
-        format.html { redirect_to @agenda_reservation, notice: 'Reservation was successfully created.' }
-        format.json { render :show, status: :created, location: @agenda_reservation }
-      else
-        format.html { render :new }
-        format.json { render json: @agenda_reservation.errors, status: :unprocessable_entity }
-      end
+    if @agenda_reservation.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /agenda/reservations/1
   # PATCH/PUT /agenda/reservations/1.json
   def update
-    respond_to do |format|
-      if @agenda_reservation.update(agenda_reservation_params)
-        format.html { redirect_to @agenda_reservation, notice: 'Reservation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agenda_reservation }
-      else
-        format.html { render :edit }
-        format.json { render json: @agenda_reservation.errors, status: :unprocessable_entity }
-      end
+    if @agenda_reservation.update(agenda_reservation_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -58,10 +47,7 @@ class Agenda::ReservationsController < ApplicationController
   # DELETE /agenda/reservations/1.json
   def destroy
     @agenda_reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to agenda_reservations_url, notice: 'Reservation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
