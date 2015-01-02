@@ -1,10 +1,11 @@
 class Catalogs::InstitutionsController < ApplicationController
-  before_action :set_catalogs_institution, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_institution, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/institutions
   # GET /catalogs/institutions.json
   def index
-    @catalogs_institutions = Catalogs::Institution.all
+    @catalogs_institutions = Catalogs::Institution.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/institutions/1
@@ -25,29 +26,18 @@ class Catalogs::InstitutionsController < ApplicationController
   # POST /catalogs/institutions.json
   def create
     @catalogs_institution = Catalogs::Institution.new(catalogs_institution_params)
-
-    respond_to do |format|
-      if @catalogs_institution.save
-        format.html { redirect_to @catalogs_institution, notice: 'Institution was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_institution }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_institution.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_institution.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /catalogs/institutions/1
   # PATCH/PUT /catalogs/institutions/1.json
   def update
-    respond_to do |format|
-      if @catalogs_institution.update(catalogs_institution_params)
-        format.html { redirect_to @catalogs_institution, notice: 'Institution was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_institution }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_institution.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_institution.update(catalogs_institution_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -55,10 +45,7 @@ class Catalogs::InstitutionsController < ApplicationController
   # DELETE /catalogs/institutions/1.json
   def destroy
     @catalogs_institution.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_institutions_url, notice: 'Institution was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
@@ -71,4 +58,13 @@ class Catalogs::InstitutionsController < ApplicationController
     def catalogs_institution_params
       params.require(:catalogs_institution).permit(:abbr, :name)
     end
+
+    def sort_column
+      params[:sort] || 'name'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
+    end
+
 end

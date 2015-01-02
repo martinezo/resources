@@ -1,21 +1,11 @@
-%h1 Listing catalogs_institutions
+- new_link = link_to_fa_button({url: new_catalogs_institution_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.institutions'), url: catalogs_institutions_path, new_link: new_link}
+#records
+  = render partial: 'records'
+#show-dialog.modal.fade
+#new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
-%table
-  %tr
-    %th Abbr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @catalogs_institutions.each do |catalogs_institution|
-    %tr
-      %td= catalogs_institution.abbr
-      %td= catalogs_institution.name
-      %td= link_to 'Show', catalogs_institution
-      %td= link_to 'Edit', edit_catalogs_institution_path(catalogs_institution)
-      %td= link_to 'Destroy', catalogs_institution, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.text-center
+  = will_paginate @catalogs_institutions, renderer: BootstrapPagination::Rails
 %br
-
-= link_to 'New Institution', new_catalogs_institution_path

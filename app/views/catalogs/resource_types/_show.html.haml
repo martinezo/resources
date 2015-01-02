@@ -1,0 +1,18 @@
+- es = 'activerecord.attributes.catalogs/resource_types.'
+%table.table
+  %tbody
+    %tr
+      %td.th
+        = t("#{es}.name")
+      %td.tc
+        = @catalogs_resource_type.name
+    %tr
+      %td.th
+        = t("#{es}.description")
+      %td.tc
+        = @catalogs_resource_type.description
+
+.text-right
+  = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
+
+-#  TODO change column name user_type_id to user_type_id

@@ -3,6 +3,28 @@ es:
     menu: Menu
     users: Usuarios
     user: Usuario
+    departments: Departamentos
+    department: Departamento
+    institutions: Instituciones
+    institution: Institución
+    event_types: Tipos Evento
+    event_type: Tipo Evento
+    headquarters: Sedes
+    headquarter: Sede
+    resource_types: Tipos de Recurso
+    resource_type: Tipo Recurso
+    resources: Recursos
+    resource: Recurso
+    reservations: Reservaciones
+    reservation: Reservación
+    statuses: Estados
+    status: Estado
+    user_resources: Usuarios Recursos
+    user_resource: Usuarios Recurso
+    reserv_resources: Reservación de Recursos
+    reserv_resource: Reservación de Recurso
+    reservations: Reservaciones
+    reservation: Reservación
 
   commands:
     submit: Enviar
@@ -34,8 +56,55 @@ es:
         login: Usuario
         name: Nombre
         mail: Correo
-        department_id: Departamento
-        user_type_id: Tipo de Usuario
+        departament_id: Departamento
+        user_type: Tipo de Usuario
+      catalogs/departments:
+        abbr: Abreviatura
+        name: Nombre
+        img_header: Imagen Encabezado
+        institution_id: Institución
+      catalogs/event_types:
+        name: Nombre
+      catalogs/headquarters:
+        name: Nombre
+        institution_id: Institución
+        responsible: Responsable
+        email: Correo
+        phone: Teléfono
+        comments: Comentarios
+      catalogs/institutions:
+        abbr: Abreviatura
+        name: Nombre
+      catalogs/resource_types:
+        name: Nombre
+        description: Descripción
+      catalogs/resources:
+        abbr: Abreviatura
+        name: Nombre
+        resource_type_id: Tipo Recurso
+        description: Descripción
+        location: Ubicación
+        active: Activo
+        admin_user_id: Administrador
+        unique: Unico
+      catalogs/statuses:
+        name: Nombre
+      catalogs/user_resources:
+        admin_user_id: Usuario Admin.
+        resource_id: Recurso
+        administrator: Administrador
+      agenda/reserv_resources:
+        reservation_id: Reservación
+        resource_id: Recurso
+      agenda/reservation:
+        folio: Folio
+        requester: Solicitante
+        email: Correo
+        phone: Teléfono
+        foreign_headquarter_id: Sede
+        event_type_id: Tipo Evento
+        status_id: Estado
+        comments: Comentarios
 
     errors:
       models:
@@ -51,3 +120,5 @@ es:
               blank: Dato requerido
             user_type:
               blank: Dato requerido
+
+

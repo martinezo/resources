@@ -9,34 +9,42 @@ Rails.application.routes.draw do
 
   namespace :catalogs do
     resources :statuses
+    get 'statuses/delete/:id' => 'statuses#delete', as: 'delete_status'
   end
 
   namespace :agenda do
     resources :reservations
+    get 'reservations/delete/:id' => 'reservations#delete', as: 'delete_reservation'
   end
 
   namespace :agenda do
     resources :reserv_resources
+    get 'reserv_resources/delete/:id' => 'reserv_resources#delete', as: 'delete_reserv_resource'
   end
 
   namespace :catalogs do
     resources :event_types
+    get 'event_types/delete/:id' => 'event_types#delete', as: 'delete_event_type'
   end
 
   namespace :catalogs do
     resources :headquarters
+    get 'headquarters/delete/:id' => 'headquarters#delete', as: 'delete_headquarter'
   end
 
   namespace :catalogs do
     resources :resources
+    get 'resources/delete/:id' => 'resources#delete', as: 'delete_resource'
   end
 
   namespace :catalogs do
     resources :resource_types
+    get 'resource_types/delete/:id' => 'resource_types#delete', as: 'delete_resource_type'
   end
 
   namespace :catalogs do
     resources :user_resources
+    get 'user_resources/delete/:id' => 'user_resources#delete', as: 'delete_user_resource'
   end
 
   namespace :admin do
@@ -46,10 +54,12 @@ Rails.application.routes.draw do
 
   namespace :catalogs do
     resources :departments
+    get 'departments/delete/:id' => 'departments#delete', as: 'delete_department'
   end
 
   namespace :catalogs do
     resources :institutions
+    get 'institutions/delete/:id' => 'institutions#delete', as: 'delete_institution'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

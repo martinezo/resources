@@ -1,13 +1,8 @@
-= form_for @catalogs_status do |f|
-  - if @catalogs_status.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@catalogs_status.errors.count, "error")} prohibited this catalogs_status from being saved:"
-      %ul
-        - @catalogs_status.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @catalogs_status, remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.error_notification
+  = f.input :name
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+  %hr
+  .text-right
+    = f.button :submit, t('commands.save')
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

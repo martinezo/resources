@@ -1,19 +1,11 @@
-%h1 Listing catalogs_statuses
+- new_link = link_to_fa_button({url:  new_catalogs_status_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resource_types'), url: catalogs_statuses_path, new_link: new_link}
+#records
+  = render partial: 'records'
+#show-dialog.modal.fade
+#new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @catalogs_statuses.each do |catalogs_status|
-    %tr
-      %td= catalogs_status.name
-      %td= link_to 'Show', catalogs_status
-      %td= link_to 'Edit', edit_catalogs_status_path(catalogs_status)
-      %td= link_to 'Destroy', catalogs_status, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.text-center
+  = will_paginate @catalogs_statuses, renderer: BootstrapPagination::Rails
 %br
-
-= link_to 'New Status', new_catalogs_status_path

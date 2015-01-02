@@ -1,10 +1,11 @@
 class Catalogs::DepartmentsController < ApplicationController
-  before_action :set_catalogs_department, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_department, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/departments
   # GET /catalogs/departments.json
   def index
-    @catalogs_departments = Catalogs::Department.all
+    @catalogs_departments = Catalogs::Department.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/departments/1
@@ -26,28 +27,19 @@ class Catalogs::DepartmentsController < ApplicationController
   def create
     @catalogs_department = Catalogs::Department.new(catalogs_department_params)
 
-    respond_to do |format|
-      if @catalogs_department.save
-        format.html { redirect_to @catalogs_department, notice: 'Department was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_department }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_department.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_department.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /catalogs/departments/1
   # PATCH/PUT /catalogs/departments/1.json
   def update
-    respond_to do |format|
-      if @catalogs_department.update(catalogs_department_params)
-        format.html { redirect_to @catalogs_department, notice: 'Department was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_department }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_department.errors, status: :unprocessable_entity }
-      end
+
+    if @catalogs_department.update(catalogs_department_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -55,10 +47,7 @@ class Catalogs::DepartmentsController < ApplicationController
   # DELETE /catalogs/departments/1.json
   def destroy
     @catalogs_department.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_departments_url, notice: 'Department was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
@@ -71,4 +60,12 @@ class Catalogs::DepartmentsController < ApplicationController
     def catalogs_department_params
       params.require(:catalogs_department).permit(:abbr, :name, :img_header, :institution_id)
     end
+
+  def sort_column
+    params[:sort] || 'name'
+  end
+
+  def sort_direction
+    params[:direction] || 'asc'
+  end
 end

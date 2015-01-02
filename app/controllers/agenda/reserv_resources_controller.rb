@@ -1,10 +1,12 @@
 class Agenda::ReservResourcesController < ApplicationController
-  before_action :set_agenda_reserv_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_agenda_reserv_resource, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /agenda/reserv_resources
   # GET /agenda/reserv_resources.json
   def index
-    @agenda_reserv_resources = Agenda::ReservResource.all
+    #@agenda_reserv_resources = Agenda::ReservResource.all
+    @agenda_reserv_resources = Agenda::ReservResource.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /agenda/reserv_resources/1
@@ -25,29 +27,19 @@ class Agenda::ReservResourcesController < ApplicationController
   # POST /agenda/reserv_resources.json
   def create
     @agenda_reserv_resource = Agenda::ReservResource.new(agenda_reserv_resource_params)
-
-    respond_to do |format|
-      if @agenda_reserv_resource.save
-        format.html { redirect_to @agenda_reserv_resource, notice: 'Reserv resource was successfully created.' }
-        format.json { render :show, status: :created, location: @agenda_reserv_resource }
-      else
-        format.html { render :new }
-        format.json { render json: @agenda_reserv_resource.errors, status: :unprocessable_entity }
-      end
+    if @agenda_reserv_resource.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
+
   end
 
   # PATCH/PUT /agenda/reserv_resources/1
   # PATCH/PUT /agenda/reserv_resources/1.json
   def update
-    respond_to do |format|
-      if @agenda_reserv_resource.update(agenda_reserv_resource_params)
-        format.html { redirect_to @agenda_reserv_resource, notice: 'Reserv resource was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agenda_reserv_resource }
-      else
-        format.html { render :edit }
-        format.json { render json: @agenda_reserv_resource.errors, status: :unprocessable_entity }
-      end
+    if @agenda_reserv_resource.update(agenda_reserv_resource_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -55,10 +47,7 @@ class Agenda::ReservResourcesController < ApplicationController
   # DELETE /agenda/reserv_resources/1.json
   def destroy
     @agenda_reserv_resource.destroy
-    respond_to do |format|
-      format.html { redirect_to agenda_reserv_resources_url, notice: 'Reserv resource was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
@@ -70,5 +59,13 @@ class Agenda::ReservResourcesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reserv_resource_params
       params.require(:agenda_reserv_resource).permit(:reservation_id, :resource_id)
+    end
+
+    def sort_column
+      params[:sort] || 'reservation_id'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
     end
 end

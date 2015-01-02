@@ -1,28 +1,14 @@
-= form_for @catalogs_headquarter do |f|
-  - if @catalogs_headquarter.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@catalogs_headquarter.errors.count, "error")} prohibited this catalogs_headquarter from being saved:"
-      %ul
-        - @catalogs_headquarter.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @catalogs_headquarter, remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :intitution_id
-    = f.number_field :intitution_id
-  .field
-    = f.label :responsible
-    = f.text_field :responsible
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .field
-    = f.label :comments
-    = f.text_field :comments
-  .actions
-    = f.submit 'Save'
+  = f.error_notification
+  = f.input :name
+  = f.input :institution_id
+  = f.input :responsible
+  = f.input :email
+  = f.input :phone
+  = f.input :comments
+
+  %hr
+  .text-right
+    = f.button :submit, t('commands.save')
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

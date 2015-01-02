@@ -1,23 +1,11 @@
-%h1 Listing catalogs_user_resources
+- new_link = link_to_fa_button({url: new_catalogs_user_resource_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.user_resources'), url: catalogs_user_resources_path, new_link: new_link}
+#records
+  = render partial: 'records'
+#show-dialog.modal.fade
+#new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
-%table
-  %tr
-    %th Admin user
-    %th Resource
-    %th Administrator
-    %th
-    %th
-    %th
-
-  - @catalogs_user_resources.each do |catalogs_user_resource|
-    %tr
-      %td= catalogs_user_resource.admin_user_id
-      %td= catalogs_user_resource.resource_id
-      %td= catalogs_user_resource.administrator
-      %td= link_to 'Show', catalogs_user_resource
-      %td= link_to 'Edit', edit_catalogs_user_resource_path(catalogs_user_resource)
-      %td= link_to 'Destroy', catalogs_user_resource, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.text-center
+  = will_paginate @catalogs_user_resources, renderer: BootstrapPagination::Rails
 %br
-
-= link_to 'New User resource', new_catalogs_user_resource_path

@@ -1,34 +1,18 @@
-= form_for @catalogs_resource do |f|
-  - if @catalogs_resource.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@catalogs_resource.errors.count, "error")} prohibited this catalogs_resource from being saved:"
-      %ul
-        - @catalogs_resource.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @catalogs_resource, remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
-  .field
-    = f.label :abbr
-    = f.text_field :abbr
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :resource_type_id
-    = f.number_field :resource_type_id
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :ubication
-    = f.text_field :ubication
-  .field
-    = f.label :active
-    = f.check_box :active
-  .field
-    = f.label :admin_user_id
-    = f.number_field :admin_user_id
-  .field
-    = f.label :unique
-    = f.check_box :unique
-  .actions
-    = f.submit 'Save'
+  = f.error_notification
+  = f.input :abbr
+  = f.input :name
+  = f.input :resource_type_id
+  = f.input :description
+  = f.input :location
+  = f.input :active
+  = f.input :admin_user_id
+  = f.input :unique
+
+  %hr
+  .text-right
+    = f.button :submit, t('commands.save')
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
+
+

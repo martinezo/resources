@@ -1,10 +1,11 @@
 class Catalogs::StatusesController < ApplicationController
-  before_action :set_catalogs_status, only: [:show, :edit, :update, :destroy]
+  before_action :set_catalogs_status, only: [:show, :edit, :update, :destroy, :delete]
+  helper_method :sort_column, :sort_direction
 
   # GET /catalogs/statuses
   # GET /catalogs/statuses.json
   def index
-    @catalogs_statuses = Catalogs::Status.all
+    @catalogs_statuses = Catalogs::Status.search(params[:search]).order("#{sort_column}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/statuses/1
@@ -25,29 +26,18 @@ class Catalogs::StatusesController < ApplicationController
   # POST /catalogs/statuses.json
   def create
     @catalogs_status = Catalogs::Status.new(catalogs_status_params)
-
-    respond_to do |format|
-      if @catalogs_status.save
-        format.html { redirect_to @catalogs_status, notice: 'Status was successfully created.' }
-        format.json { render :show, status: :created, location: @catalogs_status }
-      else
-        format.html { render :new }
-        format.json { render json: @catalogs_status.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_status.save
+      flash[:success] = t('notices.saved_successfully')
+      index
     end
   end
 
   # PATCH/PUT /catalogs/statuses/1
   # PATCH/PUT /catalogs/statuses/1.json
   def update
-    respond_to do |format|
-      if @catalogs_status.update(catalogs_status_params)
-        format.html { redirect_to @catalogs_status, notice: 'Status was successfully updated.' }
-        format.json { render :show, status: :ok, location: @catalogs_status }
-      else
-        format.html { render :edit }
-        format.json { render json: @catalogs_status.errors, status: :unprocessable_entity }
-      end
+    if @catalogs_status.update(catalogs_status_params)
+      flash[:success] = t('notices.updated_successfully')
+      index
     end
   end
 
@@ -55,10 +45,7 @@ class Catalogs::StatusesController < ApplicationController
   # DELETE /catalogs/statuses/1.json
   def destroy
     @catalogs_status.destroy
-    respond_to do |format|
-      format.html { redirect_to catalogs_statuses_url, notice: 'Status was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    index
   end
 
   private
@@ -71,4 +58,12 @@ class Catalogs::StatusesController < ApplicationController
     def catalogs_status_params
       params.require(:catalogs_status).permit(:name)
     end
+
+  def sort_column
+    params[:sort] || 'name'
+  end
+
+  def sort_direction
+    params[:direction] || 'asc'
+  end
 end

@@ -1,25 +1,14 @@
-%h1 Listing catalogs_departments
+- new_link = link_to_fa_button({url: new_catalogs_department_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.departments'), url: catalogs_departments_path, new_link: new_link}
+#records
+  = render partial: 'records'
+#show-dialog.modal.fade
+#new-update-dialog.modal.fade
+#delete-dialog.modal.fade
 
-%table
-  %tr
-    %th Abbr
-    %th Name
-    %th Img header
-    %th Institution
-    %th
-    %th
-    %th
-
-  - @catalogs_departments.each do |catalogs_department|
-    %tr
-      %td= catalogs_department.abbr
-      %td= catalogs_department.name
-      %td= catalogs_department.img_header
-      %td= catalogs_department.institution_id
-      %td= link_to 'Show', catalogs_department
-      %td= link_to 'Edit', edit_catalogs_department_path(catalogs_department)
-      %td= link_to 'Destroy', catalogs_department, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.text-center
+  = will_paginate @catalogs_departments, renderer: BootstrapPagination::Rails
 %br
 
-= link_to 'New Department', new_catalogs_department_path
+-#= link_to_fa_button ({url: new_catalogs_department_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+

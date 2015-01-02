@@ -1,0 +1,18 @@
+- es = 'activerecord.attributes.agenda/reserv_resources.'
+%table.table
+  %tbody
+    %tr
+      %td.th
+        = t("#{es}.reservation_id")
+      %td.tc
+        = @agenda_reserv_resource.agenda_reservation.folio
+    %tr
+      %td.th
+        = t("#{es}.resource_id")
+      %td.tc
+        = @agenda_reserv_resource.catalogs_resource.name
+
+.text-right
+  = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
+
+-#  TODO change column name user_type_id to user_type_id
