@@ -5,7 +5,7 @@ class CreateAdminUsers < ActiveRecord::Migration
       t.string :name, default: ''
       t.string :mail, default: ''
       t.integer :department_id
-      t.integer :type, default: 1
+      t.integer :user_type_id, default: 1
 
       t.timestamps
     end
