@@ -3,7 +3,7 @@ module ApplicationHelper
     title ||= column.titleize
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     (column == sort_column && sort_direction == "asc") ? title << " \u25B2" : title << " \u25BC"
-    link_to title, "#{url}?direction=#{direction}&sort=#{column}" << (params[:search] ? "&search=#{params[:search]}" : ''), remote: true, class: 'sortable'
+    link_to title, "#{url}?direction=#{direction}&sort=#{column}" << (params[:search] ? "&search=#{params[:search]}" : ''), remote: false, class: 'sortable'
   end
 
   def link_to_fa_button(options)

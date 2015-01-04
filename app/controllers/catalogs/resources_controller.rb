@@ -57,7 +57,7 @@ class Catalogs::ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_resource_params
-      params.require(:catalogs_resource).permit(:abbr, :name, :resource_type_id, :description, :ubication, :active, :admin_user_id, :unique)
+      params.require(:catalogs_resource).permit(:abbr, :name, :resource_type_id, :description, :location, :active, :admin_user_id, :unique)
     end
 
     def sort_column

@@ -1,4 +1,4 @@
-- es = 'activerecord.attributes.catalogs/resources.'
+- es = 'activerecord.attributes.catalogs/resource.'
 %table.table
   %tbody
     %tr
@@ -30,7 +30,7 @@
       %td.th
         = t("#{es}.active")
       %td.tc
-        = @catalogs_resource.active
+        = @catalogs_resource.active ? t('labels._yes') : t('labels._no')
     %tr
       %td.th
         = t("#{es}.admin_user_id")
@@ -40,11 +40,7 @@
       %td.th
         = t("#{es}.unique")
       %td.tc
-        = @catalogs_resource.unique
-
-
-
-
+        = @catalogs_resource.unique ? t('labels._yes') : t('labels._no')
 
 .text-right
   = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

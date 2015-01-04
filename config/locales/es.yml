@@ -1,4 +1,5 @@
 es:
+
   titles:
     menu: Menu
     users: Usuarios
@@ -78,14 +79,16 @@ es:
       catalogs/resource_types:
         name: Nombre
         description: Descripción
-      catalogs/resources:
+      catalogs/resource:
         abbr: Abreviatura
         name: Nombre
-        resource_type_id: Tipo Recurso
+        resource_type_id: Tipo de recurso
+        catalogs_resource_type: Tipo de recurso
         description: Descripción
         location: Ubicación
         active: Activo
         admin_user_id: Administrador
+        admin_user: Administrador
         unique: Unico
       catalogs/statuses:
         name: Nombre
@@ -120,5 +123,17 @@ es:
               blank: Dato requerido
             user_type:
               blank: Dato requerido
+        catalogs/resource:
+          attributes:
+            abbr:
+              blank: Dato requerido
+            name:
+              blank: Dato requerido
+            resource_type_id:
+              blank: Dato requerido
+            admin_user_id:
+              blank: Dato requerido
 
-
+  labels:
+    _yes: 'Si'
+    _no: 'No'

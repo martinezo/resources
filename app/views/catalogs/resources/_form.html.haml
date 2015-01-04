@@ -3,11 +3,11 @@
   = f.error_notification
   = f.input :abbr
   = f.input :name
-  = f.input :resource_type_id
+  = f.association :catalogs_resource_type
   = f.input :description
   = f.input :location
   = f.input :active
-  = f.input :admin_user_id
+  = f.association :admin_user
   = f.input :unique
 
   %hr
