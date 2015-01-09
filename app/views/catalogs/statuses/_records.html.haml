@@ -2,7 +2,7 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-5= sortable 'name', t('activerecord.attributes.catalogs/statuses.name'), catalogs_statuses_path
+      %th.col-sm-5= sortable 'name', t('activerecord.attributes.catalogs/status.name'), catalogs_statuses_path
       %th.col-sm-2
   %tbody
     - @catalogs_statuses.each do |catalogs_status|

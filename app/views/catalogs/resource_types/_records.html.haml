@@ -2,8 +2,8 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-5= sortable 'name', t('activerecord.attributes.catalogs/resource_types.name'), catalogs_resource_types_path
-      %th.col-sm-5= sortable 'description', t('activerecord.attributes.catalogs/resource_types.description'), catalogs_resource_types_path
+      %th.col-sm-5= sortable 'name', t('activerecord.attributes.catalogs/resource_type.name'), catalogs_resource_types_path
+      %th.col-sm-5= sortable 'description', t('activerecord.attributes.catalogs/resource_type.description'), catalogs_resource_types_path
       %th.col-sm-2
   %tbody
     - @catalogs_resource_types.each do |catalogs_resource_type|

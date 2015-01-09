@@ -2,9 +2,9 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resources.abbr'), catalogs_resources_path
-      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resources.name'), catalogs_resources_path
-      %th.col-sm-3= sortable 'description', t('activerecord.attributes.catalogs/resources.description'), catalogs_resources_path
+      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_resources_path
+      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_resources_path
+      %th.col-sm-3= sortable 'description', t('activerecord.attributes.catalogs/resource.description'), catalogs_resources_path
       %th.col-sm-2
   %tbody
     - @catalogs_resources.each do |catalogs_resource|

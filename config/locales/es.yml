@@ -59,24 +59,24 @@ es:
         mail: Correo
         departament_id: Departamento
         user_type: Tipo de Usuario
-      catalogs/departments:
+      catalogs/department:
         abbr: Abreviatura
         name: Nombre
         img_header: Imagen Encabezado
         institution_id: Institución
-      catalogs/event_types:
+      catalogs/event_type:
         name: Nombre
-      catalogs/headquarters:
+      catalogs/headquarter:
         name: Nombre
         institution_id: Institución
         responsible: Responsable
         email: Correo
         phone: Teléfono
         comments: Comentarios
-      catalogs/institutions:
+      catalogs/institution:
         abbr: Abreviatura
         name: Nombre
-      catalogs/resource_types:
+      catalogs/resource_type:
         name: Nombre
         description: Descripción
       catalogs/resource:
@@ -90,7 +90,7 @@ es:
         admin_user_id: Administrador
         admin_user: Administrador
         unique: Unico
-      catalogs/statuses:
+      catalogs/status:
         name: Nombre
       catalogs/user_resources:
         admin_user_id: Usuario Admin.
@@ -133,6 +133,11 @@ es:
               blank: Dato requerido
             admin_user_id:
               blank: Dato requerido
+        catalogs/resource_type:
+          attributes:
+            name:
+              blank: Dato requerido
+
 
   labels:
     _yes: 'Si'

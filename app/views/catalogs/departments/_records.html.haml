@@ -1,10 +1,10 @@
 = flash_messages(flash)
-
+- es = 'activerecord.attributes.catalogs/department'
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/departments.abbr'), catalogs_departments_path
-      %th.col-sm-5= sortable 'name', t('activerecord.attributes.catalogs/departments.name'), catalogs_departments_path
+      %th.col-sm-2= sortable 'abbr', t("#{es}.abbr"), catalogs_departments_path
+      %th.col-sm-5= sortable 'name', t("#{es}.name"), catalogs_departments_path
       %th.col-sm-2
   %tbody
     - @catalogs_departments.each do |catalogs_department|
