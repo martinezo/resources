@@ -5,7 +5,7 @@
   = f.input :abbr
   = f.input :name
   = f.input :img_header
-  = f.input :institution_id
+  = f.association :catalogs_institution
   %hr
   .text-right
     = f.button :submit, t('commands.save')

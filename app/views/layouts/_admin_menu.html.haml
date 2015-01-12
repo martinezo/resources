@@ -25,11 +25,21 @@
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
             %li
-              %a{:href => "#"} Action
+              = link_to t('titles.departments'), catalogs_departments_path
             %li
-              %a{:href => "#"} Another action
+              = link_to t('titles.event_types'), catalogs_event_types_path
             %li
-              %a{:href => "#"} Something else here
+              = link_to  t('titles.headquarters'), catalogs_headquarters_path
+            %li
+              = link_to t('titles.institutions'), catalogs_institutions_path
+            %li
+              = link_to t('titles.resource_types'), catalogs_resource_types_path
+            %li
+              = link_to t('titles.resources'), catalogs_resources_path
+            %li
+              = link_to t('titles.statuses'), catalogs_statuses_path
+            %li
+              = link_to t('titles.user_resources'), catalogs_user_resources_path
             %li.divider
             %li
               %a{:href => "#"}= t('commands.logout')

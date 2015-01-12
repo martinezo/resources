@@ -1,5 +1,5 @@
 - new_link = link_to_fa_button({url:  new_catalogs_status_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
-= render partial: 'layouts/admin_menu', locals: {title: t('titles.resource_types'), url: catalogs_statuses_path, new_link: new_link}
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.statuses'), url: catalogs_statuses_path, new_link: new_link}
 #records
   = render partial: 'records'
 #show-dialog.modal.fade
