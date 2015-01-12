@@ -16,7 +16,7 @@
 /config/ldap.yml
 
 # RubyMine
-.idea/
+.idea/*
 **/.DS*
 
 # Ignore Gem and db config
