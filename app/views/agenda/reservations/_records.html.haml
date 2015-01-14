@@ -1,11 +1,13 @@
+- es = 'activerecord.attributes.agenda/reservation'
+= flash_messages(flash)
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-1= sortable 'folio', t('activerecord.attributes.agenda/reservation.folio'), agenda_reservations_path
-      %th.col-sm-1= sortable 'requester', t('activerecord.attributes.agenda/reservation.requester'), agenda_reservations_path
-      %th.col-sm-1= sortable 'email', t('activerecord.attributes.agenda/reservation.email'), agenda_reservations_path
-      %th.col-sm-1= sortable 'event_type_id', t('activerecord.attributes.agenda/reservation.event_type_id'), agenda_reservations_path
-      %th.col-sm-1= sortable 'status_id', t('activerecord.attributes.agenda/reservation.status_id'), agenda_reservations_path
+      %th.col-sm-1= sortable 'folio', t("#{es}.folio"), agenda_reservations_path
+      %th.col-sm-1= sortable 'requester', t("#{es}.requester"), agenda_reservations_path
+      %th.col-sm-1= sortable 'email', t("#{es}.email"), agenda_reservations_path
+      %th.col-sm-1= sortable 'event_type_id', t("#{es}.catalogs_event_type"), agenda_reservations_path
+      %th.col-sm-1= sortable 'status_id', t("#{es}.catalogs_status"), agenda_reservations_path
       %th.col-sm-1
   %tbody
     - @agenda_reservations.each do |agenda_reservation|

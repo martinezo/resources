@@ -97,17 +97,17 @@ es:
         admin_user: Usuario Admin.
         catalogs_resource: Recurso
         administrator: Administrador
-      agenda/reserv_resources:
-        reservation_id: Reservación
-        resource_id: Recurso
+      agenda/reserv_resource:
+        agenda_reservation: Reservación
+        catalogs_resource: Recurso
       agenda/reservation:
         folio: Folio
         requester: Solicitante
         email: Correo
         phone: Teléfono
-        foreign_headquarter_id: Sede
-        event_type_id: Tipo Evento
-        status_id: Estado
+        catalogs_headquarter: Sede
+        catalogs_event_type: Tipo Evento
+        catalogs_status: Estado
         comments: Comentarios
 
     errors:

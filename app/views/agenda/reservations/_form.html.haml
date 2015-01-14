@@ -4,9 +4,9 @@
   = f.input :requester
   = f.input :email
   = f.input :phone
-  = f.input :foreign_headquarter_id
-  = f.input :event_type_id
-  = f.input :status_id
+  = f.association :catalogs_headquarter
+  = f.association :catalogs_event_type
+  = f.association :catalogs_status
   = f.input :comments
   = f.input :modified_by
 

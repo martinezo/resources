@@ -1,9 +1,10 @@
+- es = 'activerecord.attributes.catalogs/agenda_reserv_resource'
 = flash_messages(flash)
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-5= sortable 'reservation_id', t('activerecord.attributes.catalogs/agenda_reserv_resources.reservation_id'), agenda_reserv_resources_path
-      %th.col-sm-5= sortable 'resource_id', t('activerecord.attributes.catalogs/agenda_reserv_resources.resource_id'), agenda_reserv_resources_path
+      %th.col-sm-5= sortable 'reservation_id', t("#{es}.reservation_id"), agenda_reserv_resources_path
+      %th.col-sm-5= sortable 'resource_id', t("#{es}.resource_id"), agenda_reserv_resources_path
       %th.col-sm-2
   %tbody
     -  @agenda_reserv_resources.each do |agenda_reserv_resource|

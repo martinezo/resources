@@ -5,8 +5,9 @@ class Agenda::Reservation < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where("requester LIKE ? OR translate(lower(requester),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
-     OR translate(lower(email),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou'))", "%#{search}%", "%#{search}%")
+      where("(translate(lower(requester),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
+     OR translate(lower(email),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
+     OR  requester LIKE ?)", "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end
