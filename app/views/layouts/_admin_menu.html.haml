@@ -21,17 +21,18 @@
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            = t('titles.menu')
+            = t('titles.menu') + " (#{current_devise_user.login})"
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
             %li
               %a{:href => "#"} Action
+            %li.divider
             %li
               %a{:href => "#"} Another action
             %li
               %a{:href => "#"} Something else here
             %li.divider
             %li
-              %a{:href => "#"}= t('commands.logout')
+              = link_to  t('commands.logout'), destroy_devise_user_session_path, method: :delete
     / /.navbar-collapse
   / /.container-fluid

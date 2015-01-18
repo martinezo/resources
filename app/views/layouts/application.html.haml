@@ -8,7 +8,10 @@
     %body
       .container
         .row
-          #r-header
+          - if devise_user_signed_in?
+            #r-header{style: "background-image: url('/headers_img/#{current_devise_user.department.img_header}')" }
+          - else
+            #r-header{style: "background-image: url('/headers_img/header.png')" }
         .row
           #r-content
             = yield

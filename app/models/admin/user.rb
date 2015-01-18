@@ -1,5 +1,7 @@
 class Admin::User < ActiveRecord::Base
 
+  belongs_to :department, :class_name => 'Catalogs::Department'
+
   validates :name, :login, :mail, :department_id, :user_type_id, presence: true
 
   def self.search(search)
