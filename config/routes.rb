@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     get 'user_resources/delete/:id' => 'user_resources#delete', as: 'delete_user_resource'
   end
 
+  devise_for :devise_users
   namespace :admin do
     resources :users
     get 'users/delete/:id' => 'users#delete', as: 'delete_user'
@@ -67,6 +68,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root 'agenda/reservations#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

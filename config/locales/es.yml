@@ -26,6 +26,8 @@ es:
     reserv_resource: Reservación de Recurso
     reservations: Reservaciones
     reservation: Reservación
+    sign_in: Inicio de Sesión
+    sign_out: Cerrar Sesión
 
 
   commands:
@@ -39,6 +41,7 @@ es:
     save: Guardar
     show_all: Mostrar todos
     close: Cerrar
+    sign_in: Iniciar
 
 
   notices:
@@ -110,6 +113,10 @@ es:
         catalogs_status: Estado
         comments: Comentarios
 
+      devise_user:
+        login: Usuario
+        password: Contraseña
+
     errors:
       models:
         admin/user:
@@ -139,6 +146,15 @@ es:
             name:
               blank: Dato requerido
 
+  devise:
+    sessions:
+      devise_user:
+        signed_in: "Sessión de usuario iniciada correctamente"
+
+    failure:
+      devise_user:
+        unauthenticated: "Para continuar es necesario iniciar sesión"
+        invalid: "Usuario o contraseña inválidos"
 
   labels:
     _yes: 'Si'
