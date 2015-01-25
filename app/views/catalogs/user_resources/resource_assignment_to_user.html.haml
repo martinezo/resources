@@ -7,24 +7,28 @@
 %table.table
   %tbody
     %tr
-      %td= @catalogs_user_resource.admin_user.name
-      %td= @catalogs_user_resource.catalogs_resource.name
-
+      %td= @user.name
 
 = flash_messages(flash)
 %table.table.table-striped.table-hover
   %thead
     %tr
+      %th.col-sm-1
       %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_resources_path
       %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_resources_path
       %th.col-sm-3= sortable 'description', t("#{es}.description"), catalogs_resources_path
       %th.col-sm-2
   %tbody
-    - @catalogs_resources.each do |catalogs_resource|
+    - @catalogs_resources.each do |resource|
       %tr
-        %td= catalogs_resource.abbr
-        %td= catalogs_resource.name
-        %td= catalogs_resource.description
+        - admin = resource.is_admin_by?(params[:user_id])
+        - if admin
+          %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin), icon: 'fa-check-square-o', title: t('commands.delete')})
+        - else
+          %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin), icon: 'fa-square-o', title: t('commands.delete')})
+        %td= resource.abbr
+        %td= resource.name
+        %td= resource.description
         %td.text-center
 
 

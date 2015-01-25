@@ -51,10 +51,19 @@ class Catalogs::UserResourcesController < ApplicationController
 
   def resource_assignment_to_user
     #@catalogs_user_resources = Catalogs::UserResource.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
-    @catalogs_user_resource = Catalogs::UserResource.find(params[:id])
+    @user = Admin::User.find(params[:user_id])
     @catalogs_resources = Catalogs::Resource.all
 
     #.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+  end
+
+  def assign_unnassign_users_resources
+    if params[:admin] = 'true'
+      #Catalogs::UserResource.borrar_registro
+      put 'BORRAR REGISTRO'
+    else
+      Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
+    end
   end
 
   private
@@ -75,4 +84,6 @@ class Catalogs::UserResourcesController < ApplicationController
     def sort_direction
       params[:direction] || 'asc'
     end
+   
+    
 end

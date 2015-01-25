@@ -1,6 +1,7 @@
 class Admin::User < ActiveRecord::Base
 
   belongs_to :department, :class_name => 'Catalogs::Department'
+  has_many :resources, :class_name => 'Catalogs::UserResource', foreign_key: :admin_user_id
 
   validates :name, :login, :mail, :department_id, :user_type_id, presence: true
 
