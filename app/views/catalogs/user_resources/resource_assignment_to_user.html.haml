@@ -1,0 +1,33 @@
+- new_link = link_to_fa_button({url: new_catalogs_user_resource_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_user_resources_path, new_link: new_link}
+= flash_messages(flash)
+- es = 'activerecord.attributes.catalogs/user_resources.'
+
+
+%table.table
+  %tbody
+    %tr
+      %td= @catalogs_user_resource.admin_user.name
+      %td= @catalogs_user_resource.catalogs_resource.name
+
+
+= flash_messages(flash)
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_resources_path
+      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_resources_path
+      %th.col-sm-3= sortable 'description', t("#{es}.description"), catalogs_resources_path
+      %th.col-sm-2
+  %tbody
+    - @catalogs_resources.each do |catalogs_resource|
+      %tr
+        %td= catalogs_resource.abbr
+        %td= catalogs_resource.name
+        %td= catalogs_resource.description
+        %td.text-center
+
+
+
+.text-right
+  = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

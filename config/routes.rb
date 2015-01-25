@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   namespace :catalogs do
     resources :user_resources
     get 'user_resources/delete/:id' => 'user_resources#delete', as: 'delete_user_resource'
+    get 'user_resources/resource_assignment_to_user/:id' => 'user_resources#resource_assignment_to_user', as: 'assign_resource'
   end
 
   devise_for :devise_users

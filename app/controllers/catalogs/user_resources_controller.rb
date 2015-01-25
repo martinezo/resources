@@ -49,6 +49,14 @@ class Catalogs::UserResourcesController < ApplicationController
     index
   end
 
+  def resource_assignment_to_user
+    #@catalogs_user_resources = Catalogs::UserResource.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    @catalogs_user_resource = Catalogs::UserResource.find(params[:id])
+    @catalogs_resources = Catalogs::Resource.all
+
+    #.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_catalogs_user_resource

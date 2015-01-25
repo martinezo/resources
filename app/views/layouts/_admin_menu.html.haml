@@ -40,6 +40,8 @@
               = link_to t('titles.statuses'), catalogs_statuses_path
             %li
               = link_to t('titles.user_resources'), catalogs_user_resources_path
+            %li
+              = link_to_fa_button({url: catalogs_assign_resource_path(:id), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
             %li.divider
             %li
               = link_to  t('commands.logout'), destroy_devise_user_session_path, method: :delete
