@@ -30,6 +30,7 @@ es:
     sign_out: Cerrar Sesión
 
 
+
   commands:
     submit: Enviar
     search: Buscar
@@ -42,6 +43,8 @@ es:
     show_all: Mostrar todos
     close: Cerrar
     sign_in: Iniciar
+    check: Seleccionar
+    uncheck: Quitar selección
 
 
   notices:

@@ -22,10 +22,11 @@
     - @catalogs_resources.each do |resource|
       %tr
         - admin = resource.is_admin_by?(params[:user_id])
-        - if admin
-          %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin), icon: 'fa-check-square-o', title: t('commands.delete')})
-        - else
-          %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin), icon: 'fa-square-o', title: t('commands.delete')})
+        #check-button
+          - if admin
+            %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-check-square-o', title: t('commands.uncheck')})
+          - else
+            %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-square-o', title: t('commands.check')})
         %td= resource.abbr
         %td= resource.name
         %td= resource.description

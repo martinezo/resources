@@ -57,12 +57,12 @@ class Catalogs::UserResourcesController < ApplicationController
     #.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
-  def assign_unnassign_users_resources
-    if params[:admin] = 'true'
+  def assign_unassign_users_resources
+    if params[:admin] == 'true'
       #Catalogs::UserResource.borrar_registro
-      put 'BORRAR REGISTRO'
+      #put 'BORRAR REGISTRO'
     else
-      Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
+      #Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
     end
   end
 

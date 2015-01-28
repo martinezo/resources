@@ -22,4 +22,4 @@
           = link_to_fa_button({url: admin_user, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
           = link_to_fa_button({url: edit_admin_user_path(admin_user), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
           = link_to_fa_button({url: admin_delete_user_path(admin_user), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})
-
+          = link_to_fa_button({url: catalogs_assign_resource_path(admin_user), icon: 'fa-fire', title: t('commands.edit'), remote: false})
