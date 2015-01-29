@@ -6,7 +6,7 @@ class Catalogs::EventTypesController < ApplicationController
   # GET /catalogs/event_types.json
   def index
     #@catalogs_event_types = Catalogs::EventType.all
-    @catalogs_event_types = Catalogs::EventType.search(params[:search]).order("#{sort_column}").paginate(per_page: 15, page:  params[:page])
+    @catalogs_event_types = Catalogs::EventType.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /catalogs/event_types/1

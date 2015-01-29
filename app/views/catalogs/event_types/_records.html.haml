@@ -2,7 +2,7 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-2= sortable 'name', t('activerecord.attributes.catalogs/event_type.name'), catalogs_event_types_path
+      %th.col-sm-8= sortable 'name', t('activerecord.attributes.catalogs/event_type.name'), catalogs_event_types_path
       %th.col-sm-2
   %tbody
     - @catalogs_event_types.each do |catalogs_event_type|

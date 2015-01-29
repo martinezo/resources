@@ -29,6 +29,9 @@ es:
     sign_in: Inicio de Sesión
     sign_out: Cerrar Sesión
 
+  msgs:
+    only_for_vc: 'Llenar este campo solo para servicios de videoconferencia.'
+
 
   commands:
     submit: Enviar
@@ -42,6 +45,7 @@ es:
     show_all: Mostrar todos
     close: Cerrar
     sign_in: Iniciar
+    cancel: Cancelar
 
 
   notices:
@@ -108,9 +112,9 @@ es:
         requester: Solicitante
         email: Correo
         phone: Teléfono
-        catalogs_headquarter: Sede
-        catalogs_event_type: Tipo Evento
-        catalogs_status: Estado
+        f_headquarter: Sede foránea
+        event_type: Tipo de evento
+        status: Estado
         comments: Comentarios
 
       devise_user:

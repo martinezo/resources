@@ -71,9 +71,33 @@ Admin::User.create(id: 6, login: 'user2', name: 'Usuario manager de prueba 2', m
 
 #institutions
 Catalogs::Institution.delete_all
-Catalogs::Institution.create(id: 1, abbr: 'INB', name: 'Instituto de Neurobiología de la UNAM')
+Catalogs::Institution.create(id: 1, abbr: 'IFC', name: 'Instituto de Fisiología Celular de la UNAM')
+Catalogs::Institution.create(id: 2, abbr: 'IIB', name: 'Instituto de Investigaciones Biomédicas de la UNAM')
+
+#headquartes
+Catalogs::Headquarter.delete_all
+Catalogs::Headquarter.create(id: 1, institution_id: 1, name: 'Videoconferencias', responsible: 'Laura Ortiz Soto', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3015')
+Catalogs::Headquarter.create(id: 2, institution_id: 2, name: 'Videoconferencias', responsible: 'Fernando Villanueva Orozco', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3111')
 
 #departments
 Catalogs::Department.delete_all
-Catalogs::Department.create(id: 1, abbr: 'uvc', name: 'Unidad de Videoconferencia INB-UNAM', img_header: 'uvc_header.jpg', institution_id: 1)
-Catalogs::Department.create(id: 2, abbr: 'pos', name: 'Unidad de Posgrado INB-UNAM', img_header: 'pos_header.jpg', institution_id: 1)
+Catalogs::Department.create(id: 1, abbr: 'uvc', name: 'Unidad de Videoconferencia INB-UNAM', img_header: 'uvc_header.png', institution_id: 1)
+Catalogs::Department.create(id: 2, abbr: 'pos', name: 'Unidad de Posgrado INB-UNAM', img_header: 'pos_header.png', institution_id: 1)
+
+#events_types
+Catalogs::EventType.delete_all
+Catalogs::EventType.create(id: 1, name: 'Videoconferencia')
+Catalogs::EventType.create(id: 2, name: 'Clase')
+Catalogs::EventType.create(id: 3, name: 'Seminario')
+Catalogs::EventType.create(id: 4, name: 'Examen tutoral')
+Catalogs::EventType.create(id: 5, name: 'Reunion de trabajo')
+Catalogs::EventType.create(id: 6, name: 'Otro')
+
+#statuses
+Catalogs::Status.delete_all
+Catalogs::Status.create(id: 1, name: 'Enviado')
+Catalogs::Status.create(id: 2, name: 'Por confirmar')
+Catalogs::Status.create(id: 3, name: 'Confirmado')
+Catalogs::Status.create(id: 4, name: 'Cancelado')
+Catalogs::Status.create(id: 5, name: 'Efectuado')
+

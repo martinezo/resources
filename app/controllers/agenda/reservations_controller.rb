@@ -7,7 +7,7 @@ class Agenda::ReservationsController < ApplicationController
   # GET /agenda/reservations
   # GET /agenda/reservations.json
   def index
-    @agenda_reservations = Agenda::Reservation.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    @reservations = Agenda::Reservation.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
   # GET /agenda/reservations/1
@@ -40,6 +40,7 @@ class Agenda::ReservationsController < ApplicationController
     if @agenda_reservation.update(agenda_reservation_params)
       flash[:success] = t('notices.updated_successfully')
       index
+      redirect_to agenda_reservations_path
     end
   end
 
@@ -58,7 +59,7 @@ class Agenda::ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reservation_params
-      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :foreing_headquarter_id, :event_type_id, :status_id, :comments, :modified_by)
+      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :foreign_headquarter_id, :event_type_id, :status_id, :comments, :modified_by)
     end
 
     def sort_column

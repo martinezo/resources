@@ -4,11 +4,8 @@
   = f.input :requester
   = f.input :email
   = f.input :phone
-  = f.association :catalogs_headquarter
-  = f.association :catalogs_event_type
-  = f.association :catalogs_status
-  = f.input :comments
-  = f.input :modified_by
+  = f.association :event_type
+  = f.association :f_headquarter, label_method: :inst_abbr_name, hint: t('msgs.only_for_vc')
 
   %hr
   .text-right
