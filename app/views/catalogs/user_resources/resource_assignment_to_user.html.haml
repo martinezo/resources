@@ -1,4 +1,4 @@
-- new_link = link_to_fa_button({url: new_catalogs_user_resource_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+- new_link = nil
 = render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_user_resources_path, new_link: new_link}
 = flash_messages(flash)
 - es = 'activerecord.attributes.catalogs/user_resources.'
@@ -22,11 +22,10 @@
     - @catalogs_resources.each do |resource|
       %tr
         - admin = resource.is_admin_by?(params[:user_id])
-        #check-button
-          - if admin
-            %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-check-square-o', title: t('commands.uncheck')})
-          - else
-            %td= link_to_fa_button({url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-square-o', title: t('commands.check')})
+        - if admin
+          %td= link_to_fa_button({id: resource.id, url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-check-square-o', title: t('commands.uncheck')})
+        - else
+          %td= link_to_fa_button({id: resource.id, url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-square-o', title: t('commands.check')})
         %td= resource.abbr
         %td= resource.name
         %td= resource.description

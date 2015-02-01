@@ -59,10 +59,9 @@ class Catalogs::UserResourcesController < ApplicationController
 
   def assign_unassign_users_resources
     if params[:admin] == 'true'
-      #Catalogs::UserResource.borrar_registro
-      #put 'BORRAR REGISTRO'
+      Catalogs::UserResource.destroy_by_user_resource_id(params[:user_id],params[:resource_id])
     else
-      #Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
+      Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
     end
   end
 
