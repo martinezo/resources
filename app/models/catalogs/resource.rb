@@ -17,6 +17,19 @@ class Catalogs::Resource < ActiveRecord::Base
     end
   end
 
+  def self.search_resource(search)
+    if search
+      where("(translate(lower(abbr),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
+     OR translate(lower(name),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
+     OR translate(lower(description),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
+     OR  location LIKE ?)", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      all
+    end
+  end
+
+
+
   def is_admin_by?(user_id)
      admin_users.where(id: user_id).size > 0
   end

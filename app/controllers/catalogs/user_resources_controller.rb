@@ -1,6 +1,6 @@
 class Catalogs::UserResourcesController < ApplicationController
   before_action :set_catalogs_user_resource, only: [:show, :edit, :update, :destroy, :delete]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction,:sort_column_resource
 
   # GET /catalogs/user_resources
   # GET /catalogs/user_resources.json
@@ -52,9 +52,7 @@ class Catalogs::UserResourcesController < ApplicationController
   def resource_assignment_to_user
     #@catalogs_user_resources = Catalogs::UserResource.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
     @user = Admin::User.find(params[:user_id])
-    @catalogs_resources = Catalogs::Resource.all
-
-    #.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    @catalogs_resources = Catalogs::Resource.search_resource(params[:search]).order("#{sort_column_resource} #{sort_direction}").paginate(per_page: 10, page:  params[:page])
   end
 
   def assign_unassign_users_resources
@@ -83,6 +81,12 @@ class Catalogs::UserResourcesController < ApplicationController
     def sort_direction
       params[:direction] || 'asc'
     end
-   
-    
+
+
+  def sort_column_resource
+    params[:sort] || 'name'
+  end
+
+
+
 end

@@ -1,5 +1,5 @@
 - new_link = nil
-= render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_user_resources_path, new_link: new_link}
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_assign_resource_path, new_link: new_link}
 = flash_messages(flash)
 - es = 'activerecord.attributes.catalogs/user_resources.'
 
@@ -7,7 +7,7 @@
 %table.table
   %tbody
     %tr
-      %td= @user.name
+      %td.header= @user.name
 
 = flash_messages(flash)
 %table.table.table-striped.table-hover
@@ -35,3 +35,7 @@
 
 .text-right
   = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
+
+.text-center
+  = will_paginate @catalogs_resources, renderer: BootstrapPagination::Rails
+%br

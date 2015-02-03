@@ -12,10 +12,17 @@ $accent-color: #2C4001;
   border-color: darken($subordinate-color,10%);
 }
 
+
 .navbar-brand{
   color: $accent-color !important;
   font-size: 1.5em;
 }
+
+.header{
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 
 .table-hover tbody tr:hover td {
   background: lighten($dominant-color,30%);
