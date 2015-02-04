@@ -45,6 +45,9 @@ es:
     sign_in: Iniciar
     check: Seleccionar
     uncheck: Quitar selección
+    back: Regresar
+    assign_resources: Asignar Recursos
+    assign_users: Asignar Usuarios
 
 
   notices:

@@ -9,14 +9,14 @@
     %tr
       %td.header= @user.name
 
-= flash_messages(flash)
+
 %table.table.table-striped.table-hover
   %thead
     %tr
       %th.col-sm-1
-      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_resources_path
-      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_resources_path
-      %th.col-sm-3= sortable 'description', t("#{es}.description"), catalogs_resources_path
+      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_assign_resource_path
+      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_assign_resource_path
+      %th.col-sm-3= sortable 'description', t("#{es}.description"), catalogs_assign_resource_path
       %th.col-sm-2
   %tbody
     - @catalogs_resources.each do |resource|
@@ -34,7 +34,8 @@
 
 
 .text-right
-  = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
+  = link_to_fa_button(url: admin_users_path, icon: 'arrowreturn-1-w', text: t('commands.back'), remote: false )
+
 
 .text-center
   = will_paginate @catalogs_resources, renderer: BootstrapPagination::Rails

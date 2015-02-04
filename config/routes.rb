@@ -47,6 +47,8 @@ Rails.application.routes.draw do
     get 'user_resources/delete/:id' => 'user_resources#delete', as: 'delete_user_resource'
     get 'user_resources/resource_assignment_to_user/:user_id' => 'user_resources#resource_assignment_to_user', as: 'assign_resource'
     get 'assign_unassign_users_resources/:resource_id' => 'user_resources#assign_unassign_users_resources', as: 'assign_unassign_users_resources'
+
+    get 'user_resources/user_assignment_to_resource/:resource_id' => 'user_resources#user_assignment_to_resource', as: 'assign_user'
   end
 
   devise_for :devise_users

@@ -1,0 +1,20 @@
+- new_link = nil
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.users'), url: catalogs_assign_user_path, new_link: new_link}
+= flash_messages(flash)
+- es = 'activerecord.attributes.admin/users.'
+
+%table.table
+  %tbody
+    %tr
+      %td.header= @resource.name
+
+
+
+
+.text-right
+  = link_to_fa_button(url: admin_users_path, icon: 'arrowreturn-1-w', text: t('commands.back'), remote: false )
+
+
+.text-center
+  = will_paginate @catalogs_resources, renderer: BootstrapPagination::Rails
+%br
