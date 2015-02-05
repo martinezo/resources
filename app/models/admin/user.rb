@@ -3,6 +3,8 @@ class Admin::User < ActiveRecord::Base
   belongs_to :department, :class_name => 'Catalogs::Department'
   has_many :resources, :class_name => 'Catalogs::UserResource', foreign_key: :admin_user_id
 
+  has_many :catalogs_resources, class_name: 'Catalogs::Resource', through: :resources
+
   validates :name, :login, :mail, :department_id, :user_type_id, presence: true
 
   def self.search(search)
@@ -20,6 +22,10 @@ class Admin::User < ActiveRecord::Base
     else
       all
     end
+  end
+
+  def admin_resource?(resource_id)
+    catalogs_resources.where(id: resource_id).size > 0
   end
 
 end

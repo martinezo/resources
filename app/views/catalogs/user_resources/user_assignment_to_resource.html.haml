@@ -9,12 +9,34 @@
       %td.header= @resource.name
 
 
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-1
+      %th.col-sm-2= sortable 'login',t("#{es}.abbr"), catalogs_assign_user_path
+      %th.col-sm-3= sortable 'name', t("#{es}.name"), catalogs_assign_user_path
+      %th.col-sm-3= sortable 'mail', t("#{es}.description"), catalogs_assign_user_path
+      %th.col-sm-2
+  %tbody
+    - @admin_users.each do |user|
+      %tr
+        - admin = user.admin_resource?(params[:resource_id])
+        - if admin
+          %td= link_to_fa_button({id: user.id, url: catalogs_assign_unassign_resources_users_path(user, resource_id: params[:resource_id], admin: admin),  icon: 'fa-check-square-o', title: t('commands.uncheck')})
+        - else
+          %td= link_to_fa_button({id: user.id, url: catalogs_assign_unassign_resources_users_path(user, resource_id: params[:resource_id], admin: admin),  icon: 'fa-square-o', title: t('commands.check')})
+        %td= user.login
+        %td= user.name
+        %td= user.mail
+        %td.text-center
+
+
 
 
 .text-right
-  = link_to_fa_button(url: admin_users_path, icon: 'arrowreturn-1-w', text: t('commands.back'), remote: false )
+  = link_to_fa_button(url: catalogs_resources_path, icon: 'arrowreturn-1-w', text: t('commands.back'), remote: false )
 
 
 .text-center
-  = will_paginate @catalogs_resources, renderer: BootstrapPagination::Rails
+  = will_paginate @admin_users, renderer: BootstrapPagination::Rails
 %br

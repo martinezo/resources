@@ -49,6 +49,8 @@ Rails.application.routes.draw do
     get 'assign_unassign_users_resources/:resource_id' => 'user_resources#assign_unassign_users_resources', as: 'assign_unassign_users_resources'
 
     get 'user_resources/user_assignment_to_resource/:resource_id' => 'user_resources#user_assignment_to_resource', as: 'assign_user'
+    get 'assign_unassign_resources_users/:user_id' => 'user_resources#assign_unassign_resources_users', as: 'assign_unassign_resources_users'
+
   end
 
   devise_for :devise_users

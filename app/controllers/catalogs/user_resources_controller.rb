@@ -62,11 +62,20 @@ class Catalogs::UserResourcesController < ApplicationController
     end
   end
 
-
   def user_assignment_to_resource
     @resource = Catalogs::Resource.find(params[:resource_id])
     @admin_users = Admin::User.search_user(params[:search]).order("#{sort_column_resource} #{sort_direction}").paginate(per_page: 10, page:  params[:page])
   end
+
+  def assign_unassign_resources_users
+    if params[:admin] == 'true'
+      Catalogs::UserResource.destroy_by_user_resource_id(params[:user_id],params[:resource_id])
+    else
+      Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
