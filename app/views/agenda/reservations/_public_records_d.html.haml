@@ -1,0 +1,12 @@
+%tbody
+  - @reservations.each do |reservation|
+    %tr
+      %td= reservation.created_at.strftime('%d/%m/%Y')
+      %td= reservation.requester
+      %td= reservation.resource_requested
+      %td= reservation.status.name
+
+      %td.text-center
+        = link_to_fa_button({url: reservation, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+        = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-pencil', title: t('commands.edit'), remote: false})
+        = link_to_fa_button({url: agenda_delete_reservation_path(reservation), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

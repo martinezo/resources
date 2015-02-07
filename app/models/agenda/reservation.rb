@@ -3,6 +3,8 @@ class Agenda::Reservation < ActiveRecord::Base
   belongs_to :status, :class_name => 'Catalogs::Status', :foreign_key => :status_id
   belongs_to :f_headquarter, :class_name => 'Catalogs::Headquarter', :foreign_key => :foreign_headquarter_id
 
+  validates :requester, :email, :resource_requested, presence: true
+
   before_create :initial_settings
 
   def self.search(search)
@@ -15,7 +17,15 @@ class Agenda::Reservation < ActiveRecord::Base
     end
   end
 
-  private
+  def self.public_search(search)
+    if search
+      where("(translate(lower(requester),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou'))", "%#{search}%")
+    else
+      all
+    end
+  end
+
+ private
     def initial_settings
       self.folio = Time.now.to_i
       self.status_id = 1

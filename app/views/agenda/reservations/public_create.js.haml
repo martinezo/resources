@@ -1,0 +1,8 @@
+- if @reservation.errors.count > 0
+  $('#new-update-dialog').empty();
+  $('#new-update-dialog').html("#{escape_javascript(render(partial: 'public_form', layout: 'layouts/modal', locals: {title: t('titles.reservation')} ))}");
+- else
+  $('#tbl-reservations > tbody').html("");
+  $('#tbl-reservations').append("#{escape_javascript(render(partial: 'public_records_d'))}");
+  $('#alert').html("#{flash_messages(flash)}");
+  $('#new-update-dialog').modal('toggle');

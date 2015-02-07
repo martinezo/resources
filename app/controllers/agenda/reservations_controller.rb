@@ -1,14 +1,34 @@
 class Agenda::ReservationsController < ApplicationController
+  skip_before_filter :authenticate_devise_user!, only: [:public_new, :public_index, :public_create]
+
   before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete]
   helper_method :sort_column, :sort_direction
 
+  # Public interface
+  def public_index
+    @reservations = Agenda::Reservation.where(department_id: params[:department_id]).public_search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+  end
 
+  def public_new
+    @reservation = Agenda::Reservation.new
+  end
+
+  def public_create
+    @reservation = Agenda::Reservation.new(agenda_reservation_params)
+    @reservation.department_id = params[:department_id]
+    if @reservation.save
+      flash[:success] = t('notices.saved_successfully')
+      flash[:info] = "<h1> Folio: #{@reservation.folio} </h1>"
+      public_index
+    end
+  end
 
   # GET /agenda/reservations
   # GET /agenda/reservations.json
   def index
     @reservations = Agenda::Reservation.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
+
 
   # GET /agenda/reservations/1
   # GET /agenda/reservations/1.json
@@ -19,6 +39,7 @@ class Agenda::ReservationsController < ApplicationController
   def new
     @agenda_reservation = Agenda::Reservation.new
   end
+
 
   # GET /agenda/reservations/1/edit
   def edit
@@ -59,7 +80,7 @@ class Agenda::ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reservation_params
-      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :foreign_headquarter_id, :event_type_id, :status_id, :comments, :modified_by)
+      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by)
     end
 
     def sort_column
@@ -67,7 +88,7 @@ class Agenda::ReservationsController < ApplicationController
     end
 
     def sort_direction
-      params[:direction] || 'asc'
+      params[:direction] || 'desc'
     end
 
 end

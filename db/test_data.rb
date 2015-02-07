@@ -71,18 +71,20 @@ Admin::User.create(id: 6, login: 'user2', name: 'Usuario manager de prueba 2', m
 
 #institutions
 Catalogs::Institution.delete_all
-Catalogs::Institution.create(id: 1, abbr: 'IFC', name: 'Instituto de Fisiología Celular de la UNAM')
-Catalogs::Institution.create(id: 2, abbr: 'IIB', name: 'Instituto de Investigaciones Biomédicas de la UNAM')
+Catalogs::Institution.create(id: 1, abbr: 'INB', name: 'Instituto de Neurobiología de la UNAM')
+Catalogs::Institution.create(id: 2, abbr: 'IFC', name: 'Instituto de Fisiología Celular de la UNAM')
+Catalogs::Institution.create(id: 3, abbr: 'IIB', name: 'Instituto de Investigaciones Biomédicas de la UNAM')
 
 #headquartes
 Catalogs::Headquarter.delete_all
-Catalogs::Headquarter.create(id: 1, institution_id: 1, name: 'Videoconferencias', responsible: 'Laura Ortiz Soto', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3015')
-Catalogs::Headquarter.create(id: 2, institution_id: 2, name: 'Videoconferencias', responsible: 'Fernando Villanueva Orozco', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3111')
+Catalogs::Headquarter.create(id: 2, institution_id: 1, name: 'Videoconferencias', responsible: 'Laura Ortiz Soto', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3015')
+Catalogs::Headquarter.create(id: 3, institution_id: 2, name: 'Videoconferencias', responsible: 'Fernando Villanueva Orozco', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3111')
 
 #departments
 Catalogs::Department.delete_all
 Catalogs::Department.create(id: 1, abbr: 'uvc', name: 'Unidad de Videoconferencia INB-UNAM', img_header: 'uvc_header.png', institution_id: 1)
 Catalogs::Department.create(id: 2, abbr: 'pos', name: 'Unidad de Posgrado INB-UNAM', img_header: 'pos_header.png', institution_id: 1)
+Catalogs::Department.create(id: 3, abbr: 'mic', name: 'Unidad de Microscopía INB-UNAM', img_header: 'mic_header.png', institution_id: 1)
 
 #events_types
 Catalogs::EventType.delete_all

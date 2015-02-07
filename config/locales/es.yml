@@ -28,6 +28,7 @@ es:
     reservation: Reservación
     sign_in: Inicio de Sesión
     sign_out: Cerrar Sesión
+    new_request: Nueva solicitud
 
   msgs:
     only_for_vc: 'Llenar este campo solo para servicios de videoconferencia.'
@@ -111,11 +112,12 @@ es:
         folio: Folio
         requester: Solicitante
         email: Correo
-        phone: Teléfono
+        phone: Teléfono/Ext.
         f_headquarter: Sede foránea
-        event_type: Tipo de evento
-        status: Estado
-        comments: Comentarios
+        catalogs_event_type: Tipo de evento
+        catalogs_status: Estado
+        resource_requested: Solicitud
+        created_at: Fecha
 
       devise_user:
         login: Usuario
@@ -148,6 +150,14 @@ es:
         catalogs/resource_type:
           attributes:
             name:
+              blank: Dato requerido
+        agenda/reservation:
+          attributes:
+            requester:
+              blank: Dato requerido
+            email:
+              blank: Dato requerido
+            resource_requested:
               blank: Dato requerido
 
   devise:

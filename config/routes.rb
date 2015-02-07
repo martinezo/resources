@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   namespace :agenda do
     resources :reservations
     get 'reservations/delete/:id' => 'reservations#delete', as: 'delete_reservation'
+    get 'public_new/:department_id', to: 'reservations#public_new', as: 'public_new'
+    post 'public_create/:department_id', to: 'reservations#public_create', as: 'public_create'
+    get 'public_reservations/:department_id', to: 'reservations#public_index', as: 'public_reservations'
   end
 
   namespace :agenda do

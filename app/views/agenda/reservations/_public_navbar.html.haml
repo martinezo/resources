@@ -1,0 +1,11 @@
+.nav.navbar.navbar-default
+  .container-fluid
+    .collapse.navbar-collapse
+      = form_tag agenda_public_reservations_path(department_id: params[:department_id]), remote: true, method: :get, class: 'navbar-form navbar-left' do
+        .form-group
+          =text_field_tag :search, '', placeholder: t('commands.search'), class: 'form-control'
+          =button_tag_fa(text: t('commands.search'), title: t('commands.search'), icon: 'fa-search', name: t('commands.search'))
+
+      .navbar-form.navbar-left
+        =link_to_fa_button({text: t('commands.show_all'), url: agenda_public_reservations_path(department_id: params[:department_id]), class: 'btn btn-default', icon: 'fa-bars'})
+        =link_to_fa_button({url: agenda_public_new_path(params[:department_id]), text: t('titles.new_request'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})

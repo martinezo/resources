@@ -20,6 +20,17 @@ module ApplicationHelper
     link_to "<span class='fa #{icon}'></span> #{text}".html_safe, url, title: title, remote: remote, data: data, id: id, class: html_class, target: target, method: method
   end
 
+  def button_tag_fa(options)
+    text = options[:text] ? "<span>&nbsp#{options[:text]}</span>" : ''
+    title = options[:title] || nil
+    icon = options[:icon] || nil
+    data = options[:data] || nil
+    name = options[:name] || nil
+    button_tag type: 'submit', data: data, name: name, title: title, class: 'btn btn-default' do
+      "<i class='fa #{icon}'></i> #{text}".html_safe
+    end
+  end
+
   def flash_messages(flash)
     success, error, warning, info, f_messages = '','','','',''
     flash.each do |name, msg|
