@@ -1,7 +1,7 @@
 - new_link = nil
 = render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_assign_resource_path, new_link: new_link}
 = flash_messages(flash)
-- es = 'activerecord.attributes.catalogs/user_resources.'
+- es = 'activerecord.attributes.catalogs/resource'
 
 
 %table.table
@@ -14,8 +14,8 @@
   %thead
     %tr
       %th.col-sm-1
-      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_assign_resource_path
-      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_assign_resource_path
+      %th.col-sm-2= sortable 'abbr', t("#{es}.abbr"), catalogs_assign_resource_path
+      %th.col-sm-3= sortable 'name', t("#{es}.name"), catalogs_assign_resource_path
       %th.col-sm-3= sortable 'description', t("#{es}.description"), catalogs_assign_resource_path
       %th.col-sm-2
   %tbody

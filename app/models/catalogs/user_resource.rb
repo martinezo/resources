@@ -1,6 +1,7 @@
 class Catalogs::UserResource < ActiveRecord::Base
-  belongs_to :admin_user, :class_name => 'Admin::User', :foreign_key => :admin_user_id
   belongs_to :catalogs_resource, :class_name => 'Catalogs::Resource', :foreign_key => :resource_id
+  belongs_to :admin_user, :class_name => 'Admin::User', :foreign_key => :admin_user_id
+
 
 
   def self.search(search)
