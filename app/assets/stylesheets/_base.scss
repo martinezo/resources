@@ -18,12 +18,6 @@ $accent-color: #2C4001;
   font-size: 1.5em;
 }
 
-.header{
-  font-weight: bold;
-  font-size: 1.5em;
-}
-
-
 .table-hover tbody tr:hover td {
   background: lighten($dominant-color,30%);
 }
