@@ -1,7 +1,7 @@
 class Agenda::ReservationsController < ApplicationController
-  skip_before_filter :authenticate_devise_user!, only: [:public_new, :public_index, :public_create]
+  skip_before_filter :authenticate_devise_user!, only: [:public_new, :public_index, :public_create, :public_show ]
 
-  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete]
+  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete, :public_show]
   helper_method :sort_column, :sort_direction
 
   # Public interface
@@ -18,10 +18,16 @@ class Agenda::ReservationsController < ApplicationController
     @reservation.department_id = params[:department_id]
     if @reservation.save
       flash[:success] = t('notices.saved_successfully')
-      flash[:info] = "<h1> Folio: #{@reservation.folio} </h1>"
+      flash[:info] = "<strong> Folio: #{@reservation.folio} </strong>"
       public_index
     end
   end
+
+  def public_show
+  end
+
+
+
 
   # GET /agenda/reservations
   # GET /agenda/reservations.json
@@ -39,7 +45,6 @@ class Agenda::ReservationsController < ApplicationController
   def new
     @agenda_reservation = Agenda::Reservation.new
   end
-
 
   # GET /agenda/reservations/1/edit
   def edit

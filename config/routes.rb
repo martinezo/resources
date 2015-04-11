@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :agenda do
     resources :reserv_msgs
+    get 'public_new_msg/:reservation_id', to: 'reserv_msgs#public_new_msg', as: 'public_new_msg'
+    post 'public_create_msg', to: 'reserv_msgs#public_create_msg', as: 'public_create_msg'
   end
 
   namespace :agenda do
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
     get 'public_new/:department_id', to: 'reservations#public_new', as: 'public_new'
     post 'public_create/:department_id', to: 'reservations#public_create', as: 'public_create'
     get 'public_reservations/:department_id', to: 'reservations#public_index', as: 'public_reservations'
+    get 'public_show/:id', to: 'reservations#public_show', as: 'public_show'
   end
 
   namespace :agenda do

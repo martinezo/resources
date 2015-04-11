@@ -15,9 +15,10 @@
         %td= reservation.folio
         %td= reservation.requester
         %td= reservation.email
-        %td= reservation.event_type.name
+        %td= reservation.event_type.try('name') || t("#{es}.undefined")
         %td= reservation.status.name
         %td.text-center
           = link_to_fa_button({url: reservation, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+          = link_to_fa_button({url: new_agenda_reserv_msg_path(reservation_id: reservation), icon: 'fa-comment-o', title: t('commands.comment'),data: {toggle: 'modal', target: '#new-update-dialog'}})
           = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-pencil', title: t('commands.edit'), remote: false})
           = link_to_fa_button({url: agenda_delete_reservation_path(reservation), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

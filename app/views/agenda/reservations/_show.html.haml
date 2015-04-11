@@ -1,4 +1,4 @@
-- es = 'activerecord.attributes.agenda/reservations.'
+- es = 'activerecord.attributes.agenda/reservation'
 %table.table
   %tbody
     %tr
@@ -23,20 +23,25 @@
         = @agenda_reservation.phone
     %tr
       %td.th
-        = t("#{es}.foreign_headquarter_id")
+        = t("#{es}.f_headquarter_id")
       %td.tc
-        = @agenda_reservation.catalogs_headquarter.name
+        = @agenda_reservation.f_headquarter.try('name') || t("#{es}.undefined")
     %tr
       %td.th
         = t("#{es}.event_type_id")
       %td.tc
-        = @agenda_reservation.catalogs_event_type.name
+        = @agenda_reservation.event_type.try('name') || t("#{es}.undefined")
     %tr
       %td.th
         = t("#{es}.status_id")
       %td.tc
-        = @agenda_reservation.catalogs_status.name
+        = @agenda_reservation.status.name
 
+
+- if @agenda_reservation.messages.size > 0
+  %h4= t('titles.messages')
+  .show_msgs
+    = render partial: 'agenda/reserv_msgs/show_msgs', locals: {messages: @agenda_reservation.messages}
 
 .text-right
   = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

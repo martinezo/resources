@@ -1,7 +1,8 @@
 = render partial: 'public_navbar'
 = render partial: 'public_records'
 
-#new-update-dialog.fade.modal
+#show-dialog.modal.fade
+#new-update-dialog.modal.fade
 
 .text-center
   = will_paginate @agenda_reservations, renderer: BootstrapPagination::Rails

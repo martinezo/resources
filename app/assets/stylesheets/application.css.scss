@@ -15,3 +15,10 @@
  */
 
 @import "base";
+
+
+.show_msgs{
+  max-height: 13em;
+  overflow-y: scroll;
+  margin-bottom: 1em;
+}

@@ -2,6 +2,7 @@ class Agenda::Reservation < ActiveRecord::Base
   belongs_to :event_type, :class_name => 'Catalogs::EventType', :foreign_key => :event_type_id
   belongs_to :status, :class_name => 'Catalogs::Status', :foreign_key => :status_id
   belongs_to :f_headquarter, :class_name => 'Catalogs::Headquarter', :foreign_key => :foreign_headquarter_id
+  has_many :messages, -> {order 'id desc'}, :class_name => 'Agenda::ReservMsg'
 
   validates :requester, :email, :resource_requested, presence: true
 
@@ -22,6 +23,14 @@ class Agenda::Reservation < ActiveRecord::Base
       where("(translate(lower(requester),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou'))", "%#{search}%")
     else
       all
+    end
+  end
+
+  def short_resource_requested
+    if resource_requested.length < 130
+      resource_requested
+    else
+      "#{resource_requested[0..130]} ..."
     end
   end
 

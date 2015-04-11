@@ -1,0 +1,7 @@
+%table.table.table-striped
+  %tbody
+  - messages.each do |message|
+    %tr
+      %td
+        %i= message.msg_header
+        = message.message

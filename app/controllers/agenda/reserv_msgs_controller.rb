@@ -1,5 +1,21 @@
 class Agenda::ReservMsgsController < ApplicationController
+  skip_before_filter :authenticate_devise_user!, only: [:public_new_msg, :public_create_msg]
+
   before_action :set_agenda_reserv_msg, only: [:show, :edit, :update, :destroy]
+
+  # Public interface
+  def public_new_msg
+    @reserv_msg = Agenda::ReservMsg.new
+    @reserv_msg.reservation_id = params[:reservation_id]
+  end
+
+  def public_create_msg
+    @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+    @reserv_msg.user_id = 0
+    if @reserv_msg.save
+      flash[:success] = t('notices.message_saved_successfully')
+    end
+  end
 
   # GET /agenda/reserv_msgs
   # GET /agenda/reserv_msgs.json
@@ -14,7 +30,8 @@ class Agenda::ReservMsgsController < ApplicationController
 
   # GET /agenda/reserv_msgs/new
   def new
-    @agenda_reserv_msg = Agenda::ReservMsg.new
+    @reserv_msg = Agenda::ReservMsg.new
+    @reserv_msg.reservation_id = params[:reservation_id]
   end
 
   # GET /agenda/reserv_msgs/1/edit
@@ -24,17 +41,23 @@ class Agenda::ReservMsgsController < ApplicationController
   # POST /agenda/reserv_msgs
   # POST /agenda/reserv_msgs.json
   def create
-    @agenda_reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
-
-    respond_to do |format|
-      if @agenda_reserv_msg.save
-        format.html { redirect_to @agenda_reserv_msg, notice: 'Reserv msg was successfully created.' }
-        format.json { render :show, status: :created, location: @agenda_reserv_msg }
-      else
-        format.html { render :new }
-        format.json { render json: @agenda_reserv_msg.errors, status: :unprocessable_entity }
-      end
+    @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+    @reserv_msg.user_id = current_devise_user.id
+    @reserv_msg.folio = @reserv_msg.reservation.folio
+    if @reserv_msg.save
+      flash[:success] = t('notices.message_saved_successfully')
     end
+    # @agenda_reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+
+    # respond_to do |format|
+    #   if @agenda_reserv_msg.save
+    #     format.html { redirect_to @agenda_reserv_msg, notice: 'Reserv msg was successfully created.' }
+    #     format.json { render :show, status: :created, location: @agenda_reserv_msg }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @agenda_reserv_msg.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /agenda/reserv_msgs/1
@@ -69,6 +92,6 @@ class Agenda::ReservMsgsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reserv_msg_params
-      params.require(:agenda_reserv_msg).permit(:reservation_id, :message)
+      params.require(:agenda_reserv_msg).permit(:reservation_id, :message, :user_id, :folio)
     end
 end

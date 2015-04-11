@@ -5,7 +5,7 @@
   = f.input :requester
   = f.input :email
   = f.input :phone
-  = f.input :resource_requested
+  = f.input :resource_requested, as: :text, hint: t('msgs.r_requested_hint'), input_html: { maxlength: 250, rows: 6 }
 
   %hr
   .text-right

@@ -1,0 +1,18 @@
+= simple_form_for @reserv_msg, url: agenda_public_create_msg_path(@reserv_msg.reservation_id),remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+  = f.error_notification
+
+  - if @reserv_msg.reservation.messages.size > 0
+    %h4= t('titles.old_messages')
+    .show_msgs
+      = render partial: 'agenda/reserv_msgs/show_msgs', locals: {messages: @reserv_msg.reservation.messages}
+
+  -#= hidden_field :agenda_reserv_msg, :reservation_id
+  = f.input :reservation_id, as: :hidden
+  = f.input :folio, as: :string
+  = f.input :message, as: :text, input_html: { maxlength: 250, rows: 9 }
+
+  %hr
+  .text-right
+    = button_tag_fa(text: t('commands.submit'), title: t('commands.submit'), icon: 'fa-share-square', name: t('commands.search'))
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.cancel')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

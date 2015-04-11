@@ -1,0 +1,33 @@
+- es = 'activerecord.attributes.agenda/reservation.'
+%table.table
+  %tbody
+    %tr
+      %td.th
+        = t("#{es}created_at")
+      %td.tc
+        = I18n.localize(@agenda_reservation.created_at, format: :long)
+    %tr
+      %td.th
+        = t("#{es}requester")
+      %td.tc
+        = @agenda_reservation.requester
+    %tr
+      %td.th
+        =t("#{es}resource_requested")
+      %td.tc
+        = @agenda_reservation.resource_requested
+    %tr
+      %td.th
+        = t("#{es}status_id")
+      %td.tc
+        = @agenda_reservation.status.name
+
+- if @agenda_reservation.messages.size > 0
+  %h4= t('titles.messages')
+  .show_msgs
+    = render partial: 'agenda/reserv_msgs/show_msgs', locals: {messages: @agenda_reservation.messages}
+
+.text-right
+  = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
+
+  -#  TODO change column name user_type_id to user_type_id

@@ -29,9 +29,13 @@ es:
     sign_in: Inicio de Sesión
     sign_out: Cerrar Sesión
     new_request: Nueva solicitud
+    add_comment: Añadir comentario
+    messages: Mensajes
+    old_messages: Mensajes anteriores
 
   msgs:
     only_for_vc: 'Llenar este campo solo para servicios de videoconferencia.'
+    r_requested_hint: 'Espefique el periódo de su requerimiento incluyendo fecha y hora de inicio y término del mismo.'
 
 
   commands:
@@ -47,7 +51,7 @@ es:
     close: Cerrar
     sign_in: Iniciar
     cancel: Cancelar
-
+    comment: Agregar comentario
 
   notices:
     saved_successfully: Registro guardado correctamente.
@@ -55,6 +59,7 @@ es:
     request_successfully_sent: Solicitud enviada
     errors_prohibited_this_from_being_saved: error(es) impiden guardar este registro.
     delete_this_record?: ¿Esta seguro que desea eliminar este registro?
+    message_saved_successfully: Mensaje enviado correctamente.
 
   will_paginate:
     previous_label: Anterior
@@ -113,11 +118,17 @@ es:
         requester: Solicitante
         email: Correo
         phone: Teléfono/Ext.
-        f_headquarter: Sede foránea
+        f_headquarter_id: Sede foránea
         catalogs_event_type: Tipo de evento
         catalogs_status: Estado
         resource_requested: Solicitud
         created_at: Fecha
+        undefined: Indefinido
+        event_type_id: Tipo de evento
+        status_id: Estatus
+      agenda/reserv_msg:
+        folio: Folio
+        message: Mensaje
 
       devise_user:
         login: Usuario
@@ -159,6 +170,13 @@ es:
               blank: Dato requerido
             resource_requested:
               blank: Dato requerido
+        agenda/reserv_msg:
+          attributes:
+            folio:
+              invalid: Folio Incorrecto
+              blank: Dato requerido
+            message:
+              blank: Dato requerido
 
   devise:
     sessions:
@@ -170,6 +188,65 @@ es:
         unauthenticated: "Para continuar es necesario iniciar sesión"
         invalid: "Usuario o contraseña inválidos"
 
-  labels:
-    _yes: 'Si'
-    _no: 'No'
+  #https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
+
+  time:
+    am: am
+    formats:
+      default: "%A, %d de %B de %Y %H:%M:%S %z"
+      long: "%d de %B de %Y %H:%M"
+      short: "%d de %b %H:%M"
+    pm: pm
