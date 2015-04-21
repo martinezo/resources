@@ -1,6 +1,6 @@
 - if @reserv_msg.errors.count > 0
   $('#new-update-dialog').empty();
-  $('#new-update-dialog').html("#{escape_javascript(render(partial: 'public_new_msg', layout: 'layouts/modal', locals: {title: t('titles.reservation')} ))}");
+  $('#new-update-dialog').html("#{escape_javascript(render(partial: 'public_new_msg', layout: 'layouts/modal', locals: {title: t('titles.add_comment')} ))}");
 - else
   -# $('#tbl-reservations > tbody').html("");
   -# $('#tbl-reservations').append("#{escape_javascript(render(partial: 'public_records_d'))}");

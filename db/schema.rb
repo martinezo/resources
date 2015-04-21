@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404211726) do
+ActiveRecord::Schema.define(version: 20150420185453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_users", force: true do |t|
-    t.string   "login",         default: ""
-    t.string   "name",          default: ""
-    t.string   "mail",          default: ""
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "login",         limit: 255, default: ""
+    t.string   "name",          limit: 255, default: ""
+    t.string   "mail",          limit: 255, default: ""
     t.integer  "department_id"
-    t.integer  "user_type_id",  default: 1
+    t.integer  "user_type_id",              default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "agenda_reserv_dates", force: true do |t|
+  create_table "agenda_reserv_dates", force: :cascade do |t|
     t.integer  "reservation_id"
     t.date     "start_date_hour"
     t.date     "end_date_hour"
@@ -34,96 +34,98 @@ ActiveRecord::Schema.define(version: 20150404211726) do
     t.datetime "updated_at"
   end
 
-  create_table "agenda_reserv_msgs", force: true do |t|
+  create_table "agenda_reserv_msgs", force: :cascade do |t|
     t.integer  "reservation_id"
-    t.string   "message",        default: ""
+    t.string   "message",        limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
 
-  create_table "agenda_reserv_resources", force: true do |t|
+  create_table "agenda_reserv_resources", force: :cascade do |t|
     t.integer  "reservation_id"
     t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "agenda_reservations", force: true do |t|
+  create_table "agenda_reservations", force: :cascade do |t|
     t.integer  "folio"
-    t.string   "requester",              default: ""
-    t.string   "email",                  default: ""
-    t.string   "phone",                  default: ""
+    t.string   "requester",              limit: 255, default: ""
+    t.string   "email",                  limit: 255, default: ""
+    t.string   "phone",                  limit: 255, default: ""
     t.integer  "foreign_headquarter_id"
     t.integer  "event_type_id"
-    t.integer  "status_id",              default: 0
-    t.string   "resource_requested",     default: ""
+    t.integer  "status_id",                          default: 0
+    t.string   "resource_requested",     limit: 255, default: ""
     t.integer  "modified_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+    t.integer  "local_headquarter_id"
   end
 
-  create_table "catalogs_departments", force: true do |t|
-    t.string   "abbr",           default: ""
-    t.string   "name",           default: ""
-    t.string   "img_header",     default: ""
+  create_table "catalogs_departments", force: :cascade do |t|
+    t.string   "abbr",           limit: 255, default: ""
+    t.string   "name",           limit: 255, default: ""
+    t.string   "img_header",     limit: 255, default: ""
     t.integer  "institution_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_event_types", force: true do |t|
-    t.string   "name",       default: ""
+  create_table "catalogs_event_types", force: :cascade do |t|
+    t.string   "name",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_headquarters", force: true do |t|
-    t.string   "name",           default: ""
+  create_table "catalogs_headquarters", force: :cascade do |t|
+    t.string   "name",           limit: 255, default: ""
     t.integer  "institution_id"
-    t.string   "responsible",    default: ""
-    t.string   "email",          default: ""
-    t.string   "phone",          default: ""
-    t.string   "comments",       default: ""
+    t.string   "responsible",    limit: 255, default: ""
+    t.string   "email",          limit: 255, default: ""
+    t.string   "phone",          limit: 255, default: ""
+    t.string   "comments",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_institutions", force: true do |t|
-    t.string   "abbr",       default: ""
-    t.string   "name",       default: ""
+  create_table "catalogs_institutions", force: :cascade do |t|
+    t.string   "abbr",       limit: 255, default: ""
+    t.string   "name",       limit: 255, default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "local",                  default: false
+  end
+
+  create_table "catalogs_resource_types", force: :cascade do |t|
+    t.string   "name",        limit: 255, default: ""
+    t.string   "description", limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_resource_types", force: true do |t|
-    t.string   "name",        default: ""
-    t.string   "description", default: ""
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "catalogs_resources", force: true do |t|
-    t.string   "abbr",             default: ""
-    t.string   "name",             default: ""
+  create_table "catalogs_resources", force: :cascade do |t|
+    t.string   "abbr",             limit: 255, default: ""
+    t.string   "name",             limit: 255, default: ""
     t.integer  "resource_type_id"
-    t.string   "description",      default: ""
-    t.string   "location",         default: ""
-    t.boolean  "active",           default: true
+    t.string   "description",      limit: 255, default: ""
+    t.string   "location",         limit: 255, default: ""
+    t.boolean  "active",                       default: true
     t.integer  "admin_user_id"
-    t.boolean  "unique",           default: false
+    t.boolean  "unique",                       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_statuses", force: true do |t|
-    t.string   "name",       default: ""
+  create_table "catalogs_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_user_resources", force: true do |t|
+  create_table "catalogs_user_resources", force: :cascade do |t|
     t.integer  "admin_user_id"
     t.integer  "resource_id"
     t.boolean  "administrator", default: false
@@ -131,11 +133,11 @@ ActiveRecord::Schema.define(version: 20150404211726) do
     t.datetime "updated_at"
   end
 
-  create_table "devise_users", force: true do |t|
-    t.string   "email",               default: "", null: false
-    t.string   "encrypted_password",  default: "", null: false
+  create_table "devise_users", force: :cascade do |t|
+    t.string   "email",               limit: 255, default: "", null: false
+    t.string   "encrypted_password",  limit: 255, default: "", null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       default: 0,  null: false
+    t.integer  "sign_in_count",                   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"

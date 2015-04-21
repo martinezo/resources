@@ -8,5 +8,21 @@ class Catalogs::Status < ActiveRecord::Base
     end
   end
 
+  # According to bootstrap contextual classes
+  def css_class
+    case id
+      when 0 # Cancelado
+        'warning'
+      when 1 # Enviado
+        'danger'
+      when 2 # Recibido
+        'info'
+      when 3 # Confirmado
+        'info'
+      when 4 # Efectuado
+        'success'
+    end
+  end
+
 
 end

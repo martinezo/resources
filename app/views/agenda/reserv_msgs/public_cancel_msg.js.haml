@@ -1,0 +1,8 @@
+- if @reserv_msg.errors.count > 0
+  $('#new-update-dialog').empty();
+  $('#new-update-dialog').html("#{escape_javascript(render(partial: 'public_cancel_msg', layout: 'layouts/modal', locals: {title: t('titles.cancel_reserv')} ))}");
+- else
+  $("##{@reservation.id}").html("");
+  $("##{@reservation.id}").append("#{escape_javascript(render(partial: 'agenda/reservations/public_records_d_row', locals: {reservation: @reservation}))}");
+  $('#alert').html("#{flash_messages(flash)}");
+  $('#new-update-dialog').modal('toggle');

@@ -1,12 +1,4 @@
 %tbody
   - @reservations.each do |reservation|
-    %tr
-      %td= reservation.created_at.strftime('%d/%m/%Y')
-      %td= reservation.requester
-      %td= reservation.short_resource_requested
-      %td= reservation.status.name
-
-      %td.text-center
-        = link_to_fa_button({url: agenda_public_show_path(reservation), icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
-        = link_to_fa_button({url: agenda_public_new_msg_path(reservation), icon: 'fa-comment-o', title: t('commands.comment'),data: {toggle: 'modal', target: '#new-update-dialog'}})
-        = link_to_fa_button({url: agenda_delete_reservation_path(reservation), icon: 'fa-trash-o', title: t('commands.cancel'), data: {toggle: 'modal', target: '#delete-dialog'}})
+    %tr{id: reservation.id}
+      = render partial: 'public_records_d_row', locals: {reservation: reservation}

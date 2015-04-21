@@ -2,9 +2,11 @@ class Agenda::Reservation < ActiveRecord::Base
   belongs_to :event_type, :class_name => 'Catalogs::EventType', :foreign_key => :event_type_id
   belongs_to :status, :class_name => 'Catalogs::Status', :foreign_key => :status_id
   belongs_to :f_headquarter, :class_name => 'Catalogs::Headquarter', :foreign_key => :foreign_headquarter_id
+  belongs_to :quarter, -> {joins(:institution).where('local = true')}, :class_name => 'Catalogs::Headquarter', :foreign_key => :local_headquarter_id
+
   has_many :messages, -> {order 'id desc'}, :class_name => 'Agenda::ReservMsg'
 
-  validates :requester, :email, :resource_requested, presence: true
+  validates :requester, :email, :resource_requested, :local_headquarter_id, presence: true
 
   before_create :initial_settings
 

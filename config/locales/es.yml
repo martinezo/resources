@@ -32,11 +32,13 @@ es:
     add_comment: Añadir comentario
     messages: Mensajes
     old_messages: Mensajes anteriores
+    cancel_reserv: Cancelar solicitud
 
   msgs:
     only_for_vc: 'Llenar este campo solo para servicios de videoconferencia.'
-    r_requested_hint: 'Espefique el periódo de su requerimiento incluyendo fecha y hora de inicio y término del mismo.'
-
+    r_requested_hint: 'Espefique el periódo de su requerimiento incluyendo fecha y hora de inicio y término del mismo cuando así corresponda.'
+    select_an_option: 'Seleccione una opción'
+    canceled_reservation: 'Mensaje de Cancelación'
 
   commands:
     submit: Enviar
@@ -52,6 +54,7 @@ es:
     sign_in: Iniciar
     cancel: Cancelar
     comment: Agregar comentario
+    cancel_reserv: Calcelar solicitud
 
   notices:
     saved_successfully: Registro guardado correctamente.
@@ -60,6 +63,7 @@ es:
     errors_prohibited_this_from_being_saved: error(es) impiden guardar este registro.
     delete_this_record?: ¿Esta seguro que desea eliminar este registro?
     message_saved_successfully: Mensaje enviado correctamente.
+    reserv_canceled: ¡Solicitud cancelada!
 
   will_paginate:
     previous_label: Anterior
@@ -119,6 +123,7 @@ es:
         email: Correo
         phone: Teléfono/Ext.
         f_headquarter_id: Sede foránea
+        quarter: Departamento
         catalogs_event_type: Tipo de evento
         catalogs_status: Estado
         resource_requested: Solicitud
@@ -129,6 +134,7 @@ es:
       agenda/reserv_msg:
         folio: Folio
         message: Mensaje
+        reason_for_cancelation: Motivo de la cancelación
 
       devise_user:
         login: Usuario
@@ -169,6 +175,8 @@ es:
             email:
               blank: Dato requerido
             resource_requested:
+              blank: Dato requerido
+            local_headquarter_id:
               blank: Dato requerido
         agenda/reserv_msg:
           attributes:

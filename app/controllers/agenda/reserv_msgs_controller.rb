@@ -1,5 +1,5 @@
 class Agenda::ReservMsgsController < ApplicationController
-  skip_before_filter :authenticate_devise_user!, only: [:public_new_msg, :public_create_msg]
+  skip_before_filter :authenticate_devise_user!, only: [:public_new_msg, :public_create_msg, :public_cancel_msg, :public_cancel_req_msg]
 
   before_action :set_agenda_reserv_msg, only: [:show, :edit, :update, :destroy]
 
@@ -14,6 +14,23 @@ class Agenda::ReservMsgsController < ApplicationController
     @reserv_msg.user_id = 0
     if @reserv_msg.save
       flash[:success] = t('notices.message_saved_successfully')
+    end
+  end
+
+
+  def public_cancel_req_msg
+    @reserv_msg = Agenda::ReservMsg.new
+    @reserv_msg.reservation_id = params[:reservation_id]
+  end
+
+  def public_cancel_msg
+    @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+    @reserv_msg.user_id = 0
+    @reserv_msg.message = @reserv_msg.message.prepend("[ #{t('msgs.canceled_reservation')} ]")
+    if @reserv_msg.save
+      flash[:alert] = t('notices.reserv_canceled')
+      @reserv_msg.reservation.update_attribute(:status_id, 0)
+      @reservation = Agenda::Reservation.find(@reserv_msg.reservation_id)
     end
   end
 

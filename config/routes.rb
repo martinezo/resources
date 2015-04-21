@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :reserv_msgs
     get 'public_new_msg/:reservation_id', to: 'reserv_msgs#public_new_msg', as: 'public_new_msg'
     post 'public_create_msg', to: 'reserv_msgs#public_create_msg', as: 'public_create_msg'
+    get 'public_cancel_req_msg/:reservation_id', to: 'reserv_msgs#public_cancel_req_msg', as: 'public_cancel_req_msg'
+    post 'public_cancel_msg', to: 'reserv_msgs#public_cancel_msg', as: 'public_cancel_msg'
   end
 
   namespace :agenda do
