@@ -17,7 +17,6 @@ class Agenda::ReservMsgsController < ApplicationController
     end
   end
 
-
   def public_cancel_req_msg
     @reserv_msg = Agenda::ReservMsg.new
     @reserv_msg.reservation_id = params[:reservation_id]
@@ -59,6 +58,10 @@ class Agenda::ReservMsgsController < ApplicationController
   # POST /agenda/reserv_msgs.json
   def create
     @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+
+    #cancan
+    authorize! :create, @reserv_msg, :message => t('notices.not_authorized')
+
     @reserv_msg.user_id = current_devise_user.id
     @reserv_msg.folio = @reserv_msg.reservation.folio
     if @reserv_msg.save

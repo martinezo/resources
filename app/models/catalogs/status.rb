@@ -11,15 +11,15 @@ class Catalogs::Status < ActiveRecord::Base
   # According to bootstrap contextual classes
   def css_class
     case id
-      when 0 # Cancelado
+      when 0 # Cancelado - yellow
         'warning'
-      when 1 # Enviado
+      when 1 # Enviado - red
         'danger'
-      when 2 # Recibido
+      when 2 # Recibido - blue
+        'active'
+      when 3 # Confirmado - gray
         'info'
-      when 3 # Confirmado
-        'info'
-      when 4 # Efectuado
+      when 4 # Efectuado - green
         'success'
     end
   end

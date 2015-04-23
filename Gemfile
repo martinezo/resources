@@ -58,3 +58,4 @@ gem 'prawn'
 gem 'axlsx'
 # gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass'
+gem 'cancancan'

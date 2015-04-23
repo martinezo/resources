@@ -20,6 +20,15 @@ module ApplicationHelper
     link_to "<span class='fa #{icon}'></span> #{text}".html_safe, url, title: title, remote: remote, data: data, id: id, class: html_class, target: target, method: method
   end
 
+  def fa_button_no_active(options)
+    text = options[:text] ? "<span>&nbsp#{options[:text]}</span>" : ''
+    title = options[:title] || nil
+    icon = options[:icon] || nil
+    id = options[:id] || nil
+    html_class = "btn btn-default" << (options[:html_class] ? " #{options[:html_class]}" : '')
+    "<span disabled class='fa #{html_class} #{icon}'> #{text}</span>".html_safe
+  end
+
   def button_tag_fa(options)
     text = options[:text] ? "<span>&nbsp#{options[:text]}</span>" : ''
     title = options[:title] || nil

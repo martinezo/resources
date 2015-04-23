@@ -1,0 +1,4 @@
+%tbody
+  - @reservations.each do |reservation|
+    %tr{id: reservation.id}
+      = render partial: 'records_d_row', locals: {reservation: reservation}

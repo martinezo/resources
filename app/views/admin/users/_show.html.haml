@@ -8,6 +8,11 @@
         = @admin_user.name
     %tr
       %td.th
+        = t("#{es}.initials")
+      %td.tc
+        = @admin_user.initials
+    %tr
+      %td.th
         = t("#{es}.login")
       %td.tc
         = @admin_user.login

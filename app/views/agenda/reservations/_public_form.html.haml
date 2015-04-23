@@ -3,7 +3,7 @@
   = f.error_notification
 
   = f.input :requester
-  = f.association :quarter, include_blank: t('msgs.select_an_option.')
+  = f.association :l_headquarter, include_blank: t('msgs.select_an_option.')
   = f.input :email
   = f.input :phone
   = f.input :resource_requested, as: :text, hint: t('msgs.r_requested_hint'), input_html: { maxlength: 250, rows: 6 }

@@ -1,5 +1,6 @@
-%td{class: reservation.status.css_class}= reservation.status.name
-%td= reservation.created_at.strftime('%d/%m/%Y')
+%td{title: reservation.status.name}
+  .fa.fa-tag{class: "#{reservation.status.css_class}-c"}
+  = reservation.created_at.strftime('%d/%m/%Y')
 %td= reservation.requester
 %td= reservation.short_resource_requested
 %td.text-center

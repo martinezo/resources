@@ -8,10 +8,10 @@
     %body
       .container
         .row
-          - if devise_user_signed_in?
-            #r-header{style: "background-image: url('/headers_img/#{current_devise_user.department.img_header}')" }
-          - elsif params[:department_id]
+          - if params[:department_id]
             #r-header{style: "background-image: url('/headers_img/#{Catalogs::Department.find(params[:department_id]).img_header}')" }
+          - elsif devise_user_signed_in?
+            #r-header{style: "background-image: url('/headers_img/#{current_devise_user.department.img_header}')" }
           - else
             #r-header{style: "background-image: url('/headers_img/header.png')" }
         .row

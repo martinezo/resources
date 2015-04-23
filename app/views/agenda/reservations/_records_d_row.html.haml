@@ -1,0 +1,25 @@
+%td.text-center= reservation.created_at.strftime('%d/%m/%Y')
+%td= reservation.folio
+%td{title: "#{reservation.l_headquarter.name}-#{reservation.l_headquarter.phone} (#{reservation.email})"}= reservation.requester
+-#%td= reservation.email
+%td= reservation.event_type.try('name') || t('notices.undefined')
+%td{title: "#{reservation.admin_user.try('name')}"}= reservation.admin_user.try('initials') || "-"
+%td.text-center
+
+  - if cannot? :delegate, reservation
+    = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c")
+  - else
+    - case reservation.status_id
+      - when 0 # CANCELADO
+        = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c")
+      - when 1 # EN ESPERA
+        = link_to_fa_button({url: agenda_delegate_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c", data: {toggle: 'modal', target: '#new-update-dialog'}})
+      - when 2,3 # ASIGNADO, CONFIRMADO
+        = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, remote: false, html_class: "#{reservation.status.css_class}-c"})
+      - when 4 # CONCLUIDO
+        = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c")
+
+  = link_to_fa_button({url: reservation, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+  = link_to_fa_button({url: new_agenda_reserv_msg_path(reservation_id: reservation), icon: 'fa-comment-o', title: t('commands.comment'),data: {toggle: 'modal', target: '#new-update-dialog'}})
+  = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-pencil', title: t('commands.edit'), remote: false})
+  = link_to_fa_button({url: agenda_delete_reservation_path(reservation), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

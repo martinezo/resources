@@ -33,12 +33,17 @@ es:
     messages: Mensajes
     old_messages: Mensajes anteriores
     cancel_reserv: Cancelar solicitud
+    delegate: Assignar solicitud
+
+  tags:
+    assign_to: Asignar a
 
   msgs:
     only_for_vc: 'Llenar este campo solo para servicios de videoconferencia.'
     r_requested_hint: 'Espefique el periódo de su requerimiento incluyendo fecha y hora de inicio y término del mismo cuando así corresponda.'
     select_an_option: 'Seleccione una opción'
     canceled_reservation: 'Mensaje de Cancelación'
+    take_request?: '¿Tomar la solicitud a mi cargo?'
 
   commands:
     submit: Enviar
@@ -55,6 +60,7 @@ es:
     cancel: Cancelar
     comment: Agregar comentario
     cancel_reserv: Calcelar solicitud
+    confirm: Confirmar
 
   notices:
     saved_successfully: Registro guardado correctamente.
@@ -64,6 +70,9 @@ es:
     delete_this_record?: ¿Esta seguro que desea eliminar este registro?
     message_saved_successfully: Mensaje enviado correctamente.
     reserv_canceled: ¡Solicitud cancelada!
+    not_authorized: ¡Operación no autorizada!
+    undefined: Indefinido
+    request_successfully_assigned: Solicitud asignada correctamente a %{admin_user_name}.
 
   will_paginate:
     previous_label: Anterior
@@ -74,6 +83,7 @@ es:
       admin/user:
         login: Usuario
         name: Nombre
+        initials: Iniciales
         mail: Correo
         departament_id: Departamento
         user_type: Tipo de Usuario
@@ -126,11 +136,12 @@ es:
         quarter: Departamento
         catalogs_event_type: Tipo de evento
         catalogs_status: Estado
+        catalogs_status_abbr: Est.
         resource_requested: Solicitud
         created_at: Fecha
-        undefined: Indefinido
         event_type_id: Tipo de evento
         status_id: Estatus
+        attended_by: Atendido por
       agenda/reserv_msg:
         folio: Folio
         message: Mensaje
@@ -177,6 +188,8 @@ es:
             resource_requested:
               blank: Dato requerido
             local_headquarter_id:
+              blank: Dato requerido
+            admin_user_id:
               blank: Dato requerido
         agenda/reserv_msg:
           attributes:

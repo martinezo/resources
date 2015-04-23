@@ -1,7 +1,7 @@
 class Agenda::ReservationsController < ApplicationController
   skip_before_filter :authenticate_devise_user!, only: [:public_new, :public_index, :public_create, :public_show ]
 
-  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete, :public_show]
+  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete, :public_show, :delegate, :assign]
   helper_method :sort_column, :sort_direction
 
   # Public interface
@@ -26,13 +26,10 @@ class Agenda::ReservationsController < ApplicationController
   def public_show
   end
 
-
-
-
   # GET /agenda/reservations
   # GET /agenda/reservations.json
   def index
-    @reservations = Agenda::Reservation.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    @reservations = Agenda::Reservation.my_department(current_user.department_id).search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
   end
 
 
@@ -77,6 +74,19 @@ class Agenda::ReservationsController < ApplicationController
     index
   end
 
+
+  def delegate
+
+  end
+
+  def assign
+    @agenda_reservation.status_id = 2
+    @agenda_reservation.action = action_name #For valitation
+    if @agenda_reservation.update(agenda_reservation_params)
+      flash[:success] = t('notices.request_successfully_assigned', admin_user_name: @agenda_reservation.admin_user.name)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agenda_reservation
@@ -85,7 +95,7 @@ class Agenda::ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reservation_params
-      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by)
+      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :local_headquarter_id, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by, :admin_user_id)
     end
 
     def sort_column

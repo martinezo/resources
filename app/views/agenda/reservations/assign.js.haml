@@ -1,0 +1,8 @@
+- if @agenda_reservation.errors.count > 0
+  $('#new-update-dialog').empty();
+  $('#new-update-dialog').html("#{escape_javascript(render(partial: 'form_delegate', layout: 'layouts/modal', locals: {title: t('titles.delegate')} ))}");
+- else
+  $("##{@agenda_reservation.id}").html("");
+  $("##{@agenda_reservation.id}").append("#{escape_javascript(render(partial: 'agenda/reservations/records_d_row', locals: {reservation: @agenda_reservation}))}");
+  $('#new-update-dialog').modal('toggle');
+  $('#alert').html("#{flash_messages(flash)}");

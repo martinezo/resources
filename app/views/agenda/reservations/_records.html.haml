@@ -1,24 +1,13 @@
 - es = 'activerecord.attributes.agenda/reservation'
-= flash_messages(flash)
-%table.table.table-striped.table-hover
+#alert= flash_messages(flash)
+%table.table.table-striped.table-hover.table-condensed
   %thead
     %tr
-      %th.col-sm-1= sortable 'status_id', t("#{es}.catalogs_status"), agenda_reservations_path
+      %th.col-sm-1= sortable 'created_at', t("#{es}.created_at"), agenda_reservations_path
       %th.col-sm-1= sortable 'folio', t("#{es}.folio"), agenda_reservations_path
-      %th.col-sm-1= sortable 'requester', t("#{es}.requester"), agenda_reservations_path
-      %th.col-sm-1= sortable 'email', t("#{es}.email"), agenda_reservations_path
-      %th.col-sm-1= sortable 'event_type_id', t("#{es}.catalogs_event_type"), agenda_reservations_path
-      %th.col-sm-1
-  %tbody
-    - @reservations.each do |reservation|
-      %tr
-        %td{class: reservation.status.css_class}= reservation.status.name
-        %td= reservation.folio
-        %td= reservation.requester
-        %td= reservation.email
-        %td= reservation.event_type.try('name') || t("#{es}.undefined")
-        %td.text-center
-          = link_to_fa_button({url: reservation, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
-          = link_to_fa_button({url: new_agenda_reserv_msg_path(reservation_id: reservation), icon: 'fa-comment-o', title: t('commands.comment'),data: {toggle: 'modal', target: '#new-update-dialog'}})
-          = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-pencil', title: t('commands.edit'), remote: false})
-          = link_to_fa_button({url: agenda_delete_reservation_path(reservation), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})
+      %th.col-sm-2= sortable 'requester', t("#{es}.requester"), agenda_reservations_path
+      -#%th.col-sm-1= sortable 'email', t("#{es}.email"), agenda_reservations_path
+      %th.col-sm-2= sortable 'event_type_id', t("#{es}.catalogs_event_type"), agenda_reservations_path
+      %th.col-sm-2= sortable 'admin_user_id', t("#{es}.attended_by"), agenda_reservations_path
+      %th.col-sm-3
+  = render partial: 'records_d'

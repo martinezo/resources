@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     post 'public_create/:department_id', to: 'reservations#public_create', as: 'public_create'
     get 'public_reservations/:department_id', to: 'reservations#public_index', as: 'public_reservations'
     get 'public_show/:id', to: 'reservations#public_show', as: 'public_show'
+    get 'reservations/delegate/:id', to: 'reservations#delegate', as: 'delegate_reservation'
+    patch 'reservations/assign/:id', to: 'reservations#assign', as: 'assign_reservation'
   end
 
   namespace :agenda do

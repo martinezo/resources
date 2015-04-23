@@ -2,7 +2,9 @@ class Admin::User < ActiveRecord::Base
 
   belongs_to :department, :class_name => 'Catalogs::Department'
 
-  validates :name, :login, :mail, :department_id, :user_type_id, presence: true
+  validates :name, :initials, :login, :mail, :department_id, :user_type_id, presence: true
+
+  scope :from_department, ->(department_id) {where(department_id: department_id)}
 
   def self.search(search)
     if search
