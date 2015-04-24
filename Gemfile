@@ -54,6 +54,7 @@ gem 'simple_form', '~> 3.1.0.rc1'
 gem 'show_for'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 gem 'prawn'
 gem 'axlsx'
 # gem "twitter-bootstrap-rails"
