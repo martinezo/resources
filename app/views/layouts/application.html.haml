@@ -9,11 +9,11 @@
       .container
         .row
           - if params[:department_id]
-            #r-header{style: "background-image: url('/headers_img/#{Catalogs::Department.find(params[:department_id]).img_header}')" }
+            #r-header{style: "background-image: url('#{asset_path "headers_img/#{Catalogs::Department.find(params[:department_id]).img_header}"}')" }
           - elsif devise_user_signed_in?
-            #r-header{style: "background-image: url('/headers_img/#{current_devise_user.department.img_header}')" }
+            #r-header{style: "background-image: url('#{asset_path "headers_img/#{current_devise_user.department.img_header}"}')"}
           - else
-            #r-header{style: "background-image: url('/headers_img/header.png')" }
+            #r-header{style: "background-image: url('#{asset_path "headers_img/header.png"}')"}
         .row
           #r-content
             = yield
