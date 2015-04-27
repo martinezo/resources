@@ -205,6 +205,7 @@ es:
         signed_in: "Sessión de usuario iniciada correctamente"
 
     failure:
+      already_authenticated: Session de usuario ya iniciada
       devise_user:
         unauthenticated: "Para continuar es necesario iniciar sesión"
         invalid: "Usuario o contraseña inválidos"
