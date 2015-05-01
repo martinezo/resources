@@ -1,0 +1,41 @@
+- new_link = nil
+= render partial: 'layouts/admin_menu', locals: {title: t('titles.resources'), url: catalogs_assign_resource_path, new_link: new_link}
+= flash_messages(flash)
+- es = 'activerecord.attributes.catalogs/user_resources.'
+
+
+%table.table
+  %tbody
+    %tr
+      %h2= @user.name
+
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.col-sm-1
+      %th.col-sm-2= sortable 'abbr', t('activerecord.attributes.catalogs/resource.abbr'), catalogs_assign_resource_path
+      %th.col-sm-3= sortable 'name', t('activerecord.attributes.catalogs/resource.name'), catalogs_assign_resource_path
+      %th.col-sm-3= sortable 'description', t("#{es}.description"), catalogs_assign_resource_path
+      %th.col-sm-2
+  %tbody
+    - @catalogs_resources.each do |resource|
+      %tr
+        - admin = resource.is_admin_by?(params[:user_id])
+        - if admin
+          %td= link_to_fa_button({id: resource.id, url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-check-square-o', title: t('commands.uncheck')})
+        - else
+          %td= link_to_fa_button({id: resource.id, url: catalogs_assign_unassign_users_resources_path(resource, user_id: params[:user_id], admin: admin),  icon: 'fa-square-o', title: t('commands.check')})
+        %td= resource.abbr
+        %td= resource.name
+        %td= resource.description
+        %td.text-center
+
+
+
+.text-right
+  = link_to_fa_button(url: admin_users_path, icon: 'arrowreturn-1-w', text: t('commands.back'), remote: false )
+
+
+.text-center
+  = will_paginate @catalogs_resources, renderer: BootstrapPagination::Rails
+%br

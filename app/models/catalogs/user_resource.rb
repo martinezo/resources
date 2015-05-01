@@ -15,4 +15,5 @@ class Catalogs::UserResource < ActiveRecord::Base
   def self.destroy_by_user_resourse_id(user_id, resource_id)
     where("admin_user_id = ? AND resource_id = ?", user_id, resource_id).first.try(:destroy)
   end
+
 end

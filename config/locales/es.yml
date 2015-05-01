@@ -46,6 +46,7 @@ es:
     canceled_reservation: 'Mensaje de Cancelación'
     take_request?: '¿Tomar la solicitud a mi cargo?'
 
+
   commands:
     submit: Enviar
     search: Buscar
@@ -63,6 +64,12 @@ es:
     cancel_reserv: Calcelar solicitud
     confirm: Confirmar
     configuration: Configuración
+    check: Seleccionar
+    uncheck: Quitar selección
+    back: Regresar
+    assign_resources: Asignar Recursos
+    assign_users: Asignar Usuarios
+
 
   notices:
     saved_successfully: Registro guardado correctamente.

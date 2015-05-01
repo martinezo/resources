@@ -17,3 +17,4 @@
           = link_to_fa_button({url: catalogs_resource, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
           = link_to_fa_button({url: edit_catalogs_resource_path(catalogs_resource), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
           = link_to_fa_button({url: catalogs_delete_resource_path(catalogs_resource), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})
+          = link_to_fa_button({url: catalogs_assign_user_path(catalogs_resource), icon: 'fa-fire', title: t('commands.assign_users'), remote: false})

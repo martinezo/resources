@@ -1,6 +1,6 @@
 class Catalogs::UserResourcesController < ApplicationController
   before_action :set_catalogs_user_resource, only: [:show, :edit, :update, :destroy, :delete]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction,:sort_column_resource
 
   # GET /catalogs/user_resources
   # GET /catalogs/user_resources.json
@@ -49,6 +49,34 @@ class Catalogs::UserResourcesController < ApplicationController
     index
   end
 
+  def resource_assignment_to_user
+    @user = Admin::User.find(params[:user_id])
+    @catalogs_resources = Catalogs::Resource.search_resource(params[:search]).order("#{sort_column_resource} #{sort_direction}").paginate(per_page: 10, page:  params[:page])
+  end
+
+  def assign_unassign_users_resources
+    if params[:admin] == 'true'
+      Catalogs::UserResource.destroy_by_user_resource_id(params[:user_id],params[:resource_id])
+    else
+      Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
+    end
+  end
+
+  def user_assignment_to_resource
+    @resource = Catalogs::Resource.find(params[:resource_id])
+    @admin_users = Admin::User.search_user(params[:search]).order("#{sort_column_resource} #{sort_direction}").paginate(per_page: 10, page:  params[:page])
+  end
+
+  def assign_unassign_resources_users
+    if params[:admin] == 'true'
+      Catalogs::UserResource.destroy_by_user_resource_id(params[:user_id],params[:resource_id])
+    else
+      Catalogs::UserResource.create(admin_user_id: params[:user_id], resource_id: params[:resource_id])
+    end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_catalogs_user_resource
@@ -67,4 +95,12 @@ class Catalogs::UserResourcesController < ApplicationController
     def sort_direction
       params[:direction] || 'asc'
     end
+
+
+  def sort_column_resource
+    params[:sort] || 'name'
+  end
+
+
+
 end
