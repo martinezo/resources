@@ -3,7 +3,7 @@
 %table.table.table-striped.table-hover#tbl-reservations
   %thead
     %tr
-      %th.col-sm-1= sortable 'created_at', t("#{es}.created_at"), agenda_public_reservations_path(department_id: params[:department_id])
+      %th.col-sm-2= sortable 'created_at', t("#{es}.created_at"), agenda_public_reservations_path(department_id: params[:department_id])
       %th.col-sm-3= sortable 'requester', t("#{es}.requester"), agenda_public_reservations_path(department_id: params[:department_id])
       %th.col-sm-5= sortable 'resource_requested', t("#{es}.resource_requested"), agenda_public_reservations_path(department_id: params[:department_id])
       %th.col-sm-2

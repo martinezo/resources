@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  namespace :admin do
+    get 'edit_dept_configs/:department_id', to: 'dept_configs#edit', as: 'edit_dept_configs'
+    patch 'update_dept_configs/:department_id', to: 'dept_configs#update', as: 'update_dept_configs'
+  end
+
   namespace :agenda do
     resources :reserv_msgs
     get 'public_new_msg/:reservation_id', to: 'reserv_msgs#public_new_msg', as: 'public_new_msg'

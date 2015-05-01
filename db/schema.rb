@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421223230) do
+ActiveRecord::Schema.define(version: 20150501003604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_dept_configs", force: :cascade do |t|
+    t.integer  "department_id"
+    t.string   "tag"
+    t.string   "label"
+    t.string   "value"
+    t.string   "options"
+    t.integer  "precedence"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "login",         limit: 255, default: ""
@@ -65,6 +76,10 @@ ActiveRecord::Schema.define(version: 20150421223230) do
     t.integer  "department_id"
     t.integer  "local_headquarter_id"
     t.integer  "admin_user_id"
+    t.string   "txt_op_1"
+    t.string   "txt_op_2"
+    t.datetime "datetime_op_1"
+    t.datetime "datetime_op_2"
   end
 
   create_table "catalogs_departments", force: :cascade do |t|

@@ -11,6 +11,7 @@ class Agenda::ReservationsController < ApplicationController
 
   def public_new
     @reservation = Agenda::Reservation.new
+    @dept_config = Admin::DeptConfig.where(department_id: params[:department_id])
   end
 
   def public_create
@@ -95,7 +96,7 @@ class Agenda::ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reservation_params
-      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :local_headquarter_id, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by, :admin_user_id)
+      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :local_headquarter_id, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by, :admin_user_id, :txt_op_1, :txt_op_2, :datetime_op_1, :datetime_op_2)
     end
 
     def sort_column

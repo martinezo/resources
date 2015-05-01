@@ -1,4 +1,8 @@
-- new_link = link_to_fa_button({url: new_catalogs_department_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+-if current_devise_user.user_type_id == 1
+  - new_link = link_to_fa_button({url: new_catalogs_department_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+- else
+  - new_link = nil
+
 = render partial: 'layouts/admin_menu', locals: {title: t('titles.departments'), url: catalogs_departments_path, new_link: new_link}
 #records
   = render partial: 'records'

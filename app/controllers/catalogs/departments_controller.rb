@@ -26,6 +26,7 @@ class Catalogs::DepartmentsController < ApplicationController
   # POST /catalogs/departments.json
   def create
     @catalogs_department = Catalogs::Department.new(catalogs_department_params)
+    authorize! :create, @catalogs_department
 
     if @catalogs_department.save
       flash[:success] = t('notices.saved_successfully')

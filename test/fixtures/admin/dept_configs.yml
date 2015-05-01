@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  department_id: 1
+  table: MyString
+  field: MyString
+  text: MyString
+  visible: false
+
+two:
+  department_id: 1
+  table: MyString
+  field: MyString
+  text: MyString
+  visible: false

@@ -6,7 +6,21 @@
   = f.association :l_headquarter, include_blank: t('msgs.select_an_option.')
   = f.input :email
   = f.input :phone
-  = f.input :resource_requested, as: :text, hint: t('msgs.r_requested_hint'), input_html: { maxlength: 250, rows: 6 }
+  = f.input :resource_requested, as: :text, input_html: { maxlength: 250, rows: 6 }
+
+  -# OPTIONAL FIELDS
+  - if(txt_op_1 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_1').first).value.size > 0
+    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_1_hint').first.value
+    = f.input :txt_op_1, label: txt_op_1.value, hint: hint
+  - if(txt_op_2 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_2').first).value.size > 0
+    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_2_hint').first.value
+    = f.input :txt_op_2, label: txt_op_2.value, hint: hint
+  - if(datetime_op_1 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_datetime_op_1').first).value.size > 0
+    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_datetime_op_1_hint').first.value
+    = f.input :datetime_op_1, label:datetime_op_1.value, hint: hint, as: :string
+  - if(datetime_op_2 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_datetime_op_2').first).value.size > 0
+    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_datetime_op_2_hint').first.value
+    = f.input :datetime_op_2, label:datetime_op_2.value, hint: hint, as: :string
 
   %hr
   .text-right

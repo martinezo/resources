@@ -34,6 +34,7 @@ es:
     old_messages: Mensajes anteriores
     cancel_reserv: Cancelar solicitud
     delegate: Assignar solicitud
+    dept_configs: Configuración
 
   tags:
     assign_to: Asignar a
@@ -61,6 +62,7 @@ es:
     comment: Agregar comentario
     cancel_reserv: Calcelar solicitud
     confirm: Confirmar
+    configuration: Configuración
 
   notices:
     saved_successfully: Registro guardado correctamente.
@@ -133,6 +135,7 @@ es:
         email: Correo
         phone: Teléfono/Ext.
         f_headquarter_id: Sede foránea
+        l_headquarter: Departamento
         quarter: Departamento
         catalogs_event_type: Tipo de evento
         catalogs_status: Estado
@@ -165,6 +168,13 @@ es:
               blank: Dato requerido
             user_type:
               blank: Dato requerido
+        admin/dept_config:
+          attributes:
+            department_id: Departamento
+            table: Tabla
+            field: Campo
+            text: Texto
+            visible: Visible
         catalogs/resource:
           attributes:
             abbr:

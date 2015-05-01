@@ -1,0 +1,15 @@
+-#= simple_form_for :dept_configs, url: admin_update_dept_configs_path(params[:department_id]), method: :patch do |f|
+= simple_form_for :dept_configs, url: admin_update_dept_configs_path(params[:department_id]), method: :patch, remote: true do |f|
+  = f.error_notification
+
+
+  - @admin_dept_config.each do |config|
+    - if config.options.nil?
+      = f.input "#{config.id}", label: config.label, required: false, input_html: {value: config.value}
+    - else
+      = f.input "#{config.id}", label: config.label, collection: config.options.split(','), selected: config.value, required: false
+
+  %hr
+  .text-right
+    = f.button :submit, t('commands.save')
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

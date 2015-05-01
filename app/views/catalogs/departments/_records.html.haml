@@ -8,10 +8,12 @@
       %th.col-sm-2
   %tbody
     - @catalogs_departments.each do |catalogs_department|
-      %tr
-        %td= catalogs_department.abbr
-        %td= catalogs_department.name
-        %td.text-center
-          = link_to_fa_button({url: catalogs_department, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
-          = link_to_fa_button({url: edit_catalogs_department_path(catalogs_department), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
-          = link_to_fa_button({url: catalogs_delete_department_path(catalogs_department), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})
+      -if can? :update, catalogs_department
+        %tr
+          %td= catalogs_department.abbr
+          %td= catalogs_department.name
+          %td.text-center
+            = link_to_fa_button({url: catalogs_department, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
+            = link_to_fa_button({url: edit_catalogs_department_path(catalogs_department), icon: 'fa-pencil', title: t('commands.edit'), data: {toggle: 'modal', target: '#new-update-dialog'}})
+            = link_to_fa_button({url: admin_edit_dept_configs_path(catalogs_department.id), icon: 'fa-gear', title: t('commands.configuration'), data: {toggle: 'modal', target: '#new-update-dialog'}})
+            = link_to_fa_button({url: catalogs_delete_department_path(catalogs_department), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})
