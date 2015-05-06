@@ -2,7 +2,7 @@ class Catalogs::Headquarter < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Catalogs::Institution'
   belongs_to :department, :class_name => 'Catalogs::Department'
 
-
+  validates :name, :institution_id, :department_id, :responsible, presence: true
 
   def self.search(search)
     if search
