@@ -10,10 +10,10 @@
 Catalogs::Institution.find_or_create_by(id: 1, abbr: 'INB', name: 'INSTITUTO DE NEUROBIOLOGIA DE LA UNAM', local: true)
 
 # DEPARTMENTS
-Catalogs::Department.find_or_create_by(id: 1, abbr: 'sos', name: 'Sistema de solicitud de soporte y recursos', img_header: 'resources.jpg', institution_id: 1)
+Catalogs::Department.find_or_create_by(id: 0, abbr: 'sos', name: 'Sistema de solicitud de soporte y recursos', img_header: 'sr_header.png', institution_id: 1)
 
 # USERS
-Admin::User.find_or_create_by(id:1, login: 'martinezo', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 1, user_type_id: 1, initials: 'RMO')
+Admin::User.find_or_create_by(id:1, login: 'martinezo', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 0, user_type_id: 1, initials: 'RMO')
 # Admin::User.find_or_create_by(login: 'rmartinez1006', name: 'Roberto Martínez Olvera', mail: 'rmartinez1006@prodigy.net', department_id: 1, user_type_id: 1)
 
 # STATUSES

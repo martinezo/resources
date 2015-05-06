@@ -5,13 +5,17 @@ class Catalogs::HeadquartersController < ApplicationController
   # GET /catalogs/headquarters
   # GET /catalogs/headquarters.json
   def index
-    #@catalogs_headquarters = Catalogs::Headquarter.all
-    @catalogs_headquarters = Catalogs::Headquarter.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    if current_devise_user == 1
+      @catalogs_headquarters = Catalogs::Headquarter.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    else
+      @catalogs_headquarters = Catalogs::Headquarter.where(department_id: [0, current_devise_user.department_id]).search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    end
   end
 
   # GET /catalogs/headquarters/1
   # GET /catalogs/headquarters/1.json
   def show
+    authorize! :read, @catalogs_headquarter
   end
 
   # GET /catalogs/headquarters/new
@@ -27,6 +31,9 @@ class Catalogs::HeadquartersController < ApplicationController
   # POST /catalogs/headquarters.json
   def create
     @catalogs_headquarter = Catalogs::Headquarter.new(catalogs_headquarter_params)
+    @catalogs_headquarter.department_id = current_devise_user.department_id unless @catalogs_headquarter.department_id
+
+    authorize! :create, @catalogs_headquarter
     if @catalogs_headquarter.save
       flash[:success] = t('notices.saved_successfully')
       index
@@ -36,6 +43,8 @@ class Catalogs::HeadquartersController < ApplicationController
   # PATCH/PUT /catalogs/headquarters/1
   # PATCH/PUT /catalogs/headquarters/1.json
   def update
+
+    authorize! :update, @catalogs_headquarter
 
     if @catalogs_headquarter.update(catalogs_headquarter_params)
       flash[:success] = t('notices.updated_successfully')
@@ -47,6 +56,7 @@ class Catalogs::HeadquartersController < ApplicationController
   # DELETE /catalogs/headquarters/1
   # DELETE /catalogs/headquarters/1.json
   def destroy
+    authorize! :destroy, @catalogs_headquarter
     @catalogs_headquarter.destroy
     index
   end
@@ -59,7 +69,7 @@ class Catalogs::HeadquartersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def catalogs_headquarter_params
-      params.require(:catalogs_headquarter).permit(:name, :intitution_id, :responsible, :email, :phone, :comments)
+      params.require(:catalogs_headquarter).permit(:name, :institution_id, :responsible, :email, :phone, :comments, :department_id)
     end
 
     def sort_column

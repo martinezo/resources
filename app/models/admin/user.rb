@@ -30,4 +30,8 @@ class Admin::User < ActiveRecord::Base
     catalogs_resources.where(id: resource_id).size > 0
   end
 
+  def super_user?
+    user_type_id == 1
+  end
+
 end

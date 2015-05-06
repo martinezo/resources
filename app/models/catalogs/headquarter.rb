@@ -1,5 +1,8 @@
 class Catalogs::Headquarter < ActiveRecord::Base
-  belongs_to :institution, :class_name => 'Catalogs::Institution', :foreign_key => :institution_id
+  belongs_to :institution, :class_name => 'Catalogs::Institution'
+  belongs_to :department, :class_name => 'Catalogs::Department'
+
+
 
   def self.search(search)
     if search

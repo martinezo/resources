@@ -110,6 +110,7 @@ es:
         email: Correo
         phone: Teléfono
         comments: Comentarios
+        department_id: Departamento
       catalogs/institution:
         abbr: Abreviatura
         name: Nombre

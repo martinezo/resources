@@ -29,12 +29,17 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
+    alias_action :create, :read, :update, :destroy, :to => :crud
+
 
     case user.user_type_id
       when 1
         can :manage, :all
       when 2
         can :update, Catalogs::Department, id: user.department_id
+
+        can :manage, Catalogs::Headquarter, department_id: user.department_id
+
         can :manage, Admin::DeptConfig, department: {id: user.department_id}
         can :manage, Agenda::ReservMsg, reservation: {department_id: user.department_id}
         can :delegate, Agenda::Reservation

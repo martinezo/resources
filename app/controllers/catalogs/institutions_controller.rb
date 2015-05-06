@@ -26,6 +26,9 @@ class Catalogs::InstitutionsController < ApplicationController
   # POST /catalogs/institutions.json
   def create
     @catalogs_institution = Catalogs::Institution.new(catalogs_institution_params)
+
+    autorize! :create, @catalogs_institution
+
     if @catalogs_institution.save
       flash[:success] = t('notices.saved_successfully')
       index
@@ -35,6 +38,7 @@ class Catalogs::InstitutionsController < ApplicationController
   # PATCH/PUT /catalogs/institutions/1
   # PATCH/PUT /catalogs/institutions/1.json
   def update
+    autorize! :update, @catalogs_institution
     if @catalogs_institution.update(catalogs_institution_params)
       flash[:success] = t('notices.updated_successfully')
       index
@@ -44,6 +48,9 @@ class Catalogs::InstitutionsController < ApplicationController
   # DELETE /catalogs/institutions/1
   # DELETE /catalogs/institutions/1.json
   def destroy
+
+    autorize! :destroy, @catalogs_institution
+
     @catalogs_institution.destroy
     index
   end

@@ -2,11 +2,25 @@
 
   = f.error_notification
   = f.input :name
-  = f.association :catalogs_institution
+  = f.association :institution
   = f.input :responsible
   = f.input :email
   = f.input :phone
   = f.input :comments
+
+  -# OPTIONAL FIELDS
+  - if cannot? :manage, @catalogs_headquarter
+    - txt_op_1 = Admin::DeptConfig.where(department_id: current_devise_user.department_id, tag: 'headquarters_txt_op_1').first
+    - if (txt_op_1.value.try('size') || 0) > 0
+      - hint = Admin::DeptConfig.where(department_id: current_devise_user.department_id, tag: 'headquarters_txt_op_1_hint').first.value
+      = f.input :txt_op_1, label: txt_op_1.value, hint: hint
+
+    - txt_op_2 = Admin::DeptConfig.where(department_id: current_devise_user.department_id, tag: 'headquarters_txt_op_2').first
+    - if (txt_op_2.value.try('size') || 0) > 0
+      - hint = Admin::DeptConfig.where(department_id: current_devise_user.department_id, tag: 'headquarters_txt_op_2_hint').first.value
+      = f.input :txt_op_2, label: txt_op_2.value, hint: hint
+  - else
+    = f.association :department
 
   %hr
   .text-right

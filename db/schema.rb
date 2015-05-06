@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501003604) do
+ActiveRecord::Schema.define(version: 20150505211624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150501003604) do
     t.integer  "admin_user_id"
     t.string   "txt_op_1"
     t.string   "txt_op_2"
-    t.datetime "datetime_op_1"
-    t.datetime "datetime_op_2"
+    t.string   "txt_op_3"
+    t.string   "txt_op_4"
   end
 
   create_table "catalogs_departments", force: :cascade do |t|
@@ -106,6 +106,9 @@ ActiveRecord::Schema.define(version: 20150501003604) do
     t.string   "comments",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "department_id",              default: 0
+    t.string   "txt_op_1"
+    t.string   "txt_op_2"
   end
 
   create_table "catalogs_institutions", force: :cascade do |t|
