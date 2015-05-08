@@ -1,7 +1,7 @@
 - new_link = nil
 = render partial: 'layouts/admin_menu', locals: {title: t('titles.users'), url: catalogs_assign_user_path, new_link: new_link}
 = flash_messages(flash)
-- es = 'activerecord.attributes.admin/users.'
+- es = 'activerecord.attributes.admin/user'
 
 %table.table
   %tbody
@@ -13,9 +13,9 @@
   %thead
     %tr
       %th.col-sm-1
-      %th.col-sm-2= sortable 'login',t("#{es}.abbr"), catalogs_assign_user_path
+      %th.col-sm-2= sortable 'login',t("#{es}.login"), catalogs_assign_user_path
       %th.col-sm-3= sortable 'name', t("#{es}.name"), catalogs_assign_user_path
-      %th.col-sm-3= sortable 'mail', t("#{es}.description"), catalogs_assign_user_path
+      %th.col-sm-3= sortable 'mail', t("#{es}.mail"), catalogs_assign_user_path
       %th.col-sm-2
   %tbody
     - @admin_users.each do |user|
