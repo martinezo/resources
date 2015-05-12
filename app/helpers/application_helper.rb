@@ -17,7 +17,8 @@ module ApplicationHelper
     html_class = "btn btn-default btn-md" << (options[:html_class] ? " #{options[:html_class]}" : '')
     target = options[:target] || nil
     method = options[:method] ||nil
-    link_to "<span class='fa #{icon}'></span> #{text}".html_safe, url, title: title, remote: remote, data: data, id: id, class: html_class, target: target, method: method
+    disabled = options[:disabled] || nil
+    link_to "<span class='fa #{icon}'></span> #{text}".html_safe, url, title: title, remote: remote, data: data, id: id, class: html_class, target: target, method: method, disabled: disabled
   end
 
   def fa_button_no_active(options)

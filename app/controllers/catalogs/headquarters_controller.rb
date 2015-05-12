@@ -5,7 +5,7 @@ class Catalogs::HeadquartersController < ApplicationController
   # GET /catalogs/headquarters
   # GET /catalogs/headquarters.json
   def index
-    if current_devise_user == 1
+    if current_devise_user.user_type_id == 1
       @catalogs_headquarters = Catalogs::Headquarter.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
     else
       @catalogs_headquarters = Catalogs::Headquarter.where(department_id: [0, current_devise_user.department_id]).search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])

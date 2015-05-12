@@ -105,12 +105,12 @@ es:
         name: Nombre
       catalogs/headquarter:
         name: Nombre
-        catalogs_institution: Institución
+        institution: Institución
         responsible: Responsable
         email: Correo
         phone: Teléfono
         comments: Comentarios
-        department_id: Departamento
+        department: Departamento
       catalogs/institution:
         abbr: Abreviatura
         name: Nombre
@@ -196,6 +196,14 @@ es:
         catalogs/resource_type:
           attributes:
             name:
+              blank: Dato requerido
+        catalogs/headquarter:
+          attributes:
+            name:
+              blank: Dato requerido
+            institution_id:
+              blank: Dato requerido
+            responsible:
               blank: Dato requerido
         agenda/reservation:
           attributes:
