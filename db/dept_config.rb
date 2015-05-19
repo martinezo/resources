@@ -2,7 +2,7 @@
 # tag: identifica la configuración para identificarla idependientemente de su id. Con esta etiqueta se formulas las condiciones para usar la configuración. Cada tag debe ser diferente.
 # precedence: la lista se ordena en base a este campo independientemente del id del campo.
 
-Admin::DeptConfig.delete_all
+# Admin::DeptConfig.delete_all
 
 Catalogs::Department.select(:id).each do |dept|
     if dept.id > 0
@@ -26,5 +26,7 @@ Catalogs::Department.select(:id).each do |dept|
 
       Admin::DeptConfig.find_or_create_by(department_id: dept.id, tag: 'reservations_txt_op_4', label: 'Campo opcional de texto 4 (Solicitudes). Título:', precedence: 130)
       Admin::DeptConfig.find_or_create_by(department_id: dept.id, tag: 'reservations_txt_op_4_hint', label: 'Nota para campo opcional de texto 4 (Solicitudes):', precedence: 140)
+
+      Admin::DeptConfig.find_or_create_by(department_id: dept.id, tag: 'foreign_headquarter_required', label: 'Las solicitudes requieren captura del campo de sede foránea', precedence: 150, options: 'Si,No', value: 'No')
     end
 end

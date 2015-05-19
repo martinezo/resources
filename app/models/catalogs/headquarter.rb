@@ -4,6 +4,8 @@ class Catalogs::Headquarter < ActiveRecord::Base
 
   validates :name, :institution_id, :department_id, :responsible, presence: true
 
+  scope :no_local_for_department, ->(department_id) {joins(:institution).where('local = ? AND catalogs_headquarters.department_id = ?', false, department_id)}
+
   def self.search(search)
     if search
       #where("login LIKE ? OR translate(lower(name),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') OR mail LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")

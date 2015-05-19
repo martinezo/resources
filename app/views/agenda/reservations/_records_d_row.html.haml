@@ -1,5 +1,5 @@
 %td.text-center= reservation.created_at.strftime('%d/%m/%Y')
-%td= reservation.folio
+%td{title: reservation.short_resource_requested}= reservation.folio
 %td{title: "#{reservation.l_headquarter.name}-#{reservation.l_headquarter.phone} (#{reservation.email})"}= reservation.requester
 -#%td= reservation.email
 %td= reservation.event_type.try('name') || t('notices.undefined')

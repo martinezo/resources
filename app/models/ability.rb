@@ -36,15 +36,23 @@ class Ability
       when 1
         can :manage, :all
       when 2
+        # DEPARTMENS
         can :update, Catalogs::Department, id: user.department_id
 
+        # HEADQUARTES
         can :manage, Catalogs::Headquarter, department_id: user.department_id
 
+        # DEPARTMEN CONFIGURATIONS
         can :manage, Admin::DeptConfig, department: {id: user.department_id}
+
+        # MESSAGES
         can :manage, Agenda::ReservMsg, reservation: {department_id: user.department_id}
-        can :delegate, Agenda::Reservation
+
+        # RESERVATIONS
+        can :manage, Agenda::Reservation, department_id: user.department_id
+        can :delegate, Agenda::Reservation, admin_user: {department_id: user.department_id }
       when 3
-        can :delegate, Agenda::Reservation
+        can :delegate, Agenda::Reservation, admin_user: {department_id: user.department_id }
     end
 
   end

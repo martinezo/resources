@@ -18,7 +18,20 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+.highlight{
+  padding: 1em;
+  background-color: $subordinate-color;
+  margin: 1em 0em 1em 0em;
 
+}
+
+.res_req_scroll{
+  max-height: 13em;
+  overflow-y: scroll;
+  margin-bottom: 1em;
+  background-color:  $subordinate-color;
+  padding: 1em;
+}
 
 .show_msgs{
   max-height: 13em;

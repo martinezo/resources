@@ -11,7 +11,7 @@ class Agenda::ReservationsController < ApplicationController
 
   def public_new
     @reservation = Agenda::Reservation.new
-    @dept_config = Admin::DeptConfig.where(department_id: params[:department_id])
+    #TODO REMOVE THIS LINE @dept_config = Admin::DeptConfig.where(department_id: params[:department_id])
   end
 
   def public_create
@@ -30,7 +30,11 @@ class Agenda::ReservationsController < ApplicationController
   # GET /agenda/reservations
   # GET /agenda/reservations.json
   def index
-    @reservations = Agenda::Reservation.my_department(current_user.department_id).search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    if current_user.user_type_id == 1 #SUPER USER
+      @reservations = Agenda::Reservation.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    else
+      @reservations = Agenda::Reservation.my_department(current_user.department_id).search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    end
   end
 
 

@@ -28,6 +28,7 @@ es:
     reservation: Reservación
     sign_in: Inicio de Sesión
     sign_out: Cerrar Sesión
+    request: Solicitud
     new_request: Nueva solicitud
     add_comment: Añadir comentario
     messages: Mensajes
@@ -40,11 +41,12 @@ es:
     assign_to: Asignar a
 
   msgs:
-    only_for_vc: 'Llenar este campo solo para servicios de videoconferencia.'
     r_requested_hint: 'Espefique el periódo de su requerimiento incluyendo fecha y hora de inicio y término del mismo cuando así corresponda.'
     select_an_option: 'Seleccione una opción'
     canceled_reservation: 'Mensaje de Cancelación'
     take_request?: '¿Tomar la solicitud a mi cargo?'
+    info_provided_by_user: 'Información provista por el usuario'
+    info_provided_by_admin: 'Información provista por el administrador'
 
 
   commands:
@@ -142,10 +144,10 @@ es:
         requester: Solicitante
         email: Correo
         phone: Teléfono/Ext.
-        f_headquarter_id: Sede foránea
+        f_headquarter: Sede foránea
         l_headquarter: Departamento
         quarter: Departamento
-        catalogs_event_type: Tipo de evento
+        event_type: Tipo de evento
         catalogs_status: Estado
         catalogs_status_abbr: Est.
         resource_requested: Solicitud
@@ -153,6 +155,7 @@ es:
         event_type_id: Tipo de evento
         status_id: Estatus
         attended_by: Atendido por
+
       agenda/reserv_msg:
         folio: Folio
         message: Mensaje

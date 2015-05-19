@@ -1,4 +1,4 @@
-- new_link = link_to_fa_button({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}})
+- new_link = link_to_fa_button({url: new_agenda_reservation_path, text: t('commands.new'), icon: 'fa-plus', data: {toggle: 'modal', target: '#new-update-dialog'}}) unless current_devise_user
 = render partial: 'layouts/admin_menu', locals: {title: t('titles.reservation'), url: agenda_reservations_path, new_link: new_link}
 #records
   = render partial: 'records'

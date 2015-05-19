@@ -9,24 +9,24 @@
   = f.input :resource_requested, as: :text, input_html: { maxlength: 250, rows: 6 }
 
   -# OPTIONAL FIELDS
-  - txt_op_1 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_1').first
+  - txt_op_1 = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_1').first
   - if (txt_op_1.value.try('size') || 0) > 0
-    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_1_hint').first.value
+    - hint = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_1_hint').first.value
     = f.input :txt_op_1, label: txt_op_1.value, hint: hint
 
-  - txt_op_2 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_2').first
+  - txt_op_2 = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_2').first
   - if (txt_op_2.value.try('size') || 0) > 0
-    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_2_hint').first.value
+    - hint = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_2_hint').first.value
     = f.input :txt_op_2, label: txt_op_2.value, hint: hint
 
-  - txt_op_3 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_3').first
+  - txt_op_3 = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_3').first
   - if (txt_op_3.value.try('size') || 0) > 0
-    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_3_hint').first.value
+    - hint = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_3_hint').first.value
     = f.input :txt_op_3, label:txt_op_3.value, hint: hint, as: :string
 
-  - txt_op_4 = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_4').first
+  - txt_op_4 = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_4').first
   - if (txt_op_4.value.try('size') || 0) > 0
-    - hint = Admin::DeptConfig.where(department_id: params[:department_id], tag: 'reservations_txt_op_4_hint').first.value
+    - hint = Admin::DeptConfig.by_department_id_and_tag(params[:department_id], 'reservations_txt_op_4_hint').first.value
     = f.input :txt_op_4, label:txt_op_4.value, hint: hint, as: :string
 
   %hr
