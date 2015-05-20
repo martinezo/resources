@@ -36,6 +36,8 @@ class Ability
       when 1
         can :manage, :all
       when 2
+        # USERS
+        can :manage, Admin::User, department_id: user.department_id
         # DEPARTMENS
         can :update, Catalogs::Department, id: user.department_id
 

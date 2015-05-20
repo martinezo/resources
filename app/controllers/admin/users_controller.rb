@@ -20,6 +20,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users/1/edit
   def edit
+    authorize! :edit, @admin_user
   end
 
   # POST /admin/users
@@ -36,6 +37,7 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
+    authorize! :update, Admin::User.new(admin_user_params)
     if @admin_user.update(admin_user_params)
       flash[:success] = t('notices.updated_successfully')
       index

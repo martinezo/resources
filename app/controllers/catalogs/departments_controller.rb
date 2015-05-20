@@ -20,6 +20,7 @@ class Catalogs::DepartmentsController < ApplicationController
 
   # GET /catalogs/departments/1/edit
   def edit
+    authorize! :update, @catalogs_department
   end
 
   # POST /catalogs/departments
@@ -37,7 +38,7 @@ class Catalogs::DepartmentsController < ApplicationController
   # PATCH/PUT /catalogs/departments/1
   # PATCH/PUT /catalogs/departments/1.json
   def update
-
+    authorize! :update, @catalogs_department
     if @catalogs_department.update(catalogs_department_params)
       flash[:success] = t('notices.updated_successfully')
       index
