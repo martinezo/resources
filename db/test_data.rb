@@ -58,34 +58,36 @@ Catalogs::Resource.create(id: 48, abbr: 'VP-15907', name: 'Videoproyector  VIEWS
 
 #institutions
 Catalogs::Institution.delete_all
-Catalogs::Institution.create(id: 1, abbr: 'INB', name: 'Instituto de Neurobiología de la UNAM')
-Catalogs::Institution.create(id: 2, abbr: 'IFC', name: 'Instituto de Fisiología Celular de la UNAM')
-Catalogs::Institution.create(id: 3, abbr: 'IIB', name: 'Instituto de Investigaciones Biomédicas de la UNAM')
-
-#headquartes
-Catalogs::Headquarter.delete_all
-Catalogs::Headquarter.create(id: 2, institution_id: 1, name: 'Videoconferencias', responsible: 'Laura Ortiz Soto', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3015')
-Catalogs::Headquarter.create(id: 3, institution_id: 2, name: 'Videoconferencias', responsible: 'Fernando Villanueva Orozco', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3111')
+#Created in db:seed -> Catalogs::Institution.create(id: 1, abbr: 'INB', name: 'Instituto de Neurobiología de la UNAM')
+Catalogs::Institution.create(id: 2, abbr: 'IFC', name: 'Instituto de Fisiología Celular de la UNAM', local: false)
+Catalogs::Institution.create(id: 3, abbr: 'IIB', name: 'Instituto de Investigaciones Biomédicas de la UNAM', local: false)
 
 #departments
 Catalogs::Department.delete_all
+#Created in db:seed -> Catalogs::Department.create(id: 0, abbr: 'adm', name: 'Sistema de Solicitud de Recursos', img_header: 'sr_header.png', institution_id: 1)
 Catalogs::Department.create(id: 1, abbr: 'uvc', name: 'Unidad de Videoconferencia INB-UNAM', img_header: 'uvc_header.png', institution_id: 1)
 Catalogs::Department.create(id: 2, abbr: 'pos', name: 'Unidad de Posgrado INB-UNAM', img_header: 'pos_header.png', institution_id: 1)
 Catalogs::Department.create(id: 3, abbr: 'mic', name: 'Unidad de Microscopía INB-UNAM', img_header: 'mic_header.png', institution_id: 1)
+Catalogs::Department.create(id: 4, abbr: 'uc', name: 'Unidad de Cómputo INB-UNAM', img_header: 'uc_header.png', institution_id: 1)
 
-
+#headquartes
+Catalogs::Headquarter.delete_all
+Catalogs::Headquarter.create(id: 52, institution_id: 1, name: 'Videoconferencias A1', responsible: 'Laura Ortiz Soto', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3015', department_id: 1)
+Catalogs::Headquarter.create(id: 53, institution_id: 2, name: 'Videoconferencias A1', responsible: 'Fernando Villanueva Orozco', email: 'martinezo@inb.unam.mx', phone: 'Ext. UNAM 3111', department_id: 1)
 
 #users
 Admin::User.delete_all
-Admin::User.create(id: 1, login: 'rmartinez1006', name: 'Roberto Martínez Olvera', mail: 'rmartinez1006@prodigy.net', department_id: 1, user_type_id: 1, initials: 'RMO')
-Admin::User.create(id: 2, login: 'martinezo', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 2, user_type_id: 1, initials: 'RMO2')
-Admin::User.create(id: 3, login: 'admin1', name: 'Usuario administrador de prueba 1', mail: 'admin1@inb.unam.mx', department_id: 1, user_type_id: 2, initials: 'ADM1')
+#Created in db:seed -> Admin::User.create(id: 1, login: 'administrator', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 0, user_type_id: 1, initials: 'ADMIN')
+Admin::User.create(id: 2, login: 'rmartinez1006', name: 'Roberto Martínez Olvera', mail: 'rmartinez1006@prodigy.net', department_id: 0, user_type_id: 1, initials: 'RMO1')
+Admin::User.create(id: 3, login: 'martinezo', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 4, user_type_id: 2, initials: 'RMO2')
+
+Admin::User.create(id: 4, login: 'admin1', name: 'Usuario administrador de prueba 1', mail: 'admin1@inb.unam.mx', department_id: 1, user_type_id: 2, initials: 'ADM1')
 #password: adm1
-Admin::User.create(id: 4, login: 'admin2', name: 'Usuario administrador de prueba 2', mail: 'admin2@inb.unam.mx', department_id: 2, user_type_id: 2, initials: 'ADM2')
+Admin::User.create(id: 5, login: 'admin2', name: 'Usuario administrador de prueba 2', mail: 'admin2@inb.unam.mx', department_id: 2, user_type_id: 2, initials: 'ADM2')
 #password: adm2
-Admin::User.create(id: 5, login: 'user1', name: 'Usuario manager de prueba 1', mail: 'user1@inb.unam.mx', department_id: 1, user_type_id: 3, initials: 'USR1')
+Admin::User.create(id: 6, login: 'user1', name: 'Usuario manager de prueba 1', mail: 'user1@inb.unam.mx', department_id: 1, user_type_id: 3, initials: 'USR1')
 #password: us1
-Admin::User.create(id: 6, login: 'user2', name: 'Usuario manager de prueba 2', mail: 'user2@inb.unam.mx', department_id: 2, user_type_id: 3, initials: 'USR2')
+Admin::User.create(id: 7, login: 'user2', name: 'Usuario manager de prueba 2', mail: 'user2@inb.unam.mx', department_id: 2, user_type_id: 3, initials: 'USR2')
 #password: us2
 
 #events_types
@@ -98,10 +100,10 @@ Catalogs::EventType.create(id: 5, name: 'Reunion de trabajo')
 Catalogs::EventType.create(id: 6, name: 'Otro')
 
 #statuses
-Catalogs::Status.delete_all
-Catalogs::Status.create(id: 1, name: 'Enviado')
-Catalogs::Status.create(id: 2, name: 'Por confirmar')
-Catalogs::Status.create(id: 3, name: 'Confirmado')
-Catalogs::Status.create(id: 4, name: 'Cancelado')
-Catalogs::Status.create(id: 5, name: 'Efectuado')
+# Catalogs::Status.delete_all
+#Catalogs::Status.create(id: 1, name: 'Enviado')
+#Catalogs::Status.create(id: 2, name: 'Por confirmar')
+#Catalogs::Status.create(id: 3, name: 'Confirmado')
+#Catalogs::Status.create(id: 4, name: 'Cancelado')
+#Catalogs::Status.create(id: 5, name: 'Efectuado')
 
