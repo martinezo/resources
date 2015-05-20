@@ -56,19 +56,6 @@ Catalogs::Resource.create(id: 46, abbr: 'VP-84894', name: 'Videoproyector  EPSON
 Catalogs::Resource.create(id: 47, abbr: 'VP-83930', name: 'Videoproyector  INFOCUS', resource_type_id: 3, description: 'Videoproyector INFOCUS - INV. UNAM 122946', admin_user_id: 1)
 Catalogs::Resource.create(id: 48, abbr: 'VP-15907', name: 'Videoproyector  VIEWSONIC', resource_type_id: 3, description: 'Videoproyector VIEWSONIC - INV. UNAM 699466', admin_user_id: 1)
 
-#users
-Admin::User.delete_all
-Admin::User.create(id: 1, login: 'rmartinez1006', name: 'Roberto Martínez Olvera', mail: 'rmartinez1006@prodigy.net', department_id: 1, user_type_id: 1)
-Admin::User.create(id: 2, login: 'martinezo', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 2, user_type_id: 1)
-Admin::User.create(id: 3, login: 'admin1', name: 'Usuario administrador de prueba 1', mail: 'admin1@inb.unam.mx', department_id: 1, user_type_id: 2)
-#password: adm1
-Admin::User.create(id: 4, login: 'admin2', name: 'Usuario administrador de prueba 2', mail: 'admin2@inb.unam.mx', department_id: 2, user_type_id: 2)
-#password: adm2
-Admin::User.create(id: 5, login: 'user1', name: 'Usuario manager de prueba 1', mail: 'user1@inb.unam.mx', department_id: 1, user_type_id: 3)
-#password: us1
-Admin::User.create(id: 6, login: 'user2', name: 'Usuario manager de prueba 2', mail: 'user2@inb.unam.mx', department_id: 2, user_type_id: 3)
-#password: us2
-
 #institutions
 Catalogs::Institution.delete_all
 Catalogs::Institution.create(id: 1, abbr: 'INB', name: 'Instituto de Neurobiología de la UNAM')
@@ -85,6 +72,21 @@ Catalogs::Department.delete_all
 Catalogs::Department.create(id: 1, abbr: 'uvc', name: 'Unidad de Videoconferencia INB-UNAM', img_header: 'uvc_header.png', institution_id: 1)
 Catalogs::Department.create(id: 2, abbr: 'pos', name: 'Unidad de Posgrado INB-UNAM', img_header: 'pos_header.png', institution_id: 1)
 Catalogs::Department.create(id: 3, abbr: 'mic', name: 'Unidad de Microscopía INB-UNAM', img_header: 'mic_header.png', institution_id: 1)
+
+
+
+#users
+Admin::User.delete_all
+Admin::User.create(id: 1, login: 'rmartinez1006', name: 'Roberto Martínez Olvera', mail: 'rmartinez1006@prodigy.net', department_id: 1, user_type_id: 1, initials: 'RMO')
+Admin::User.create(id: 2, login: 'martinezo', name: 'Ramón Martínez Olvera', mail: 'martinezo@inb.unam.mx', department_id: 2, user_type_id: 1, initials: 'RMO2')
+Admin::User.create(id: 3, login: 'admin1', name: 'Usuario administrador de prueba 1', mail: 'admin1@inb.unam.mx', department_id: 1, user_type_id: 2, initials: 'ADM1')
+#password: adm1
+Admin::User.create(id: 4, login: 'admin2', name: 'Usuario administrador de prueba 2', mail: 'admin2@inb.unam.mx', department_id: 2, user_type_id: 2, initials: 'ADM2')
+#password: adm2
+Admin::User.create(id: 5, login: 'user1', name: 'Usuario manager de prueba 1', mail: 'user1@inb.unam.mx', department_id: 1, user_type_id: 3, initials: 'USR1')
+#password: us1
+Admin::User.create(id: 6, login: 'user2', name: 'Usuario manager de prueba 2', mail: 'user2@inb.unam.mx', department_id: 2, user_type_id: 3, initials: 'USR2')
+#password: us2
 
 #events_types
 Catalogs::EventType.delete_all

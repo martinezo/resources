@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20150505211624) do
     t.string   "comments",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "department_id",              default: 0
+    t.integer  "department_id"
     t.string   "txt_op_1"
     t.string   "txt_op_2"
   end
