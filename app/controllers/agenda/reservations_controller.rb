@@ -100,7 +100,7 @@ class Agenda::ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agenda_reservation_params
-      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :local_headquarter_id, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by, :admin_user_id, :txt_op_1, :txt_op_2, :datetime_op_1, :datetime_op_2)
+      params.require(:agenda_reservation).permit(:folio, :requester, :email, :phone, :local_headquarter_id, :foreign_headquarter_id, :event_type_id, :status_id, :resource_requested, :department_id, :modified_by, :admin_user_id, :txt_op_1, :txt_op_2, :txt_op_3, :txt_op_4)
     end
 
     def sort_column

@@ -155,6 +155,7 @@ es:
         event_type_id: Tipo de evento
         status_id: Estatus
         attended_by: Atendido por
+        admin_user: Atendido por
 
       agenda/reserv_msg:
         folio: Folio

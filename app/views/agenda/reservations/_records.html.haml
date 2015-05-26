@@ -7,7 +7,7 @@
       %th.col-sm-1= sortable 'folio', t("#{es}.folio"), agenda_reservations_path
       %th.col-sm-2= sortable 'requester', t("#{es}.requester"), agenda_reservations_path
       -#%th.col-sm-1= sortable 'email', t("#{es}.email"), agenda_reservations_path
-      %th.col-sm-2= sortable 'event_type_id', t("#{es}.catalogs_event_type"), agenda_reservations_path
+      %th.col-sm-2= sortable 'event_type_id', t("#{es}.event_type"), agenda_reservations_path
       %th.col-sm-2= sortable 'admin_user_id', t("#{es}.attended_by"), agenda_reservations_path
       %th.col-sm-3
   = render partial: 'records_d'

@@ -62,19 +62,21 @@
               = @agenda_reservation.admin_user.try('name') || t("#{es}.undefined")
           %tr
             %td.th
-              = t("#{es}.f_headquarter")
+              = t("#{es}.status_id")
             %td.tc
-              = @agenda_reservation.f_headquarter.try('name') || t("#{es}.undefined")
+              = @agenda_reservation.status.name
+
+          - if Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'foreign_headquarter_required').first.value == 'Si'
+            %tr
+              %td.th
+                = t("#{es}.f_headquarter")
+              %td.tc
+                = @agenda_reservation.f_headquarter.try('name') || t("#{es}.undefined")
           %tr
             %td.th
               = t("#{es}.event_type_id")
             %td.tc
               = @agenda_reservation.event_type.try('name') || t("#{es}.undefined")
-          %tr
-            %td.th
-              = t("#{es}.status_id")
-            %td.tc
-              = @agenda_reservation.status.name
   .row
     - if @agenda_reservation.messages.size > 0
       %h4= t('titles.messages')

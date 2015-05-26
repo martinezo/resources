@@ -21,7 +21,7 @@
 .highlight{
   padding: 1em;
   background-color: $subordinate-color;
-  margin: 1em 0em 1em 0em;
+  margin: 0em 0em 1em 0em;
 
 }
 
@@ -51,6 +51,9 @@
 
 //RECIBIDO
 .active-c{
+  color: #119cff;
+}
+a:visited.active-c{
   color: #119cff;
 }
 

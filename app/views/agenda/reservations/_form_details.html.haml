@@ -4,23 +4,25 @@
     .container-fluid
       .navbar-header
         .navbar-brand
-          %strong= t('titles.request')
+          %i.fa.fa-tag{class: "#{@agenda_reservation.status.css_class}-c"}
+          %strong= "#{t('titles.request')} #{@agenda_reservation.folio}"
       .navbar-form.navbar-right
         = f.button :submit, t('commands.save')
         = link_to t('commands.cancel'), agenda_reservations_path, class: 'btn btn-default'
 
   = f.error_notification
+
   .col-sm-12
     .row
       .highlight
         = @agenda_reservation.resource_requested
+
+    .row
+      %h4= t('msgs.info_provided_by_user')
     .row
       .col-sm-6
-        = f.input :folio, as: :string, disabled: true
         = f.input :requester, disabled: true
-        =  f.association :l_headquarter,  disabled: true
-        = f.input :email
-        = f.input :phone, disabled: true
+        = f.association :l_headquarter,  disabled: true
 
         -# OPTIONAL FIELDS
         - txt_op_1 = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_1').first
@@ -33,6 +35,11 @@
           - hint = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_2_hint').first.value
           = f.input :txt_op_2, label: txt_op_2.value, hint: hint
 
+      .col-sm-6
+        = f.input :email
+        = f.input :phone, disabled: true
+
+        -# OPTIONAL FIELDS
         - txt_op_3 = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_3').first
         - if (txt_op_3.value.try('size') || 0) > 0
           - hint = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_3_hint').first.value
@@ -43,15 +50,18 @@
           - hint = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_4_hint').first.value
           = f.input :txt_op_4, label:txt_op_4.value, hint: hint, as: :string
 
-
+    .row
+      %h4= t('msgs.info_provided_by_admin')
+    .row
+      .col-sm-6
+        = f.association :admin_user, disabled: true
+        - if Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'foreign_headquarter_required').first.value == 'Si'
+          = f.association :f_headquarter, label_method: :inst_abbr_name
       .col-sm-6
         = f.association :event_type
-        - if Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'foreign_headquarter_required').first.value == 'Si'
-          = f.association :f_headquarter, collection: Catalogs::Headquarter.no_local_for_department(@agenda_reservation.department_id)
+
     .row
       - if @agenda_reservation.messages.size > 0
         %h4= t('titles.messages')
         .show_msgs
           = render partial: 'agenda/reserv_msgs/show_msgs', locals: {messages: @agenda_reservation.messages}
-
-%hr
