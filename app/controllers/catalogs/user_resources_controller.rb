@@ -54,6 +54,8 @@ class Catalogs::UserResourcesController < ApplicationController
     @catalogs_resources = Catalogs::Resource.search_resource(params[:search]).order("#{sort_column_resource} #{sort_direction}").paginate(per_page: 10, page:  params[:page])
   end
 
+
+
   def assign_unassign_users_resources
     if params[:admin] == 'true'
       Catalogs::UserResource.destroy_by_user_resource_id(params[:user_id],params[:resource_id])

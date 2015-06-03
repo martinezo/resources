@@ -5,14 +5,17 @@ class Catalogs::UserResource < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where("name LIKE ? OR translate(lower(name),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
-     OR translate(lower(mail),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou'))", "%#{search}%", "%#{search}%")
+     # joins(:admin_user).where("translate(lower(admin_users.name),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou')", "%#{search}%")
+
+      joins(:admin_user,:catalogs_resource).where("(translate(lower(admin_users.name),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou') \
+     OR translate(lower(catalogs_resources.name),'áéíóúàèìòù', 'aeiouaeiou') LIKE translate(lower(?),'áéíóúàèìòù', 'aeiouaeiou'))", "%#{search}%", "%#{search}%")
+
     else
       all
     end
   end
 
-  def self.destroy_by_user_resourse_id(user_id, resource_id)
+  def self.destroy_by_user_resource_id(user_id, resource_id)
     where("admin_user_id = ? AND resource_id = ?", user_id, resource_id).first.try(:destroy)
   end
 

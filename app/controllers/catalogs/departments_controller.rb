@@ -6,11 +6,13 @@ class Catalogs::DepartmentsController < ApplicationController
   # GET /catalogs/departments.json
   def index
     @catalogs_departments = Catalogs::Department.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(per_page: 15, page:  params[:page])
+    x = 1
   end
 
   # GET /catalogs/departments/1
   # GET /catalogs/departments/1.json
   def show
+    authorize! :update, @catalogs_department
   end
 
   # GET /catalogs/departments/new
@@ -55,7 +57,7 @@ class Catalogs::DepartmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_catalogs_department
-      @catalogs_department = Catalogs::Department.find(params[:id])
+       @catalogs_department = Catalogs::Department.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

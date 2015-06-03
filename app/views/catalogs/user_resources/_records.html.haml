@@ -3,9 +3,9 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th.col-sm-2= sortable 'admin_user_id', t("#{es}.admin_user_id"), catalogs_user_resources_path
-      %th.col-sm-3= sortable 'resource_id', t("#{es}.resource_id"), catalogs_user_resources_path
-      %th.col-sm-3= sortable 'administrator', t("#{es}..administrator"), catalogs_user_resources_path
+      %th.col-sm-2= sortable 'admin_user', t("#{es}.admin_user"), catalogs_user_resources_path
+      %th.col-sm-3= sortable 'catalogs_resource', t("#{es}.catalogs_resource"), catalogs_user_resources_path
+      %th.col-sm-3= sortable 'administrator', t("#{es}.administrator"), catalogs_user_resources_path
       %th.col-sm-2
   %tbody
     - @catalogs_user_resources.each do |catalogs_user_resource|

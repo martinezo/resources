@@ -136,6 +136,7 @@ es:
         admin_user: Usuario Admin.
         catalogs_resource: Recurso
         administrator: Administrador
+        description: Descripción
       agenda/reserv_resource:
         agenda_reservation: Reservación
         catalogs_resource: Recurso
