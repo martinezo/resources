@@ -7,7 +7,7 @@ class Agenda::Reservation < ActiveRecord::Base
   has_many :messages, -> {order 'id desc'}, :class_name => 'Agenda::ReservMsg'
 
   validates :requester, :email, :local_headquarter_id, presence: true
-  validates :admin_user_id, presence: true, on: :update, if: :assign_action?
+  validates :admin_user_id, presence: true, on: :update, if: :change_status_action?
 
   before_create :initial_settings
 
@@ -15,8 +15,8 @@ class Agenda::Reservation < ActiveRecord::Base
 
   scope :my_department, -> (department_id) {where("agenda_reservations.department_id = ? ",  department_id)}
 
-  def assign_action?
-    action == 'assign'
+  def change_status_action?
+    action == 'delegate' || action == 'confirm' || action == 'conclude'
   end
 
 

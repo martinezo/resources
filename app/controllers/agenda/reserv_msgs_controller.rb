@@ -25,13 +25,49 @@ class Agenda::ReservMsgsController < ApplicationController
   def public_cancel_msg
     @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
     @reserv_msg.user_id = 0
-    @reserv_msg.message = @reserv_msg.message.prepend("[ #{t('msgs.canceled_reservation')} ]")
     if @reserv_msg.save
       flash[:alert] = t('notices.reserv_canceled')
+      @reserv_msg.update_attribute(:message, "[#{t('msgs.canceled_reservation')}] #{@reserv_msg.message}")
       @reserv_msg.reservation.update_attribute(:status_id, 0)
       @reservation = Agenda::Reservation.find(@reserv_msg.reservation_id)
     end
   end
+
+  def cancel_req_msg
+    @reserv_msg = Agenda::ReservMsg.new
+    @reserv_msg.reservation_id = params[:reservation_id]
+  end
+
+  def cancel_msg
+    @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+    @reserv_msg.user_id = current_user.id
+    @reserv_msg.folio = @reserv_msg.reservation.folio
+    if @reserv_msg.save
+      flash[:alert] = t('notices.reserv_canceled')
+      @reserv_msg.update_attribute(:message, "[#{t('msgs.canceled_reservation')}] #{@reserv_msg.message}")
+      @reserv_msg.reservation.update_attribute(:status_id, 0)
+      @reservation = Agenda::Reservation.find(@reserv_msg.reservation_id)
+    end
+  end
+
+  def conclude
+    @reserv_msg = Agenda::ReservMsg.new
+    @reserv_msg.reservation_id = params[:reservation_id]
+  end
+
+  def set_as_concluded
+    @reserv_msg = Agenda::ReservMsg.new(agenda_reserv_msg_params)
+    @reserv_msg.user_id = current_user.id
+    @reserv_msg.folio = @reserv_msg.reservation.folio
+    if @reserv_msg.save
+      flash[:alert] = t('notices.request_successfully_concluded')
+      @reserv_msg.update_attribute(:message, "[#{t('msgs.concluded_reservation')}] #{@reserv_msg.message}")
+      @reserv_msg.reservation.action = action_name #For valitation
+      @reserv_msg.reservation.update_attribute(:status_id, 4)
+      @reservation = Agenda::Reservation.find(@reserv_msg.reservation_id)
+    end
+  end
+
 
   # GET /agenda/reserv_msgs
   # GET /agenda/reserv_msgs.json
@@ -105,13 +141,13 @@ class Agenda::ReservMsgsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_agenda_reserv_msg
-      @agenda_reserv_msg = Agenda::ReservMsg.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_agenda_reserv_msg
+    @agenda_reserv_msg = Agenda::ReservMsg.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def agenda_reserv_msg_params
-      params.require(:agenda_reserv_msg).permit(:reservation_id, :message, :user_id, :folio)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def agenda_reserv_msg_params
+    params.require(:agenda_reserv_msg).permit(:reservation_id, :message, :user_id, :folio)
+  end
 end

@@ -1,17 +1,27 @@
 @import 'font-awesome';
-@import 'bootstrap-sprockets';
+@import "font-awesome-sprockets";
 @import 'bootstrap';
+@import 'bootstrap-sprockets';
 
 $subordinate-color: #F2F2F2;
 $dominant-color: #A9BF5A;
 $accent-color: #2C4001;
+
+
+//BOOTSTRAP COLORS
+$muted-color: #777789;
+$important-color: #286090;
+$success-color: #449D44;
+$information-color: #31B0D5;
+$warning-color: #EC971F;
+$danger-color: #C9302C;
+
 
 //BOOTSTRAP
 .navbar-default{
   background-color: $subordinate-color;
   border-color: darken($subordinate-color,10%);
 }
-
 
 .navbar-brand{
   color: $accent-color !important;

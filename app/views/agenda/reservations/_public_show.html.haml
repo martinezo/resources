@@ -1,11 +1,13 @@
 - es = 'activerecord.attributes.agenda/reservation.'
+
+.row
+  .res_req_scroll
+    %i.fa.fa-tag{class: "#{@agenda_reservation.status.css_class}-c"}
+    %strong= @agenda_reservation.folio
+    = @agenda_reservation.resource_requested
+
 %table.table
   %tbody
-    %tr
-      %td.th
-        = t("#{es}created_at")
-      %td.tc
-        = I18n.localize(@agenda_reservation.created_at, format: :long)
     %tr
       %td.th
         = t("#{es}requester")
@@ -13,14 +15,44 @@
         = @agenda_reservation.requester
     %tr
       %td.th
-        =t("#{es}resource_requested")
+        = t("#{es}.l_headquarter")
       %td.tc
-        = @agenda_reservation.resource_requested
+        = @agenda_reservation.l_headquarter.name
     %tr
       %td.th
-        = t("#{es}status_id")
+        = t("#{es}created_at")
       %td.tc
-        = @agenda_reservation.status.name
+        = I18n.localize(@agenda_reservation.created_at, format: :long)
+    -# OPTIONAL FIELDS
+    - txt_op_2 = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_2').first
+    - if (txt_op_2.value.try('size') || 0) > 0
+      %tr
+        %td.th
+          = txt_op_2.value
+        %td.tc
+          = @agenda_reservation.txt_op_2
+    - txt_op_1 = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_1').first
+    - if (txt_op_1.value.try('size') || 0) > 0
+      %tr
+        %td.th
+          = txt_op_1.value
+        %td.tc
+          = @agenda_reservation.txt_op_1
+    - txt_op_3 = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_3').first
+    - if (txt_op_3.value.try('size') || 0) > 0
+      %tr
+        %td.th
+          = txt_op_3.value
+        %td
+          = @agenda_reservation.txt_op_3
+
+    - txt_op_4 = Admin::DeptConfig.by_department_id_and_tag(@agenda_reservation.department_id, 'reservations_txt_op_4').first
+    - if (txt_op_4.value.try('size') || 0) > 0
+      %tr
+        %td.th
+          = txt_op_4.value
+        %td
+          = @agenda_reservation.txt_op_4
 
 - if @agenda_reservation.messages.size > 0
   %h4= t('titles.messages')

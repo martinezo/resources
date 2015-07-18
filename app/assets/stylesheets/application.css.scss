@@ -15,8 +15,6 @@
  */
 
 @import "base";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 
 .highlight{
   padding: 1em;
@@ -39,33 +37,89 @@
   margin-bottom: 1em;
 }
 
-//CANCELADO
-.warning-c{
-  color: #ffcf53;
+//SENT (RED)
+.sent-c,a:visited.sent-c,a:hover.sent-c{
+  color: $danger-color;
 }
 
-//ENVIADO
-.danger-c{
-  color: #ff0026;
+.sent-bg{
+  background-color: lighten($danger-color, 40%);
 }
+
+//RECEIVED
+.received-c,a:visited.received-c,a:hover.received-c{
+  color: $information-color;
+}
+
+.received-bg{
+  background-color: lighten($information-color, 40%);
+}
+
+//CANCELED
+.canceled-c,a:visited.canceled-c{
+  color: $warning-color;
+}
+
+.canceled-bg{
+  background-color: lighten($warning-color, 40%);
+}
+
+//CONFIRMED
+.confirmed-c,a:visited.confirmed-c,a:hover.confirmed-c{
+  color: $important-color;
+}
+
+.confirmed-bg{
+  background-color: lighten($important-color, 40%);
+}
+
+//CONCLUDED
+.concluded-c,a:visited.concluded-c{
+  color: $success-color;
+}
+
+.concluded-bg{
+  background-color: lighten($success-color, 40%);
+}
+
+
+
+
+//CANCELED (YELLOW)
+//CANCELED (YELLOW)
+//.canceled-c{
+//  color: #ffcf53;
+//  background-color: lighten(#ffcf53, 10%);
+//}
+
+//WARNING
+//.warning-c{
+//  color: #ffcf53;
+//}
+
+//DANGER
+//.danger-c{
+//  color: #ff0026;
+//  background-color: lighten(#ff0026, 40%);
+//}
 
 //RECIBIDO
-.active-c{
-  color: #119cff;
-}
-a:visited.active-c{
-  color: #119cff;
-}
+//.active-c{
+//  color: #119cff;
+//}
+//a:visited.active-c{
+//  color: #119cff;
+//}
 
 //CONFIRMADO
-.info-c{
-  color: #6180be;
-}
+//.info-c{
+//  color: #6180be;
+//}
 
 //EFECTUADO
-.success-c{
-  color: #71b25c;
-}
+//.success-c{
+//  color: #71b25c;
+//}
 
 .admin_dept_configs{
   max-height: 40em;

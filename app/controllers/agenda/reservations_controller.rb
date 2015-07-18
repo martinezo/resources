@@ -1,7 +1,7 @@
 class Agenda::ReservationsController < ApplicationController
   skip_before_filter :authenticate_devise_user!, only: [:public_new, :public_index, :public_create, :public_show ]
 
-  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete, :public_show, :delegate, :assign]
+  before_action :set_agenda_reservation, only: [:show, :edit, :update, :destroy, :delete, :public_show, :delegate, :set_as_delegated, :confirm, :set_as_confirmed, :conclude, :set_as_concluded]
   helper_method :sort_column, :sort_direction
 
   # Public interface
@@ -50,6 +50,7 @@ class Agenda::ReservationsController < ApplicationController
 
   # GET /agenda/reservations/1/edit
   def edit
+
   end
 
   # POST /agenda/reservations
@@ -81,16 +82,27 @@ class Agenda::ReservationsController < ApplicationController
 
 
   def delegate
-
   end
 
-  def assign
+  def set_as_delegated
     @agenda_reservation.status_id = 2
     @agenda_reservation.action = action_name #For valitation
     if @agenda_reservation.update(agenda_reservation_params)
-      flash[:success] = t('notices.request_successfully_assigned', admin_user_name: @agenda_reservation.admin_user.name)
+      flash[:success] = t('notices.request_successfully_delegated', admin_user_name: @agenda_reservation.admin_user.name)
     end
   end
+
+  def confirm
+  end
+
+  def set_as_confirmed
+    @agenda_reservation.status_id = 3
+    @agenda_reservation.action = action_name #For valitation
+    if @agenda_reservation.update(agenda_reservation_params)
+      flash[:success] = t('notices.request_successfully_confirmed')
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

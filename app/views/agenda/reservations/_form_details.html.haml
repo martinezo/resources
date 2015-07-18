@@ -1,3 +1,4 @@
+#new-update-dialog.modal.fade
 = simple_form_for @agenda_reservation, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
   .navbar.navbar-default
@@ -7,8 +8,10 @@
           %i.fa.fa-tag{class: "#{@agenda_reservation.status.css_class}-c"}
           %strong= "#{t('titles.request')} #{@agenda_reservation.folio}"
       .navbar-form.navbar-right
-        = f.button :submit, t('commands.save')
-        = link_to t('commands.cancel'), agenda_reservations_path, class: 'btn btn-default'
+        = link_to_fa_button(text: t('commands.cancel_reserv'), url: agenda_cancel_req_msg_path(@agenda_reservation), icon: 'fa-trash', data: {toggle: 'modal', target: '#new-update-dialog'})
+        = link_to_fa_button(text: t('commands.close'), url: agenda_reservations_path, icon: 'fa-close', remote: false)
+        -#= f.button :submit, t('commands.save')
+        = button_tag_fa(text: t('commands.save'), title: t('commands.save'), icon: 'fa-floppy-o')
 
   = f.error_notification
 
@@ -19,6 +22,7 @@
 
     .row
       %h4= t('msgs.info_provided_by_user')
+      %hr
     .row
       .col-sm-6
         = f.input :requester, disabled: true
@@ -52,6 +56,7 @@
 
     .row
       %h4= t('msgs.info_provided_by_admin')
+      %hr
     .row
       .col-sm-6
         = f.association :admin_user, disabled: true

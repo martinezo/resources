@@ -12,15 +12,15 @@ class Catalogs::Status < ActiveRecord::Base
   def css_class
     case id
       when 0 # Cancelado - yellow
-        'warning'
+        'canceled'
       when 1 # Enviado - red
-        'danger'
+        'sent'
       when 2 # Recibido - blue
-        'active'
+        'received'
       when 3 # Confirmado - gray
-        'info'
+        'confirmed'
       when 4 # Efectuado - green
-        'success'
+        'concluded'
     end
   end
 

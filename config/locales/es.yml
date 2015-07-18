@@ -35,6 +35,8 @@ es:
     old_messages: Mensajes anteriores
     cancel_reserv: Cancelar solicitud
     delegate: Assignar solicitud
+    confirm: Confirmar solicitud
+    conclude: Cerrar solicitud efectuada
     dept_configs: Configuración
 
   tags:
@@ -43,8 +45,11 @@ es:
   msgs:
     r_requested_hint: 'Espefique el periódo de su requerimiento incluyendo fecha y hora de inicio y término del mismo cuando así corresponda.'
     select_an_option: 'Seleccione una opción'
-    canceled_reservation: 'Mensaje de Cancelación'
+    canceled_reservation: 'Mensaje de cancelación'
+    concluded_reservation: 'Mensaje de cierre de solicitud'
     take_request?: '¿Tomar la solicitud a mi cargo?'
+    confirm_request?: '¿Confirmar solicitud?'
+    conclude_request?: '¿Cerrar solicitud ya efectuada?'
     info_provided_by_user: 'Información provista por el usuario'
     info_provided_by_admin: 'Información provista por el administrador'
 
@@ -71,6 +76,9 @@ es:
     back: Regresar
     assign_resources: Asignar Recursos
     assign_users: Asignar Usuarios
+    conclude_reserv: Cerrar solicitud efectuada
+    cm_yes: Si
+    cm_no: No
 
 
   notices:
@@ -83,7 +91,10 @@ es:
     reserv_canceled: ¡Solicitud cancelada!
     not_authorized: ¡Operación no autorizada!
     undefined: Indefinido
-    request_successfully_assigned: Solicitud asignada correctamente a %{admin_user_name}.
+    request_successfully_delegated: Solicitud asignada correctamente a %{admin_user_name}.
+    request_successfully_confirmed: Solicitud confirmada.
+    request_successfully_concluded: Solicitud efectuada y cerrada.
+
 
   will_paginate:
     previous_label: Anterior
@@ -161,6 +172,7 @@ es:
         folio: Folio
         message: Mensaje
         reason_for_cancelation: Motivo de la cancelación
+        conclude_msg: Comentarios de cierre de solictud
 
       devise_user:
         login: Usuario

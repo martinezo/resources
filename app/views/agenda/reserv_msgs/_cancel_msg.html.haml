@@ -1,0 +1,12 @@
+= simple_form_for @reserv_msg, url: agenda_cancel_msg_path(@reserv_msg.reservation_id),remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+  = f.error_notification
+
+  -#= hidden_field :agenda_reserv_msg, :reservation_id
+  = f.input :reservation_id, as: :hidden
+  = f.input :message, label: t('activerecord.attributes.agenda/reserv_msg.reason_for_cancelation'), as: :text, input_html: { maxlength: 250, rows: 9 }
+
+  %hr
+  .text-right
+    = button_tag_fa(text: t('commands.cancel_reserv'), title: t('commands.submit'), icon: 'fa-trash', name: t('commands.cancel_reserv'))
+    = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     post 'public_create_msg', to: 'reserv_msgs#public_create_msg', as: 'public_create_msg'
     get 'public_cancel_req_msg/:reservation_id', to: 'reserv_msgs#public_cancel_req_msg', as: 'public_cancel_req_msg'
     post 'public_cancel_msg', to: 'reserv_msgs#public_cancel_msg', as: 'public_cancel_msg'
+    get 'cancel_req_msg/:reservation_id', to: 'reserv_msgs#cancel_req_msg', as: 'cancel_req_msg'
+    post 'cancel_msg', to: 'reserv_msgs#cancel_msg', as: 'cancel_msg'
+    get 'conclude/:reservation_id', to: 'reserv_msgs#conclude', as: 'conclude_reservation'
+    post 'set_as_concluded/:reservation_id', to: 'reserv_msgs#set_as_concluded', as: 'set_as_concluded_reservation'
   end
 
   namespace :agenda do
@@ -30,7 +34,9 @@ Rails.application.routes.draw do
     get 'public_reservations/:department_id', to: 'reservations#public_index', as: 'public_reservations'
     get 'public_show/:id', to: 'reservations#public_show', as: 'public_show'
     get 'reservations/delegate/:id', to: 'reservations#delegate', as: 'delegate_reservation'
-    patch 'reservations/assign/:id', to: 'reservations#assign', as: 'assign_reservation'
+    patch 'reservations/set_as_delegated/:id', to: 'reservations#set_as_delegated', as: 'set_as_delegated_reservation'
+    get 'reservations/confirm/:id', to: 'reservations#confirm', as: 'confirm_reservation'
+    patch 'reservations/set_as_confirmed/:id', to: 'reservations#set_as_confirmed', as: 'set_as_confirmed_reservation'
   end
 
   namespace :agenda do

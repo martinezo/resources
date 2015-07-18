@@ -1,4 +1,4 @@
-= simple_form_for @agenda_reservation, url: agenda_assign_reservation_path(params[:id]), remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+= simple_form_for @agenda_reservation, url: agenda_set_as_delegated_reservation_path(params[:id]), remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
   - case current_devise_user.user_type_id
     - when 2 # Resource administrator

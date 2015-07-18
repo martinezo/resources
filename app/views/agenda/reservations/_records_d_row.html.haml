@@ -6,23 +6,27 @@
 %td{title: "#{reservation.admin_user.try('name')}"}= reservation.admin_user.try('initials') || "-"
 %td.text-center
 
-  - if cannot? :delegate, reservation
+  -#- if cannot? :delegate, reservation
     = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c")
-  - else
-    - case reservation.status_id
-      - when 0 # CANCELADO
-        = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c")
-      - when 1 # EN ESPERA
-        = link_to_fa_button({url: agenda_delegate_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c", data: {toggle: 'modal', target: '#new-update-dialog'}})
-      - when 2,3 # ASIGNADO, CONFIRMADO
-        = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, remote: false, html_class: "#{reservation.status.css_class}-c"})
-      - when 4 # CONCLUIDO
-        = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{reservation.status.css_class}-c")
+  -#- else
+  - case reservation.status_id
+    - when 0# CANCELADO
+      - css_class = "#{reservation.status.css_class}-c #{reservation.status.css_class}-bg"
+      = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{css_class}")
+    - when 1 # SENT: EN ESPERA (ROJO)
+      - css_class = "#{reservation.status.css_class}-c #{reservation.status.css_class}-bg"
+      = link_to_fa_button({url: agenda_delegate_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, html_class: "#{css_class}", data: {toggle: 'modal', target: '#new-update-dialog'}})
+    - when 2 # RECEIVED: ASIGNADO (AZUL CLARO)
+      - css_class = "#{reservation.status.css_class}-c #{reservation.status.css_class}-bg"
+      = link_to_fa_button({url: agenda_confirm_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, html_class: "#{css_class}", data: {toggle: 'modal', target: '#new-update-dialog'}})
+    - when 3 # CONFIRMED: CONFIRMADO (AZUL OBSCURO)
+      - css_class = "#{reservation.status.css_class}-c #{reservation.status.css_class}-bg"
+      = link_to_fa_button({url: agenda_conclude_reservation_path(reservation), icon: 'fa-tag', title: reservation.status.name, html_class: "#{css_class}", data: {toggle: 'modal', target: '#new-update-dialog'}})
+    - when 4 # CONCLUDED
+      - css_class = "#{reservation.status.css_class}-c #{reservation.status.css_class}-bg"
+      = fa_button_no_active(icon: 'fa-tag', title: reservation.status.name, html_class: "#{css_class}")
 
   = link_to_fa_button({url: reservation, icon: 'fa-eye', title: t('commands.show'), data: {toggle: 'modal', target: '#show-dialog'}})
   = link_to_fa_button({url: new_agenda_reserv_msg_path(reservation_id: reservation), icon: 'fa-comment-o', title: t('commands.comment'),data: {toggle: 'modal', target: '#new-update-dialog'}})
-  - if reservation.status_id == 0 || reservation.status_id == 4 #CANCELED OR CONCLUDED
-    = fa_button_no_active(icon: 'fa-pencil', title: t('commands.edit'))
-  -else
-    = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-pencil', title: t('commands.edit'), remote: false})
+  = link_to_fa_button({url: edit_agenda_reservation_path(reservation), icon: 'fa-pencil', title: t('commands.edit'), remote: false, html_class: (reservation.status_id == 0 || reservation.status_id == 4) ? 'disabled' : nil})
   = link_to_fa_button({url: agenda_delete_reservation_path(reservation), icon: 'fa-trash-o', title: t('commands.delete'), data: {toggle: 'modal', target: '#delete-dialog'}})

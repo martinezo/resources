@@ -26,7 +26,7 @@ module ApplicationHelper
     title = options[:title] || nil
     icon = options[:icon] || nil
     id = options[:id] || nil
-    html_class = "btn btn-default" << (options[:html_class] ? " #{options[:html_class]}" : '')
+    html_class = "btn" << (options[:html_class] ? " #{options[:html_class]}" : '')
     "<span disabled class='fa #{html_class} #{icon}'> #{text}</span>".html_safe
   end
 
