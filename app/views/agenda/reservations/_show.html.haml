@@ -107,7 +107,7 @@
 
 .text-right
 
-  = link_to_fa_button({url: edit_agenda_reservation_path(@agenda_reservation), icon: 'fa-pencil', text: t('commands.edit'), remote: false, html_class: (@agenda_reservation.status_id == 0 ||@agenda_reservation.status_id == 4) ? 'disabled' : nil})
+  = link_to_fa_button({url: edit_agenda_reservation_path(@agenda_reservation, page: params[:page]), icon: 'fa-pencil', text: t('commands.edit'), remote: false, html_class: (@agenda_reservation.status_id == 0 ||@agenda_reservation.status_id == 4) ? 'disabled' : nil})
   = button_tag "<span class='fa fa-close'></span> #{t('commands.close')}".html_safe, data: { dismiss: 'modal'}, class: 'btn btn-default'
 
 -#  TODO change column name user_type_id to user_type_id

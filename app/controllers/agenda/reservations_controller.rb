@@ -50,7 +50,7 @@ class Agenda::ReservationsController < ApplicationController
 
   # GET /agenda/reservations/1/edit
   def edit
-
+    puts 'xxxxx'
   end
 
   # POST /agenda/reservations
@@ -68,8 +68,8 @@ class Agenda::ReservationsController < ApplicationController
   def update
     if @agenda_reservation.update(agenda_reservation_params)
       flash[:success] = t('notices.updated_successfully')
-      index
-      redirect_to agenda_reservations_path
+      #index
+      redirect_to agenda_reservations_path(page: params[:page])
     end
   end
 
