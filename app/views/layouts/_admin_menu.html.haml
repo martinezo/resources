@@ -26,27 +26,32 @@
           %ul.dropdown-menu{:role => "menu"}
             %li
               = link_to t('titles.users'), admin_users_path
+            %li
+              = link_to t('titles.dept_configs'), admin_users_path
             %li.divider
               %li
                 = link_to t('titles.reserv_resources'), agenda_reserv_resources_path
+              %li
                 = link_to t('titles.reservations'), agenda_reservations_path
             %li.divider
-              = link_to t('titles.departments'), catalogs_departments_path
-              = link_to t('titles.event_types'), catalogs_event_types_path
-            %li
-              = link_to  t('titles.headquarters'), catalogs_headquarters_path
-            %li
-              = link_to t('titles.institutions'), catalogs_institutions_path
-            %li
-              = link_to t('titles.resource_types'), catalogs_resource_types_path
-            %li
-              = link_to t('titles.resources'), catalogs_resources_path
-            %li
-              = link_to t('titles.statuses'), catalogs_statuses_path
-            %li
-              = link_to t('titles.user_resources'), catalogs_user_resources_path
+              %li
+                = link_to t('titles.departments'), catalogs_departments_path
+              %li
+                = link_to t('titles.event_types'), catalogs_event_types_path
+              %li
+                = link_to  t('titles.headquarters'), catalogs_headquarters_path
+              %li
+                = link_to t('titles.institutions'), catalogs_institutions_path
+              %li
+                = link_to t('titles.resource_types'), catalogs_resource_types_path
+              %li
+                = link_to t('titles.resources'), catalogs_resources_path
+              %li
+                = link_to t('titles.statuses'), catalogs_statuses_path
+              %li
+                = link_to t('titles.user_resources'), catalogs_user_resources_path
             %li.divider
-            %li
-              = link_to  t('commands.logout'), destroy_devise_user_session_path, method: :delete
+              %li
+                = link_to  t('commands.logout'), destroy_devise_user_session_path, method: :delete
     / /.navbar-collapse
   / /.container-fluid
